@@ -46,7 +46,6 @@
       color: #0F172A;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    /* Hilangkan panah default pada input number */
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
       -webkit-appearance: none;
@@ -55,7 +54,6 @@
     input[type="number"] {
       -moz-appearance: textfield;
     }
-    /* Sembunyikan scrollbar horizontal pada slider katalog agar bersih */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -63,9 +61,16 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-modal-pop {
+      animation: modalPop 0.22s ease-out forwards;
+    }
   </style>
 </head>
-<body class="antialiased selection:bg-brand-100 selection:text-brand-900">
+<body class="antialiased selection:bg-brand-100 selection:text-brand-900 min-h-screen flex flex-col">
 
   <!-- =========================================================
        STICKY TOP NAVBAR
@@ -74,7 +79,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-18">
         <!-- Brand Logo -->
-        <a href="#" class="flex items-center gap-2.5 group">
+        <button type="button" onclick="openStorefrontPage()" class="flex items-center gap-2.5 group text-left">
           <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm group-hover:bg-brand-700 transition-colors">
             <i data-lucide="shirt" class="w-5 h-5"></i>
           </div>
@@ -82,21 +87,34 @@
             <span class="font-extrabold text-lg tracking-tight text-slate-900">KaosCraft</span>
             <span class="hidden sm:inline-block text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full ml-1.5 border border-brand-200">Custom Lab</span>
           </div>
-        </a>
+        </button>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-          <a href="#katalog" class="hover:text-brand-600 transition-colors">Katalog</a>
-          <a href="#cara-pesan" class="hover:text-brand-600 transition-colors">Cara Pesan</a>
-          <a href="#size-chart" class="hover:text-brand-600 transition-colors">Size Chart</a>
+          <button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition-colors">Katalog</button>
+          <button type="button" onclick="openStorefrontPage('cara-pesan')" class="hover:text-brand-600 transition-colors">Cara Pesan</button>
+          <button type="button" onclick="openStorefrontPage('size-chart')" class="hover:text-brand-600 transition-colors">Size Chart</button>
         </nav>
 
-        <!-- Primary CTA + Mobile Toggle -->
-        <div class="flex items-center gap-3">
-          <a href="#order-section" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm shadow-brand-600/20 transition-all">
+        <!-- Actions: Panduan + Order Sekarang -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            onclick="openTutorialModal()"
+            title="Lihat Panduan Memesan"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-semibold transition">
+            <i data-lucide="help-circle" class="w-4 h-4 text-brand-600"></i>
+            <span class="hidden sm:inline">Panduan</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="openOrderPage()"
+            class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white text-xs sm:text-sm font-semibold px-3.5 sm:px-4 py-2.5 rounded-xl shadow-sm shadow-brand-600/20 transition-all">
             <i data-lucide="shopping-bag" class="w-4 h-4"></i>
             <span>Order Sekarang</span>
-          </a>
+          </button>
+
           <button id="mobileMenuBtn" type="button" aria-label="Buka Menu" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
@@ -105,280 +123,298 @@
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-3 space-y-2">
-      <a href="#katalog" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Katalog Produk</a>
-      <a href="#cara-pesan" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Cara Pesan</a>
-      <a href="#size-chart" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Size Chart & Warna</a>
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-3 space-y-1.5">
+      <button type="button" onclick="openStorefrontPage('katalog')" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Katalog Produk</button>
+      <button type="button" onclick="openStorefrontPage('cara-pesan')" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Cara Pesan</button>
+      <button type="button" onclick="openStorefrontPage('size-chart')" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Size Chart &amp; Warna</button>
+      <button type="button" onclick="openTutorialModal()" class="block w-full text-left py-2 text-sm font-semibold text-brand-600">Lihat Panduan Tutorial</button>
     </div>
   </header>
 
   <!-- =========================================================
-       SEKSI 1 — HERO BANNER TOKO
+       VIEW 1: HALAMAN ETALASE TOKO (HERO + KATALOG SLIDER + INFO)
   ========================================================== -->
-  <section class="relative overflow-hidden bg-white border-b border-slate-200/80">
-    <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <!-- Left Copy -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs sm:text-sm font-semibold">
-            <i data-lucide="sparkles" class="w-4 h-4 text-brand-600"></i>
-            <span>Bisa Satuan & Partai Besar • Garansi Jahitan & Cetak</span>
+  <main id="storefrontView" class="flex-1">
+
+    <!-- SEKSI 1 — HERO BANNER TOKO -->
+    <section class="relative overflow-hidden bg-white border-b border-slate-200/80">
+      <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <!-- Left Copy -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs sm:text-sm font-semibold">
+              <i data-lucide="sparkles" class="w-4 h-4 text-brand-600"></i>
+              <span>Bisa Satuan &amp; Partai Besar • Garansi Jahitan &amp; Cetak</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+              Wujudkan Kaos Custom <span class="text-brand-600">Desain Bebas</span> dengan Kualitas Distro.
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+              Menggunakan 100% <strong class="font-semibold text-slate-800">Cotton Combed 24s &amp; 30s</strong> yang adem menyerap keringat, dipadukan teknologi sablon <strong class="font-semibold text-slate-800">DTF High-Res &amp; Plastisol</strong> yang tajam, lentur, dan anti retak.
+            </p>
+
+            <!-- Key USPs -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
+              <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+                <span>Combed 24s / 30s Ori</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+                <span>Sablon Tajam &amp; Awet</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+                <span>Free Mockup Preview</span>
+              </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
+              <button type="button" onclick="openOrderPage()"
+                class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition-all">
+                <i data-lucide="pen-tool" class="w-4 h-4"></i>
+                <span>Isi Form Order</span>
+              </button>
+              <a href="#katalog"
+                class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl border border-slate-300 transition-all">
+                <i data-lucide="layout-grid" class="w-4 h-4 text-slate-600"></i>
+                <span>Lihat Katalog</span>
+              </a>
+            </div>
           </div>
 
-          <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-            Wujudkan Kaos Custom <span class="text-brand-600">Desain Bebas</span> dengan Kualitas Distro.
-          </h1>
-
-          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-            Menggunakan 100% <strong class="font-semibold text-slate-800">Cotton Combed 24s & 30s</strong> yang adem menyerap keringat, dipadukan teknologi sablon <strong class="font-semibold text-slate-800">DTF High-Res & Plastisol</strong> yang tajam, lentur, dan anti retak.
-          </p>
-
-          <!-- Key USPs -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
-            <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
-              <span>Combed 24s / 30s Ori</span>
-            </div>
-            <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
-              <span>Sablon Tajam & Awet</span>
-            </div>
-            <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
-              <span>Free Mockup Preview</span>
-            </div>
-          </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
-            <a href="#order-section" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition-all">
-              <i data-lucide="pen-tool" class="w-4 h-4"></i>
-              <span>Isi Form Order</span>
-            </a>
-            <a href="#katalog" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl border border-slate-300 transition-all">
-              <i data-lucide="layout-grid" class="w-4 h-4 text-slate-600"></i>
-              <span>Lihat Katalog</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Right Showcase Card -->
-        <div class="lg:col-span-5">
-          <div class="relative bg-slate-900 rounded-3xl p-4 sm:p-5 shadow-xl border border-slate-800">
-            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-800 relative">
-              <img
-                src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
-                alt="Contoh Produksi Kaos Custom Cotton Combed"
-                class="w-full h-full object-cover opacity-95"
-              />
-              <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg flex items-center justify-between">
-                <div>
-                  <p class="text-[11px] font-bold uppercase tracking-wider text-brand-600">Best Seller Paket Komunitas</p>
-                  <p class="text-sm font-bold text-slate-900">Combed 24s + Sablon DTF A3</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-[11px] text-slate-500">Mulai dari</p>
-                  <p class="text-sm font-extrabold text-brand-700">Rp 65.000</p>
+          <!-- Right Showcase Card -->
+          <div class="lg:col-span-5">
+            <div class="relative bg-slate-900 rounded-3xl p-4 sm:p-5 shadow-xl border border-slate-800">
+              <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-800 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
+                  alt="Contoh Produksi Kaos Custom Cotton Combed"
+                  class="w-full h-full object-cover opacity-95"
+                />
+                <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg flex items-center justify-between">
+                  <div>
+                    <p class="text-[11px] font-bold uppercase tracking-wider text-brand-600">Best Seller Paket Komunitas</p>
+                    <p class="text-sm font-bold text-slate-900">Combed 24s + Sablon DTF A3</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-[11px] text-slate-500">Mulai dari</p>
+                    <p class="text-sm font-extrabold text-brand-700">Rp 65.000</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- =========================================================
-       SEKSI 2 — KATALOG CONTOH PRODUK (HORIZONTAL SLIDER 2 PER LAYAR)
-  ========================================================== -->
-  <section id="katalog" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Header Katalog + Kontrol Panah Slider -->
-    <div class="flex items-end justify-between gap-4 mb-7 sm:mb-9">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Katalog Paket &amp; Referensi</span>
-        <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pilih Model &amp; Spesifikasi Kaos</h2>
-        <p class="text-xs sm:text-base text-slate-600 mt-1">Geser ke samping untuk melihat paket lain, lalu klik <strong>"Order Model Ini"</strong>.</p>
-      </div>
-
-      <!-- Tombol Navigasi Slider -->
-      <div class="flex items-center gap-2 shrink-0">
-        <span id="catalogPageCounter" class="hidden sm:inline-block text-xs font-bold text-slate-500 mr-2">1 / 3</span>
-        <button
-          type="button"
-          id="catalogPrevBtn"
-          onclick="scrollCatalog(-1)"
-          aria-label="Slide Sebelumnya"
-          class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition">
-          <i data-lucide="chevron-left" class="w-5 h-5"></i>
-        </button>
-        <button
-          type="button"
-          id="catalogNextBtn"
-          onclick="scrollCatalog(1)"
-          aria-label="Slide Berikutnya"
-          class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition">
-          <i data-lucide="chevron-right" class="w-5 h-5"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Track Horizontal Slider (2 Kartu Per Layar) -->
-    <div class="relative">
-      <div
-        id="catalogSlider"
-        class="flex gap-3.5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-2">
-        <!-- Kartu produk di-render via JS -->
-      </div>
-    </div>
-
-    <!-- Pagination Dots & Info Harga -->
-    <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div id="catalogDots" class="flex items-center justify-center gap-2"></div>
-      <p class="text-[11px] sm:text-xs font-medium text-slate-500">
-        *Geser kartu ke samping • Harga menyesuaikan jumlah pcs &amp; ukuran cetak
-      </p>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       SEKSI 3 — CARA PEMESANAN & SIZE CHART
-  ========================================================== -->
-  <section id="cara-pesan" class="py-16 sm:py-20 bg-white border-y border-slate-200/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-
-      <!-- 4 Langkah Cara Pesan -->
-      <div>
-        <div class="text-center max-w-2xl mx-auto mb-10">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Alur Pemesanan Mudah</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">4 Langkah Order Kaos Custom</h2>
+    <!-- SEKSI 2 — KATALOG CONTOH PRODUK (HORIZONTAL SLIDER 2 PER LAYAR) -->
+    <section id="katalog" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-4 mb-7 sm:mb-9">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Katalog Paket &amp; Referensi</span>
+          <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pilih Model &amp; Spesifikasi Kaos</h2>
+          <p class="text-xs sm:text-base text-slate-600 mt-1">Geser ke samping untuk melihat paket lain, lalu klik <strong>"Order Model Ini"</strong>.</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
-            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">01</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Pilih Model</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">Tentukan paket bahan, jenis lengan, serta referensi sablon dari katalog tersedia.</p>
-          </div>
-
-          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
-            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">02</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Form &amp; Upload Desain</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">Masukkan rincian ukuran S–XXL, posisi cetak, dan unggah file desain (PNG/JPG/PDF).</p>
-          </div>
-
-          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
-            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">03</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Kirim Konfirmasi WA</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">Data otomatis tersimpan &amp; Anda langsung diarahkan ke WhatsApp Admin untuk ACC mockup.</p>
-          </div>
-
-          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
-            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">04</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi &amp; Kirim</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">Pesanan diproduksi presisi oleh tim workshop kami dan dikirim ke alamat Anda.</p>
-          </div>
+        <!-- Tombol Navigasi Slider -->
+        <div class="flex items-center gap-2 shrink-0">
+          <span id="catalogPageCounter" class="hidden sm:inline-block text-xs font-bold text-slate-500 mr-2">1 / 3</span>
+          <button
+            type="button"
+            id="catalogPrevBtn"
+            onclick="scrollCatalog(-1)"
+            aria-label="Slide Sebelumnya"
+            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button
+            type="button"
+            id="catalogNextBtn"
+            onclick="scrollCatalog(1)"
+            aria-label="Slide Berikutnya"
+            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
         </div>
       </div>
 
-      <!-- Warna Tersedia & Tabel Size Chart -->
-      <div id="size-chart" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
-        <!-- Katalog Swatches Warna -->
-        <div class="lg:col-span-5 bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6">
-          <div class="flex items-center gap-2 mb-2">
-            <i data-lucide="palette" class="w-5 h-5 text-brand-600"></i>
-            <h3 class="font-bold text-lg text-slate-900">Pilihan Warna Cotton Combed</h3>
-          </div>
-          <p class="text-sm text-slate-600 mb-5">Klik salah satu warna di bawah untuk langsung memilihnya pada Form Order:</p>
-
-          <div id="referenceColorSwatches" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
-
-          <div class="mt-5 p-3.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-600 flex items-start gap-2.5">
-            <i data-lucide="info" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-            <span>Butuh warna khusus (seperti Lilac, Sage Green, atau Burgundy)? Anda dapat mengetikkannya langsung pada kolom <strong>Warna Custom</strong> di form.</span>
-          </div>
+      <!-- Track Horizontal Slider (2 Kartu Per Layar) -->
+      <div class="relative">
+        <div
+          id="catalogSlider"
+          class="flex gap-3.5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-2">
         </div>
+      </div>
 
-        <!-- Tabel Panduan Ukuran -->
-        <div class="lg:col-span-7 bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6">
-          <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
-            <div class="flex items-center gap-2">
-              <i data-lucide="ruler" class="w-5 h-5 text-brand-600"></i>
-              <h3 class="font-bold text-lg text-slate-900">Panduan Ukuran (Size Chart)</h3>
+      <!-- Pagination Dots & Info Harga -->
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div id="catalogDots" class="flex items-center justify-center gap-2"></div>
+        <p class="text-[11px] sm:text-xs font-medium text-slate-500">
+          *Geser kartu ke samping • Harga menyesuaikan jumlah pcs &amp; ukuran cetak
+        </p>
+      </div>
+    </section>
+
+    <!-- SEKSI 3 — CARA PEMESANAN & SIZE CHART -->
+    <section id="cara-pesan" class="py-16 sm:py-20 bg-white border-t border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- 4 Langkah Cara Pesan -->
+        <div>
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Alur Pemesanan Mudah</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">4 Langkah Order Kaos Custom</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+              <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">01</div>
+              <h3 class="font-bold text-slate-900 text-base mb-1.5">Pilih Model</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Tentukan paket bahan, jenis lengan, serta referensi sablon dari katalog tersedia.</p>
             </div>
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 border border-brand-200">Regular Fit Asian Size (cm)</span>
-          </div>
-          <p class="text-sm text-slate-600 mb-4">Ukur lebar dada dari ketiak kiri ke kanan dan panjang dari bahu tertinggi ke ujung bawah kaos.</p>
 
-          <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
-            <table class="w-full text-sm text-left">
-              <thead class="bg-slate-900 text-white text-xs uppercase">
-                <tr>
-                  <th class="px-4 py-3 font-bold">Ukuran</th>
-                  <th class="px-4 py-3 font-bold">Lebar Dada</th>
-                  <th class="px-4 py-3 font-bold">Panjang Baju</th>
-                  <th class="px-4 py-3 font-bold">Lengan Pendek</th>
-                  <th class="px-4 py-3 font-bold">Lengan Panjang</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-200 text-slate-700">
-                <tr class="hover:bg-slate-50">
-                  <td class="px-4 py-3 font-bold text-slate-900">S</td>
-                  <td class="px-4 py-3">47 cm</td>
-                  <td class="px-4 py-3">67 cm</td>
-                  <td class="px-4 py-3">20 cm</td>
-                  <td class="px-4 py-3">57 cm</td>
-                </tr>
-                <tr class="hover:bg-slate-50">
-                  <td class="px-4 py-3 font-bold text-slate-900">M</td>
-                  <td class="px-4 py-3">50 cm</td>
-                  <td class="px-4 py-3">70 cm</td>
-                  <td class="px-4 py-3">21 cm</td>
-                  <td class="px-4 py-3">59 cm</td>
-                </tr>
-                <tr class="hover:bg-slate-50">
-                  <td class="px-4 py-3 font-bold text-slate-900">L</td>
-                  <td class="px-4 py-3">53 cm</td>
-                  <td class="px-4 py-3">73 cm</td>
-                  <td class="px-4 py-3">22 cm</td>
-                  <td class="px-4 py-3">61 cm</td>
-                </tr>
-                <tr class="hover:bg-slate-50">
-                  <td class="px-4 py-3 font-bold text-slate-900">XL</td>
-                  <td class="px-4 py-3">56 cm</td>
-                  <td class="px-4 py-3">75 cm</td>
-                  <td class="px-4 py-3">23 cm</td>
-                  <td class="px-4 py-3">63 cm</td>
-                </tr>
-                <tr class="hover:bg-slate-50">
-                  <td class="px-4 py-3 font-bold text-slate-900">XXL</td>
-                  <td class="px-4 py-3">59 cm</td>
-                  <td class="px-4 py-3">78 cm</td>
-                  <td class="px-4 py-3">24 cm</td>
-                  <td class="px-4 py-3">65 cm</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+              <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">02</div>
+              <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Form &amp; Upload Desain</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Masukkan rincian ukuran S–XXL, posisi cetak, dan unggah file desain (PNG/JPG/PDF).</p>
+            </div>
+
+            <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+              <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">03</div>
+              <h3 class="font-bold text-slate-900 text-base mb-1.5">Kirim Konfirmasi WA</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Data otomatis tersimpan &amp; Anda langsung diarahkan ke WhatsApp Admin untuk ACC mockup.</p>
+            </div>
+
+            <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+              <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">04</div>
+              <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi &amp; Kirim</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Pesanan diproduksi presisi oleh tim workshop kami dan dikirim ke alamat Anda.</p>
+            </div>
           </div>
-          <p class="text-xs text-slate-500 mt-3">*Toleransi ukuran jahitan ±1–2 cm karena proses potong dan obras konveksi.</p>
         </div>
-      </div>
 
-    </div>
-  </section>
+        <!-- Warna Tersedia & Tabel Size Chart -->
+        <div id="size-chart" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
+          <!-- Katalog Swatches Warna -->
+          <div class="lg:col-span-5 bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="palette" class="w-5 h-5 text-brand-600"></i>
+              <h3 class="font-bold text-lg text-slate-900">Pilihan Warna Cotton Combed</h3>
+            </div>
+            <p class="text-sm text-slate-600 mb-5">Klik salah satu warna di bawah untuk membuka Form Order dengan warna tersebut:</p>
+
+            <div id="referenceColorSwatches" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+
+            <div class="mt-5 p-3.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-600 flex items-start gap-2.5">
+              <i data-lucide="info" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+              <span>Butuh warna khusus (seperti Lilac, Sage Green, atau Burgundy)? Anda dapat mengetikkannya langsung pada kolom <strong>Warna Custom</strong> di halaman form order.</span>
+            </div>
+          </div>
+
+          <!-- Tabel Panduan Ukuran -->
+          <div class="lg:col-span-7 bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <i data-lucide="ruler" class="w-5 h-5 text-brand-600"></i>
+                <h3 class="font-bold text-lg text-slate-900">Panduan Ukuran (Size Chart)</h3>
+              </div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 border border-brand-200">Regular Fit Asian Size (cm)</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">Ukur lebar dada dari ketiak kiri ke kanan dan panjang dari bahu tertinggi ke ujung bawah kaos.</p>
+
+            <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <table class="w-full text-sm text-left">
+                <thead class="bg-slate-900 text-white text-xs uppercase">
+                  <tr>
+                    <th class="px-4 py-3 font-bold">Ukuran</th>
+                    <th class="px-4 py-3 font-bold">Lebar Dada</th>
+                    <th class="px-4 py-3 font-bold">Panjang Baju</th>
+                    <th class="px-4 py-3 font-bold">Lengan Pendek</th>
+                    <th class="px-4 py-3 font-bold">Lengan Panjang</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-700">
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 py-3 font-bold text-slate-900">S</td>
+                    <td class="px-4 py-3">47 cm</td>
+                    <td class="px-4 py-3">67 cm</td>
+                    <td class="px-4 py-3">20 cm</td>
+                    <td class="px-4 py-3">57 cm</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 py-3 font-bold text-slate-900">M</td>
+                    <td class="px-4 py-3">50 cm</td>
+                    <td class="px-4 py-3">70 cm</td>
+                    <td class="px-4 py-3">21 cm</td>
+                    <td class="px-4 py-3">59 cm</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 py-3 font-bold text-slate-900">L</td>
+                    <td class="px-4 py-3">53 cm</td>
+                    <td class="px-4 py-3">73 cm</td>
+                    <td class="px-4 py-3">22 cm</td>
+                    <td class="px-4 py-3">61 cm</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 py-3 font-bold text-slate-900">XL</td>
+                    <td class="px-4 py-3">56 cm</td>
+                    <td class="px-4 py-3">75 cm</td>
+                    <td class="px-4 py-3">23 cm</td>
+                    <td class="px-4 py-3">63 cm</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 py-3 font-bold text-slate-900">XXL</td>
+                    <td class="px-4 py-3">59 cm</td>
+                    <td class="px-4 py-3">78 cm</td>
+                    <td class="px-4 py-3">24 cm</td>
+                    <td class="px-4 py-3">65 cm</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">*Toleransi ukuran jahitan ±1–2 cm karena proses potong dan obras konveksi.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
 
   <!-- =========================================================
-       SEKSI 4 — FORM PEMESANAN KAOS INTERAKTIF
+       VIEW 2: HALAMAN BARU FORM PEMESANAN KAOS (TERSEMBUNYI DEFAULT)
   ========================================================== -->
-  <section id="order-section" class="py-16 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="orderPageView" class="hidden flex-1 py-8 sm:py-12 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Top Breadcrumb / Back to Catalog Bar -->
+    <div class="flex items-center justify-between gap-4 mb-6">
+      <button
+        type="button"
+        onclick="openStorefrontPage()"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 text-slate-700 text-xs sm:text-sm font-bold shadow-sm transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Kembali ke Katalog</span>
+      </button>
+
+      <span class="text-xs font-semibold text-slate-500 bg-white px-3 py-1.5 rounded-full border border-slate-200">
+        Halaman Pemesanan Custom
+      </span>
+    </div>
+
     <!-- Section Title -->
-    <div class="text-center mb-10">
+    <div class="text-center mb-8">
       <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Formulir Pemesanan Online</span>
       <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Detail Pesanan Custom Kaos</h2>
       <p class="text-sm sm:text-base text-slate-600 mt-1.5">Lengkapi data di bawah. Setelah klik order, rincian otomatis tersimpan dan diteruskan ke WhatsApp Admin.</p>
     </div>
 
-    <!-- Banner Paket Terpilih dari Katalog (Muncul jika user klik "Order Model Ini") -->
+    <!-- Banner Paket Terpilih dari Katalog -->
     <div id="selectedModelBanner" class="hidden mb-6 bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center justify-between gap-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shrink-0">
@@ -422,7 +458,7 @@
             </label>
             <input type="tel" id="customerWhatsapp" inputmode="numeric" required placeholder="Contoh: 081234567890"
               class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
-            <p id="waErrorMsg" class="hidden text-xs text-red-600 font-medium mt-1">Nomor WhatsApp wajib diisi hanya dengan angka (10–15 digit).</p>
+            <p id="waErrorMsg" class="hidden text-xs text-red-600 font-medium mt-1">Nomor WhatsApp wajib diisi hanya dengan angka (9–15 digit).</p>
           </div>
 
           <div class="sm:col-span-2">
@@ -461,17 +497,15 @@
             <span id="activeColorLabel" class="ml-2 text-xs font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">Hitam Jet Black</span>
           </label>
 
-          <!-- Swatch Buttons -->
           <div id="formColorSwatches" class="flex flex-wrap gap-2.5 mb-3"></div>
 
-          <!-- Custom Color Input -->
           <div class="mt-3">
             <input type="text" id="customColorInput" placeholder="Atau ketik warna custom di sini (misal: Sage Green, Misty Muda, dll)..."
               class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
           </div>
         </div>
 
-        <!-- Matriks Ukuran: 2 Kelompok Jelas (Lengan Panjang & Lengan Pendek) -->
+        <!-- Matriks Ukuran: 2 Kelompok Jelas -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Kelompok 1: Lengan Pendek -->
           <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5">
@@ -791,9 +825,12 @@
         </button>
       </div>
 
-      <div class="pt-2">
-        <button type="button" onclick="resetOrderPage()" class="text-xs font-semibold text-slate-500 hover:text-brand-600 underline">
+      <div class="pt-3 flex items-center justify-center gap-5">
+        <button type="button" onclick="resetOrderPage()" class="text-xs font-bold text-brand-600 hover:text-brand-700 underline">
           + Buat Pesanan Baru
+        </button>
+        <button type="button" onclick="openStorefrontPage()" class="text-xs font-semibold text-slate-500 hover:text-slate-800 underline">
+          Kembali ke Beranda
         </button>
       </div>
     </div>
@@ -802,7 +839,7 @@
   <!-- =========================================================
        FOOTER
   ========================================================== -->
-  <footer class="bg-white border-t border-slate-200 py-8">
+  <footer class="bg-white border-t border-slate-200 py-8 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
       <div class="flex items-center gap-2 font-bold text-slate-800">
         <i data-lucide="shirt" class="w-4 h-4 text-brand-600"></i>
@@ -811,6 +848,66 @@
       <p>&copy; 2026 KaosCraft Studio. Layanan Produksi Kaos &amp; Sablon Custom.</p>
     </div>
   </footer>
+
+  <!-- =========================================================
+       MODAL PANDUAN MEMESAN (FIRST-TIME ONBOARDING TOUR)
+  ========================================================== -->
+  <div id="tutorialModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-200 animate-modal-pop">
+      <!-- Top Header Modal -->
+      <div class="bg-brand-600 px-6 py-5 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center">
+            <i data-lucide="compass" class="w-4 h-4"></i>
+          </span>
+          <div>
+            <p class="text-[11px] font-bold uppercase tracking-wider text-brand-100">Panduan Singkat</p>
+            <h3 class="font-extrabold text-base leading-tight">Cara Pesan Kaos Custom</h3>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onclick="closeTutorialModal(true)"
+          class="text-xs font-bold px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white transition">
+          Lewati
+        </button>
+      </div>
+
+      <!-- Body Step Content -->
+      <div class="p-6 sm:p-7">
+        <!-- Progress Bar -->
+        <div class="flex items-center gap-1.5 mb-6" id="tutorialProgressBars"></div>
+
+        <!-- Step Visual Icon & Content -->
+        <div id="tutorialStepBody" class="text-center space-y-4 min-h-[195px] flex flex-col items-center justify-center">
+          <!-- Diisi via JS -->
+        </div>
+
+        <!-- Footer Controls -->
+        <div class="mt-7 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+          <button
+            type="button"
+            id="tutorialPrevBtn"
+            onclick="changeTutorialStep(-1)"
+            class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:pointer-events-none transition">
+            Sebelumnya
+          </button>
+
+          <span id="tutorialStepCounter" class="text-xs font-bold text-slate-400">1 dari 4</span>
+
+          <button
+            type="button"
+            id="tutorialNextBtn"
+            onclick="changeTutorialStep(1)"
+            class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-600 hover:bg-brand-700 text-white shadow-sm transition">
+            <span id="tutorialNextLabel">Lanjut</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================
        LOADING OVERLAY
@@ -832,11 +929,41 @@
     // =========================================================
     const GAS_WEB_APP_URL = "URL_WEB_APP_GAS_ANDA";
     const ADMIN_WHATSAPP = "628XXXXXXXXXX"; // Format awalan 62 tanpa tanda +
+    const TUTORIAL_STORAGE_KEY = "kaoscraft_tutorial_seen_v1";
 
     // =========================================================
-    // 2. DATA KATALOG PRODUK & WARNA KAOS
+    // 2. DATA PANDUAN TUTORIAL (ONBOARDING)
     // =========================================================
-    // Ganti properti `image` di bawah dengan URL foto produk Anda sendiri (rasio 4:5)
+    const TUTORIAL_STEPS = [
+      {
+        icon: "layout-grid",
+        badge: "Langkah 1 • Pilih Paket / Mulai Order",
+        title: "Pilih Model di Katalog atau Klik Order",
+        desc: "Geser katalog produk ke samping untuk melihat pilihan bahan & sablon, lalu klik <strong>\"Order Model Ini\"</strong>. Atau langsung klik tombol hijau <strong>\"Order Sekarang\"</strong> di pojok kanan atas untuk membuka halaman pemesanan."
+      },
+      {
+        icon: "shirt",
+        badge: "Langkah 2 • Isi Data & Ukuran Kaos",
+        title: "Tentukan Warna & Jumlah Per Ukuran",
+        desc: "Pada halaman form pemesanan, isi Nama & No. WhatsApp Anda, pilih warna kaos, lalu tekan tombol <strong>( + )</strong> pada ukuran <strong>S, M, L, XL, XXL</strong> untuk Lengan Pendek atau Lengan Panjang."
+      },
+      {
+        icon: "upload-cloud",
+        badge: "Langkah 3 • Sablon & Upload Desain",
+        title: "Atur Sisi Cetak & Unggah File Desain",
+        desc: "Pilih sisi sablon (Depan, Belakang, atau Keduanya), unggah file desain Anda (PNG/JPG/PDF maks. 8 MB), lalu tentukan metode pengambilan/pengiriman serta nominal DP."
+      },
+      {
+        icon: "message-circle",
+        badge: "Langkah 4 • Kirim ke WhatsApp Admin",
+        title: "Otomatis Tersimpan & Terhubung ke WA",
+        desc: "Centang persetujuan ketentuan order dan klik <strong>\"Order Sekarang\"</strong>. Rincian pesanan + link file desain otomatis tersimpan dan langsung membuka chat WhatsApp Admin siap kirim!"
+      }
+    ];
+
+    // =========================================================
+    // 3. DATA KATALOG PRODUK & WARNA KAOS
+    // =========================================================
     const CATALOG_PRODUCTS = [
       {
         id: "paket-dtf-24s",
@@ -921,21 +1048,23 @@
     const SIZES = ["S", "M", "L", "XL", "XXL"];
 
     // =========================================================
-    // 3. STATE APLIKASI
+    // 4. STATE APLIKASI
     // =========================================================
     const state = {
+      currentView: "storefront", // "storefront" | "order"
+      tutorialStep: 0,
       selectedColor: "Hitam Jet Black",
       quantities: {
         short: { S: 0, M: 0, L: 0, XL: 0, XXL: 0 },
         long: { S: 0, M: 0, L: 0, XL: 0, XXL: 0 }
       },
-      uploadedFile: null, // { name, mimeType, size, base64 }
+      uploadedFile: null,
       lastWhatsAppText: "",
       lastWhatsAppUrl: ""
     };
 
     // =========================================================
-    // 4. INISIALISASI UI SAAT DOM READY
+    // 5. INISIALISASI SAAT DOM READY
     // =========================================================
     document.addEventListener("DOMContentLoaded", () => {
       renderCatalogSlider();
@@ -946,6 +1075,7 @@
       setupCurrencyFormatters();
       setupValidationAndSubmit();
       setupMobileMenu();
+      setupRoutingAndOnboarding();
       lucide.createIcons();
     });
 
@@ -953,20 +1083,189 @@
       const btn = document.getElementById("mobileMenuBtn");
       const menu = document.getElementById("mobileMenu");
       btn.addEventListener("click", () => menu.classList.toggle("hidden"));
-      menu.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => menu.classList.add("hidden"));
-      });
+    }
+
+    function hideMobileMenu() {
+      document.getElementById("mobileMenu").classList.add("hidden");
     }
 
     // =========================================================
-    // 5. RENDER & KONTROL KATALOG HORIZONTAL SLIDER (2 PER LAYAR)
+    // 6. NAVIGASI HALAMAN (STOREFRONT VS HALAMAN FORM ORDER)
+    // =========================================================
+    function setupRoutingAndOnboarding() {
+      // Cek jika URL dibuka langsung dengan #order
+      if (window.location.hash === "#order") {
+        openOrderPage(null, false);
+      }
+
+      // Sinkronkan tombol Back/Forward browser
+      window.addEventListener("hashchange", () => {
+        if (window.location.hash === "#order") {
+          if (state.currentView !== "order") openOrderPage(null, false);
+        } else {
+          if (state.currentView !== "storefront") {
+            const targetId = window.location.hash ? window.location.hash.substring(1) : null;
+            openStorefrontPage(targetId, false);
+          }
+        }
+      });
+
+      // Tampilkan panduan otomatis hanya jika pengunjung baru pertama kali membuka web
+      const hasSeenTutorial = localStorage.getItem(TUTORIAL_STORAGE_KEY);
+      if (!hasSeenTutorial) {
+        openTutorialModal();
+      }
+    }
+
+    function openOrderPage(options = null, pushHash = true) {
+      hideMobileMenu();
+      state.currentView = "order";
+
+      document.getElementById("storefrontView").classList.add("hidden");
+      document.getElementById("orderPageView").classList.remove("hidden");
+
+      // Jika sebelumnya menampilkan halaman sukses, kembalikan ke form order
+      if (!document.getElementById("orderSuccessView").classList.contains("hidden")) {
+        resetOrderPage(false);
+      }
+
+      // Terapkan data dari kartu katalog jika ada
+      if (options && options.product) {
+        const product = options.product;
+        selectColor(product.defaultColor);
+
+        const radio = document.querySelector(`input[name="printSide"][value="${product.defaultPrintSide}"]`);
+        if (radio) {
+          radio.checked = true;
+          updatePrintSideVisibility();
+        }
+
+        const notesEl = document.getElementById("designNotes");
+        const existingNote = notesEl.value.trim();
+        if (!existingNote.includes(product.specNote)) {
+          notesEl.value = existingNote ? `${product.specNote}\n${existingNote}` : product.specNote;
+        }
+
+        document.getElementById("selectedModelText").textContent = `${product.title} (${product.badge} • ${product.price})`;
+        document.getElementById("selectedModelBanner").classList.remove("hidden");
+      }
+
+      // Terapkan warna dari swatch Size Chart jika ada
+      if (options && options.colorName) {
+        selectColor(options.colorName);
+      }
+
+      if (pushHash) {
+        history.pushState(null, "", "#order");
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      lucide.createIcons();
+    }
+
+    function openStorefrontPage(targetSectionId = null, pushHash = true) {
+      hideMobileMenu();
+      state.currentView = "storefront";
+
+      document.getElementById("orderPageView").classList.add("hidden");
+      document.getElementById("storefrontView").classList.remove("hidden");
+
+      if (pushHash) {
+        const newUrl = targetSectionId ? `#${targetSectionId}` : window.location.pathname + window.location.search;
+        history.pushState(null, "", newUrl);
+      }
+
+      if (targetSectionId) {
+        const targetEl = document.getElementById(targetSectionId);
+        if (targetEl) {
+          setTimeout(() => {
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }, 50);
+          return;
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // =========================================================
+    // 7. MODAL PANDUAN MEMESAN (FIRST-TIME ONBOARDING)
+    // =========================================================
+    function openTutorialModal() {
+      hideMobileMenu();
+      state.tutorialStep = 0;
+      renderTutorialStep();
+      document.getElementById("tutorialModal").classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+    }
+
+    function closeTutorialModal(markAsSeen = true) {
+      if (markAsSeen) {
+        try {
+          localStorage.setItem(TUTORIAL_STORAGE_KEY, "true");
+        } catch (e) {
+          // Abaikan jika mode private browser memblokir storage
+        }
+      }
+      document.getElementById("tutorialModal").classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    function changeTutorialStep(delta) {
+      const nextStep = state.tutorialStep + delta;
+      if (nextStep < 0) return;
+
+      if (nextStep >= TUTORIAL_STEPS.length) {
+        // Selesai pada langkah terakhir -> tutup & simpan status sudah pernah melihat
+        closeTutorialModal(true);
+        return;
+      }
+
+      state.tutorialStep = nextStep;
+      renderTutorialStep();
+    }
+
+    function renderTutorialStep() {
+      const step = TUTORIAL_STEPS[state.tutorialStep];
+      const total = TUTORIAL_STEPS.length;
+
+      // Render progress bars di atas
+      const barsContainer = document.getElementById("tutorialProgressBars");
+      barsContainer.innerHTML = TUTORIAL_STEPS.map((_, idx) => `
+        <div class="h-1.5 flex-1 rounded-full transition-all duration-300 ${idx <= state.tutorialStep ? "bg-brand-600" : "bg-slate-200"}"></div>
+      `).join("");
+
+      // Render isi step
+      const bodyEl = document.getElementById("tutorialStepBody");
+      bodyEl.innerHTML = `
+        <div class="w-16 h-16 rounded-2xl bg-brand-50 border border-brand-200 text-brand-600 flex items-center justify-center shadow-sm">
+          <i data-lucide="${step.icon}" class="w-8 h-8"></i>
+        </div>
+        <span class="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold">
+          ${step.badge}
+        </span>
+        <h4 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-snug">${step.title}</h4>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${step.desc}</p>
+      `;
+
+      // Update indikator & tombol navigasi modal
+      document.getElementById("tutorialStepCounter").textContent = `${state.tutorialStep + 1} dari ${total}`;
+      document.getElementById("tutorialPrevBtn").disabled = state.tutorialStep === 0;
+
+      const isLast = state.tutorialStep === total - 1;
+      document.getElementById("tutorialNextLabel").textContent = isLast ? "Mulai Jelajahi" : "Lanjut";
+
+      lucide.createIcons();
+    }
+
+    // =========================================================
+    // 8. RENDER & KONTROL KATALOG HORIZONTAL SLIDER (2 PER LAYAR)
     // =========================================================
     function renderCatalogSlider() {
       const slider = document.getElementById("catalogSlider");
       const dotsContainer = document.getElementById("catalogDots");
       const totalPages = Math.ceil(CATALOG_PRODUCTS.length / 2);
 
-      // Render kartu produk dengan lebar 50% (2 kartu per layar) + snap-start
       slider.innerHTML = CATALOG_PRODUCTS.map(item => `
         <article class="snap-start shrink-0 w-[calc(50%-0.4375rem)] sm:w-[calc(50%-0.75rem)] bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col group">
           <div class="relative aspect-[4/5] bg-slate-100 overflow-hidden">
@@ -1005,7 +1304,6 @@
         </article>
       `).join("");
 
-      // Render pagination dots
       dotsContainer.innerHTML = Array.from({ length: totalPages }, (_, i) => `
         <button
           type="button"
@@ -1015,7 +1313,6 @@
         </button>
       `).join("");
 
-      // Update indikator saat pengguna menggeser slider
       let isTicking = false;
       slider.addEventListener("scroll", () => {
         if (!isTicking) {
@@ -1033,26 +1330,18 @@
 
     function getCatalogPageStep() {
       const slider = document.getElementById("catalogSlider");
-      const gap = window.innerWidth >= 640 ? 24 : 14; // sm:gap-6 (24px) vs gap-3.5 (14px)
+      const gap = window.innerWidth >= 640 ? 24 : 14;
       return slider.clientWidth + gap;
     }
 
     function scrollCatalog(direction) {
       const slider = document.getElementById("catalogSlider");
-      const step = getCatalogPageStep();
-      slider.scrollBy({
-        left: direction * step,
-        behavior: "smooth"
-      });
+      slider.scrollBy({ left: direction * getCatalogPageStep(), behavior: "smooth" });
     }
 
     function goToCatalogPage(pageIndex) {
       const slider = document.getElementById("catalogSlider");
-      const step = getCatalogPageStep();
-      slider.scrollTo({
-        left: pageIndex * step,
-        behavior: "smooth"
-      });
+      slider.scrollTo({ left: pageIndex * getCatalogPageStep(), behavior: "smooth" });
     }
 
     function updateCatalogIndicators() {
@@ -1061,24 +1350,16 @@
       const step = getCatalogPageStep();
       if (step <= 0) return;
 
-      const currentPage = Math.min(
-        totalPages - 1,
-        Math.max(0, Math.round(slider.scrollLeft / step))
-      );
+      const currentPage = Math.min(totalPages - 1, Math.max(0, Math.round(slider.scrollLeft / step)));
 
-      // Update teks counter (contoh: 1 / 3)
       const counterEl = document.getElementById("catalogPageCounter");
-      if (counterEl) {
-        counterEl.textContent = `${currentPage + 1} / ${totalPages}`;
-      }
+      if (counterEl) counterEl.textContent = `${currentPage + 1} / ${totalPages}`;
 
-      // Update state tombol Prev / Next
       const prevBtn = document.getElementById("catalogPrevBtn");
       const nextBtn = document.getElementById("catalogNextBtn");
       if (prevBtn) prevBtn.disabled = currentPage === 0;
       if (nextBtn) nextBtn.disabled = currentPage >= totalPages - 1;
 
-      // Update pagination dots
       document.querySelectorAll(".catalog-dot").forEach((dot, idx) => {
         if (idx === currentPage) {
           dot.classList.remove("w-2", "bg-slate-300");
@@ -1093,35 +1374,7 @@
     function selectCatalogModel(productId) {
       const product = CATALOG_PRODUCTS.find(p => p.id === productId);
       if (!product) return;
-
-      // Pastikan tampilan form aktif (jika sebelumnya sudah submit)
-      if (!document.getElementById("orderSuccessView").classList.contains("hidden")) {
-        resetOrderPage(false);
-      }
-
-      // Isi warna default katalog
-      selectColor(product.defaultColor);
-
-      // Isi sisi sablon default katalog
-      const radio = document.querySelector(`input[name="printSide"][value="${product.defaultPrintSide}"]`);
-      if (radio) {
-        radio.checked = true;
-        updatePrintSideVisibility();
-      }
-
-      // Tambahkan catatan paket ke textarea catatan desain
-      const notesEl = document.getElementById("designNotes");
-      const existingNote = notesEl.value.trim();
-      if (!existingNote.includes(product.specNote)) {
-        notesEl.value = existingNote ? `${product.specNote}\n${existingNote}` : product.specNote;
-      }
-
-      // Tampilkan banner paket terpilih
-      document.getElementById("selectedModelText").textContent = `${product.title} (${product.badge} • ${product.price})`;
-      document.getElementById("selectedModelBanner").classList.remove("hidden");
-
-      // Scroll mulus ke Form Order
-      document.getElementById("order-section").scrollIntoView({ behavior: "smooth" });
+      openOrderPage({ product });
     }
 
     function clearSelectedModel() {
@@ -1129,7 +1382,7 @@
     }
 
     // =========================================================
-    // 6. RENDER COLOR SWATCHES (REFERENSI & FORM)
+    // 9. RENDER COLOR SWATCHES (REFERENSI & FORM)
     // =========================================================
     function renderColorSwatches() {
       const refContainer = document.getElementById("referenceColorSwatches");
@@ -1169,8 +1422,7 @@
     }
 
     function pickColorFromReference(colorName) {
-      selectColor(colorName);
-      document.getElementById("order-section").scrollIntoView({ behavior: "smooth" });
+      openOrderPage({ colorName });
     }
 
     function selectColor(colorName) {
@@ -1189,7 +1441,7 @@
     }
 
     // =========================================================
-    // 7. MATRIKS UKURAN (LENGAN PENDEK & LENGAN PANJANG)
+    // 10. MATRIKS UKURAN (LENGAN PENDEK & LENGAN PANJANG)
     // =========================================================
     function renderSizeMatrices() {
       renderSleeveGroup("short", "shortSleeveMatrix");
@@ -1249,7 +1501,7 @@
     }
 
     // =========================================================
-    // 8. CONDITIONAL FIELDS SISI SABLON
+    // 11. CONDITIONAL FIELDS SISI SABLON
     // =========================================================
     function setupPrintSideListeners() {
       document.querySelectorAll('input[name="printSide"]').forEach(radio => {
@@ -1276,7 +1528,7 @@
     }
 
     // =========================================================
-    // 9. DROPZONE UPLOAD DESAIN (MAX 8 MB & BASE64)
+    // 12. DROPZONE UPLOAD DESAIN (MAX 8 MB & BASE64)
     // =========================================================
     function setupDropzone() {
       const dropzone = document.getElementById("dropzoneArea");
@@ -1317,7 +1569,7 @@
     }
 
     function handleSelectedFile(file) {
-      const MAX_BYTES = 8 * 1024 * 1024; // 8 MB
+      const MAX_BYTES = 8 * 1024 * 1024;
       const allowedTypes = ["image/png", "image/jpeg", "image/webp", "image/svg+xml", "application/pdf"];
 
       if (!allowedTypes.includes(file.type)) {
@@ -1343,7 +1595,6 @@
           base64: base64Pure
         };
 
-        // Update UI Preview
         const previewBox = document.getElementById("filePreviewBox");
         const imgThumb = document.getElementById("previewImageThumb");
         const pdfIcon = document.getElementById("previewPdfIcon");
@@ -1368,7 +1619,7 @@
     }
 
     // =========================================================
-    // 10. FORMATTER RUPIAH OTOMATIS (Rp 150.000)
+    // 13. FORMATTER RUPIAH OTOMATIS (Rp 150.000)
     // =========================================================
     function formatRupiah(valueStr) {
       const digits = valueStr.replace(/\D/g, "");
@@ -1385,7 +1636,7 @@
     }
 
     // =========================================================
-    // 11. VALIDASI & SUBMIT KE GOOGLE APPS SCRIPT + REDIRECT WA
+    // 14. VALIDASI & SUBMIT KE GOOGLE APPS SCRIPT + REDIRECT WA
     // =========================================================
     function setupValidationAndSubmit() {
       const termsCheckbox = document.getElementById("termsCheckbox");
@@ -1396,7 +1647,6 @@
         submitBtn.disabled = !termsCheckbox.checked;
       });
 
-      // Validasi angka real-time pada No. WhatsApp
       waInput.addEventListener("input", (e) => {
         const cleaned = e.target.value.replace(/[^0-9]/g, "");
         e.target.value = cleaned;
@@ -1443,7 +1693,6 @@
       const longTotal = SIZES.reduce((sum, s) => sum + state.quantities.long[s], 0);
       const totalPcs = shortTotal + longTotal;
 
-      // Validasi Wajib
       if (!customerName) return showFormError("Nama Pemesan / Instansi wajib diisi.");
       if (!/^[0-9]{9,15}$/.test(customerWhatsapp)) {
         return showFormError("No. WhatsApp wajib diisi dengan angka yang valid (9–15 digit).");
@@ -1459,7 +1708,6 @@
         return showFormError("Konfigurasi GAS_WEB_APP_URL belum diisi pada index.html. Silakan masukkan URL Web App Google Apps Script Anda.");
       }
 
-      // Kumpulkan detail sablon sesuai kondisi
       const printSide = document.querySelector('input[name="printSide"]:checked').value;
       const frontDetail = (printSide === "Depan Saja" || printSide === "Depan & Belakang")
         ? `${document.getElementById("frontPrintSize").value.trim() || "-"} (${document.getElementById("frontPrintPosition").value})`
@@ -1493,10 +1741,9 @@
         paymentMethod,
         dpAmount,
         remainingAmount,
-        designFile: state.uploadedFile // null jika tidak upload file
+        designFile: state.uploadedFile
       };
 
-      // Tampilkan Loading Overlay
       document.getElementById("loadingOverlay").classList.remove("hidden");
 
       try {
@@ -1515,7 +1762,6 @@
         const orderId = result.orderId;
         const fileUrl = result.fileUrl || "Belum upload desain";
 
-        // Susun Teks WhatsApp Terstruktur
         const pesanWhatsApp = buildWhatsAppMessage({
           orderId,
           customerName,
@@ -1540,7 +1786,6 @@
         state.lastWhatsAppText = pesanWhatsApp;
         state.lastWhatsAppUrl = waUrl;
 
-        // Ubah Tampilan di Latar Belakang ke Halaman Bukti Order Berhasil
         renderSuccessScreen({
           orderId,
           customerName,
@@ -1550,8 +1795,6 @@
         });
 
         document.getElementById("loadingOverlay").classList.add("hidden");
-
-        // Redirect Langsung ke WhatsApp Admin (Aman dari Pop-Up Blocker Mobile)
         window.location.href = waUrl;
 
       } catch (err) {
@@ -1667,7 +1910,7 @@
       document.getElementById("orderForm").classList.remove("hidden");
 
       if (scrollTop) {
-        document.getElementById("order-section").scrollIntoView({ behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
   </script>

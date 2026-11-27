@@ -70,31 +70,15 @@
     }
     /* Animasi pop-up kecil pada ikon tanda tanya tombol bantuan */
     @keyframes questionMiniPopup {
-      0%, 100% {
-        transform: translateY(0) scale(1);
-      }
-      18% {
-        transform: translateY(-4px) scale(1.12);
-      }
-      32% {
-        transform: translateY(0) scale(0.96);
-      }
-      45% {
-        transform: translateY(-2px) scale(1.05);
-      }
-      60% {
-        transform: translateY(0) scale(1);
-      }
+      0%, 100% { transform: translateY(0) scale(1); }
+      18% { transform: translateY(-3px) scale(1.1); }
+      32% { transform: translateY(0) scale(0.97); }
+      45% { transform: translateY(-2px) scale(1.04); }
+      60% { transform: translateY(0) scale(1); }
     }
     @keyframes bubbleFloat {
-      0%, 100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-      50% {
-        opacity: 1;
-        transform: translateY(-3px) scale(1.04);
-      }
+      0%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+      50% { opacity: 1; transform: translateY(-2.5px) scale(1.05); }
     }
     .animate-question-pop {
       animation: questionMiniPopup 2.6s ease-in-out infinite;
@@ -107,69 +91,81 @@
 <body class="antialiased selection:bg-brand-100 selection:text-brand-900 min-h-screen flex flex-col">
 
   <!-- =========================================================
-       STICKY TOP NAVBAR
+       STICKY TOP NAVBAR (RAPI & ANTI TERTUMPUK DI HP MAUPUN PC)
   ========================================================== -->
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-18">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between gap-2 h-16">
         <!-- Brand Logo -->
-        <button type="button" onclick="openStorefrontPage()" class="flex items-center gap-2.5 group text-left">
-          <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm group-hover:bg-brand-700 transition-colors">
-            <i data-lucide="shirt" class="w-5 h-5"></i>
+        <button type="button" onclick="openStorefrontPage()" class="flex items-center gap-2 sm:gap-2.5 group text-left min-w-0 shrink">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm group-hover:bg-brand-700 transition-colors shrink-0">
+            <i data-lucide="shirt" class="w-4 h-4 sm:w-5 sm:h-5"></i>
           </div>
-          <div>
-            <span class="font-extrabold text-lg tracking-tight text-slate-900">KaosCraft</span>
-            <span class="hidden sm:inline-block text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full ml-1.5 border border-brand-200">Custom Lab</span>
+          <div class="truncate">
+            <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900">KaosCraft</span>
+            <span class="hidden lg:inline-block text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full ml-1.5 border border-brand-200">Custom Lab</span>
           </div>
         </button>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-          <button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition-colors">Katalog</button>
-          <button type="button" onclick="openStorefrontPage('cara-pesan')" class="hover:text-brand-600 transition-colors">Cara Pesan</button>
+        <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+          <button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition-colors whitespace-nowrap">Katalog</button>
+          <button type="button" onclick="openStorefrontPage('cara-pesan')" class="hover:text-brand-600 transition-colors whitespace-nowrap">Cara Pesan</button>
         </nav>
 
-        <!-- Actions: Tombol Bantuan (Animasi Pop-Up Ikon ?) + Order Sekarang -->
-        <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Actions: Tombol Bantuan (?) + Order Sekarang + Hamburger -->
+        <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <!-- Tombol Bantuan dengan Animasi Pop-Up Kecil Ikon ? -->
           <button
             type="button"
             id="helpNavbarBtn"
             onclick="openTutorialModal()"
             aria-label="Bantuan Cara Pesan"
-            class="relative inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-brand-50 hover:border-brand-300 text-slate-700 text-xs sm:text-sm font-semibold transition group">
-            <!-- Ikon Tanda Tanya dengan Animasi Pop-Up Kecil -->
-            <span class="relative flex items-center justify-center w-5 h-5 rounded-full bg-brand-100 text-brand-700 font-extrabold text-xs animate-question-pop">
+            class="relative inline-flex items-center justify-center gap-1.5 h-9 w-9 sm:w-auto sm:h-10 sm:px-3 rounded-xl border border-slate-200 bg-white hover:bg-brand-50 hover:border-brand-300 text-slate-700 text-xs sm:text-sm font-semibold transition shrink-0">
+            <span class="flex items-center justify-center w-5 h-5 rounded-full bg-brand-100 text-brand-700 font-extrabold text-xs animate-question-pop shrink-0">
               ?
             </span>
-            <span class="hidden sm:inline">Bantuan</span>
+            <span class="hidden sm:inline whitespace-nowrap">Bantuan</span>
 
-            <!-- Pop-up mini badge "?" melayang di sudut tombol -->
+            <!-- Pop-up mini badge "?" di sudut atas tombol -->
             <span id="helpMiniPopupBadge"
-              class="animate-help-bubble pointer-events-none absolute -top-2 -right-1.5 px-1.5 py-0.5 rounded-full bg-amber-500 text-white text-[9px] font-extrabold leading-none shadow-sm border border-white">
+              class="animate-help-bubble pointer-events-none absolute -top-1.5 -right-1 w-4 h-4 rounded-full bg-amber-500 text-white text-[9px] font-extrabold flex items-center justify-center shadow-sm border border-white">
               ?
             </span>
           </button>
 
+          <!-- Tombol CTA Utama -->
           <button
             type="button"
             onclick="openOrderPage()"
-            class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white text-xs sm:text-sm font-semibold px-3.5 sm:px-4 py-2.5 rounded-xl shadow-sm shadow-brand-600/20 transition-all">
-            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-            <span>Order Sekarang</span>
+            class="inline-flex items-center justify-center gap-1.5 h-9 sm:h-10 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white text-xs sm:text-sm font-bold px-3 sm:px-4 rounded-xl shadow-sm shadow-brand-600/20 transition-all whitespace-nowrap shrink-0">
+            <i data-lucide="shopping-bag" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+            <span>Order<span class="hidden min-[380px]:inline"> Sekarang</span></span>
           </button>
 
-          <button id="mobileMenuBtn" type="button" aria-label="Buka Menu" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100">
-            <i data-lucide="menu" class="w-5 h-5"></i>
+          <!-- Mobile Hamburger -->
+          <button id="mobileMenuBtn" type="button" aria-label="Buka Menu"
+            class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 shrink-0">
+            <i data-lucide="menu" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-3 space-y-1.5">
-      <button type="button" onclick="openStorefrontPage('katalog')" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Katalog Produk</button>
-      <button type="button" onclick="openStorefrontPage('cara-pesan')" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Cara Pesan</button>
-      <button type="button" onclick="openTutorialModal()" class="block w-full text-left py-2 text-sm font-semibold text-brand-600">Bantuan &amp; Tutorial Order</button>
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-3 space-y-1">
+      <button type="button" onclick="openStorefrontPage('katalog')" class="flex items-center gap-2.5 w-full text-left py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600">
+        <i data-lucide="layout-grid" class="w-4 h-4 text-slate-400"></i>
+        <span>Katalog Produk</span>
+      </button>
+      <button type="button" onclick="openStorefrontPage('cara-pesan')" class="flex items-center gap-2.5 w-full text-left py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600">
+        <i data-lucide="list-ordered" class="w-4 h-4 text-slate-400"></i>
+        <span>Cara Pesan</span>
+      </button>
+      <button type="button" onclick="openTutorialModal()" class="flex items-center gap-2.5 w-full text-left py-2.5 px-3 rounded-xl text-sm font-semibold text-brand-700 bg-brand-50/70">
+        <i data-lucide="help-circle" class="w-4 h-4 text-brand-600"></i>
+        <span>Bantuan &amp; Tutorial Order</span>
+      </button>
     </div>
   </header>
 
@@ -181,12 +177,12 @@
     <!-- SEKSI 1 — HERO BANNER TOKO -->
     <section class="relative overflow-hidden bg-white border-b border-slate-200/80">
       <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <!-- Left Copy -->
-          <div class="lg:col-span-7 space-y-6">
+          <div class="lg:col-span-7 space-y-5 sm:space-y-6">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs sm:text-sm font-semibold">
-              <i data-lucide="sparkles" class="w-4 h-4 text-brand-600"></i>
+              <i data-lucide="sparkles" class="w-4 h-4 text-brand-600 shrink-0"></i>
               <span>Bisa Satuan &amp; Partai Besar • Garansi Jahitan &amp; Cetak</span>
             </div>
 
@@ -194,12 +190,12 @@
               Wujudkan Kaos Custom <span class="text-brand-600">Desain Bebas</span> dengan Kualitas Distro.
             </h1>
 
-            <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+            <p class="text-sm sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
               Menggunakan 100% <strong class="font-semibold text-slate-800">Cotton Combed 24s &amp; 30s</strong> yang adem menyerap keringat, dipadukan teknologi sablon <strong class="font-semibold text-slate-800">DTF High-Res &amp; Plastisol</strong> yang tajam, lentur, dan anti retak.
             </p>
 
             <!-- Key USPs -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
+            <div class="grid grid-cols-1 min-[420px]:grid-cols-3 gap-2.5 sm:gap-3 pt-1">
               <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
                 <span>Combed 24s / 30s Ori</span>
@@ -215,15 +211,15 @@
             </div>
 
             <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <button type="button" onclick="openOrderPage()"
-                class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition-all">
-                <i data-lucide="pen-tool" class="w-4 h-4"></i>
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition-all whitespace-nowrap">
+                <i data-lucide="pen-tool" class="w-4 h-4 shrink-0"></i>
                 <span>Isi Form Order</span>
               </button>
               <a href="#katalog"
-                class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl border border-slate-300 transition-all">
-                <i data-lucide="layout-grid" class="w-4 h-4 text-slate-600"></i>
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 active:scale-[0.99] text-slate-800 font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl border border-slate-300 transition-all whitespace-nowrap">
+                <i data-lucide="layout-grid" class="w-4 h-4 text-slate-600 shrink-0"></i>
                 <span>Lihat Katalog</span>
               </a>
             </div>
@@ -231,21 +227,21 @@
 
           <!-- Right Showcase Card -->
           <div class="lg:col-span-5">
-            <div class="relative bg-slate-900 rounded-3xl p-4 sm:p-5 shadow-xl border border-slate-800">
+            <div class="relative bg-slate-900 rounded-3xl p-3.5 sm:p-5 shadow-xl border border-slate-800">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-800 relative">
                 <img
                   src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
                   alt="Contoh Produksi Kaos Custom Cotton Combed"
                   class="w-full h-full object-cover opacity-95"
                 />
-                <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg flex items-center justify-between">
-                  <div>
-                    <p class="text-[11px] font-bold uppercase tracking-wider text-brand-600">Best Seller Paket Komunitas</p>
-                    <p class="text-sm font-bold text-slate-900">Combed 24s + Sablon DTF A3</p>
+                <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3 sm:p-3.5 rounded-xl shadow-lg flex items-center justify-between gap-3">
+                  <div class="min-w-0">
+                    <p class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-brand-600 truncate">Best Seller Paket Komunitas</p>
+                    <p class="text-xs sm:text-sm font-bold text-slate-900 truncate">Combed 24s + Sablon DTF A3</p>
                   </div>
-                  <div class="text-right">
-                    <p class="text-[11px] text-slate-500">Mulai dari</p>
-                    <p class="text-sm font-extrabold text-brand-700">Rp 65.000</p>
+                  <div class="text-right shrink-0">
+                    <p class="text-[10px] sm:text-[11px] text-slate-500">Mulai dari</p>
+                    <p class="text-xs sm:text-sm font-extrabold text-brand-700">Rp 65.000</p>
                   </div>
                 </div>
               </div>
@@ -256,8 +252,8 @@
     </section>
 
     <!-- SEKSI 2 — KATALOG CONTOH PRODUK (HORIZONTAL SLIDER 2 PER LAYAR) -->
-    <section id="katalog" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between gap-4 mb-7 sm:mb-9">
+    <section id="katalog" class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-9">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Katalog Paket &amp; Referensi</span>
           <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pilih Model &amp; Spesifikasi Kaos</h2>
@@ -265,24 +261,26 @@
         </div>
 
         <!-- Tombol Navigasi Slider -->
-        <div class="flex items-center gap-2 shrink-0">
-          <span id="catalogPageCounter" class="hidden sm:inline-block text-xs font-bold text-slate-500 mr-2">1 / 3</span>
-          <button
-            type="button"
-            id="catalogPrevBtn"
-            onclick="scrollCatalog(-1)"
-            aria-label="Slide Sebelumnya"
-            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition">
-            <i data-lucide="chevron-left" class="w-5 h-5"></i>
-          </button>
-          <button
-            type="button"
-            id="catalogNextBtn"
-            onclick="scrollCatalog(1)"
-            aria-label="Slide Berikutnya"
-            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition">
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
-          </button>
+        <div class="flex items-center justify-between sm:justify-end gap-2.5 shrink-0">
+          <span id="catalogPageCounter" class="text-xs font-bold text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-200">Halaman 1 / 3</span>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              id="catalogPrevBtn"
+              onclick="scrollCatalog(-1)"
+              aria-label="Slide Sebelumnya"
+              class="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition shrink-0">
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              type="button"
+              id="catalogNextBtn"
+              onclick="scrollCatalog(1)"
+              aria-label="Slide Berikutnya"
+              class="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition shrink-0">
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -290,47 +288,47 @@
       <div class="relative">
         <div
           id="catalogSlider"
-          class="flex gap-3.5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-2">
+          class="flex gap-3 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-2">
         </div>
       </div>
 
       <!-- Pagination Dots & Info Harga -->
-      <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="mt-5 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div id="catalogDots" class="flex items-center justify-center gap-2"></div>
-        <p class="text-[11px] sm:text-xs font-medium text-slate-500">
+        <p class="text-[11px] sm:text-xs font-medium text-slate-500 text-center sm:text-right">
           *Geser kartu ke samping • Harga menyesuaikan jumlah pcs &amp; ukuran cetak
         </p>
       </div>
     </section>
 
     <!-- SEKSI 3 — CARA PEMESANAN (4 LANGKAH RINGKAS) -->
-    <section id="cara-pesan" class="py-14 sm:py-18 bg-white border-t border-slate-200/80">
+    <section id="cara-pesan" class="py-12 sm:py-18 bg-white border-t border-slate-200/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-10">
+        <div class="text-center max-w-2xl mx-auto mb-9">
           <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Alur Pemesanan Mudah</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">4 Langkah Order Kaos Custom</h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-5 sm:p-6">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">01</div>
             <h3 class="font-bold text-slate-900 text-base mb-1.5">Pilih Model</h3>
             <p class="text-sm text-slate-600 leading-relaxed">Tentukan paket bahan, jenis lengan, serta referensi sablon dari katalog tersedia.</p>
           </div>
 
-          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-5 sm:p-6">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">02</div>
             <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Form &amp; Upload Desain</h3>
             <p class="text-sm text-slate-600 leading-relaxed">Pilih warna kaos, jumlah per ukuran S–XXL, dan unggah file desain (PNG/JPG/PDF).</p>
           </div>
 
-          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-5 sm:p-6">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">03</div>
             <h3 class="font-bold text-slate-900 text-base mb-1.5">Kirim Konfirmasi WA</h3>
             <p class="text-sm text-slate-600 leading-relaxed">Data otomatis tersimpan &amp; Anda langsung diarahkan ke WhatsApp Admin untuk ACC mockup.</p>
           </div>
 
-          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-5 sm:p-6">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">04</div>
             <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi &amp; Kirim</h3>
             <p class="text-sm text-slate-600 leading-relaxed">Pesanan diproduksi presisi oleh tim workshop kami dan dikirim ke alamat Anda.</p>
@@ -344,60 +342,61 @@
   <!-- =========================================================
        VIEW 2: HALAMAN BARU FORM PEMESANAN KAOS (TERSEMBUNYI DEFAULT)
   ========================================================== -->
-  <section id="orderPageView" class="hidden flex-1 py-8 sm:py-12 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="orderPageView" class="hidden flex-1 py-6 sm:py-12 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Top Breadcrumb / Back to Catalog Bar -->
-    <div class="flex items-center justify-between gap-4 mb-6">
+    <div class="flex flex-wrap items-center justify-between gap-2.5 mb-6">
       <button
         type="button"
         onclick="openStorefrontPage()"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 text-slate-700 text-xs sm:text-sm font-bold shadow-sm transition">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 text-slate-700 text-xs sm:text-sm font-bold shadow-sm transition whitespace-nowrap">
+        <i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
         <span>Kembali ke Katalog</span>
       </button>
 
-      <span class="text-xs font-semibold text-slate-500 bg-white px-3 py-1.5 rounded-full border border-slate-200">
+      <span class="text-[11px] sm:text-xs font-semibold text-slate-500 bg-white px-3 py-1.5 rounded-full border border-slate-200">
         Halaman Pemesanan Custom
       </span>
     </div>
 
     <!-- Section Title -->
-    <div class="text-center mb-8">
+    <div class="text-center mb-7">
       <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Formulir Pemesanan Online</span>
       <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Detail Pesanan Custom Kaos</h2>
-      <p class="text-sm sm:text-base text-slate-600 mt-1.5">Lengkapi data di bawah. Setelah klik order, rincian otomatis tersimpan dan diteruskan ke WhatsApp Admin.</p>
+      <p class="text-xs sm:text-base text-slate-600 mt-1.5">Lengkapi data di bawah. Setelah klik order, rincian otomatis tersimpan dan diteruskan ke WhatsApp Admin.</p>
     </div>
 
     <!-- Banner Paket Terpilih dari Katalog -->
-    <div id="selectedModelBanner" class="hidden mb-6 bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
+    <div id="selectedModelBanner" class="hidden mb-6 bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
         <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shrink-0">
           <i data-lucide="tag" class="w-4 h-4"></i>
         </div>
-        <div>
-          <p class="text-xs font-bold text-brand-700 uppercase">Paket Katalog Dipilih</p>
-          <p id="selectedModelText" class="text-sm font-bold text-slate-900">-</p>
+        <div class="min-w-0">
+          <p class="text-[11px] font-bold text-brand-700 uppercase">Paket Katalog Dipilih</p>
+          <p id="selectedModelText" class="text-xs sm:text-sm font-bold text-slate-900 truncate">-</p>
         </div>
       </div>
-      <button type="button" onclick="clearSelectedModel()" class="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2.5 py-1 rounded-lg hover:bg-white transition">
+      <button type="button" onclick="clearSelectedModel()"
+        class="text-xs font-bold text-slate-600 hover:text-slate-900 bg-white border border-brand-200 px-3 py-1.5 rounded-xl transition shrink-0 whitespace-nowrap">
         Hapus
       </button>
     </div>
 
     <!-- CONTAINER UTAMA FORM -->
-    <form id="orderForm" novalidate class="space-y-8">
+    <form id="orderForm" novalidate class="space-y-6 sm:space-y-8">
 
       <!-- 1. DATA PEMESAN -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
-        <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">1</span>
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">1</span>
           <div>
-            <h3 class="font-bold text-lg text-slate-900">Data Pemesan</h3>
+            <h3 class="font-bold text-base sm:text-lg text-slate-900">Data Pemesan</h3>
             <p class="text-xs text-slate-500">Informasi kontak untuk konfirmasi mockup &amp; pengiriman</p>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
           <div>
             <label for="customerName" class="block text-sm font-semibold text-slate-700 mb-1.5">
               Nama Pemesan / Instansi <span class="text-red-500">*</span>
@@ -426,32 +425,38 @@
       </div>
 
       <!-- 2. DETAIL PESANAN KAOS (PILIH WARNA & UKURAN + TOMBOL PANDUAN UKURAN) -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
-        <div class="flex items-center justify-between flex-wrap gap-3 pb-4 mb-6 border-b border-slate-100">
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">2</span>
+            <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">2</span>
             <div>
-              <h3 class="font-bold text-lg text-slate-900">Detail Pesanan Kaos</h3>
+              <h3 class="font-bold text-base sm:text-lg text-slate-900">Detail Pesanan Kaos</h3>
               <p class="text-xs text-slate-500">Pilih warna kaos dan tentukan jumlah per ukuran</p>
             </div>
           </div>
 
           <!-- Real-Time Total Counter Badge -->
-          <div class="bg-brand-600 text-white px-4 py-2 rounded-xl shadow-sm flex items-center gap-2.5">
-            <i data-lucide="layers" class="w-4 h-4"></i>
-            <span class="text-xs font-medium">Total Pesanan:</span>
+          <div class="bg-brand-600 text-white px-4 py-2 rounded-xl shadow-sm flex items-center justify-between sm:justify-start gap-2.5 shrink-0">
+            <div class="flex items-center gap-2">
+              <i data-lucide="layers" class="w-4 h-4 shrink-0"></i>
+              <span class="text-xs font-medium">Total Pesanan:</span>
+            </div>
             <span id="totalPcsBadge" class="text-base font-extrabold">0 pcs</span>
           </div>
         </div>
 
-        <!-- Pilihan Warna Kaos (HANYA DI HALAMAN ORDER) -->
+        <!-- Pilihan Warna Kaos (Grid Seragam agar Tidak Berantakan di HP) -->
         <div class="mb-7">
-          <label class="block text-sm font-semibold text-slate-700 mb-2">
-            Warna Kaos <span class="text-red-500">*</span>
-            <span id="activeColorLabel" class="ml-2 text-xs font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">Hitam Jet Black</span>
-          </label>
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+            <label class="text-sm font-semibold text-slate-700">
+              Warna Kaos <span class="text-red-500">*</span>
+            </label>
+            <span id="activeColorLabel" class="text-xs font-bold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
+              Hitam Jet Black
+            </span>
+          </div>
 
-          <div id="formColorSwatches" class="flex flex-wrap gap-2.5 mb-3"></div>
+          <div id="formColorSwatches" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 mb-3"></div>
 
           <div class="mt-3">
             <input type="text" id="customColorInput" placeholder="Atau ketik warna custom di sini (misal: Sage Green, Misty Muda, dll)..."
@@ -460,42 +465,42 @@
         </div>
 
         <!-- Header Matriks Ukuran + Tombol Ikon Panduan Ukuran -->
-        <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
-          <label class="block text-sm font-semibold text-slate-700">
-            Jumlah Pesanan Per Ukuran <span class="text-red-500">*</span>
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <label class="text-sm font-semibold text-slate-700">
+            Jumlah Per Ukuran <span class="text-red-500">*</span>
           </label>
 
           <button
             type="button"
             onclick="openSizeChartModal()"
-            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 border border-brand-200 text-xs font-bold transition shadow-xs">
-            <i data-lucide="ruler" class="w-4 h-4 text-brand-600"></i>
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-50 hover:bg-brand-100 active:scale-[0.99] text-brand-700 border border-brand-200 text-xs font-bold transition whitespace-nowrap shrink-0">
+            <i data-lucide="ruler" class="w-4 h-4 text-brand-600 shrink-0"></i>
             <span>Panduan Ukuran</span>
           </button>
         </div>
 
-        <!-- Matriks Ukuran: 2 Kelompok Jelas -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Matriks Ukuran: 2 Kelompok Jelas (1 Kolom di HP/Tablet, 2 Kolom di Desktop Lebar) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <!-- Kelompok 1: Lengan Pendek -->
-          <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5">
-            <div class="flex items-center justify-between mb-4">
+          <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 sm:p-5">
+            <div class="flex items-center justify-between mb-3.5">
               <div class="flex items-center gap-2">
-                <i data-lucide="shirt" class="w-4 h-4 text-brand-600"></i>
+                <i data-lucide="shirt" class="w-4 h-4 text-brand-600 shrink-0"></i>
                 <h4 class="font-bold text-slate-900 text-sm">Lengan Pendek</h4>
               </div>
-              <span id="subtotalShortBadge" class="text-xs font-bold text-slate-600 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
+              <span id="subtotalShortBadge" class="text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
             </div>
             <div id="shortSleeveMatrix" class="space-y-2.5"></div>
           </div>
 
           <!-- Kelompok 2: Lengan Panjang -->
-          <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5">
-            <div class="flex items-center justify-between mb-4">
+          <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 sm:p-5">
+            <div class="flex items-center justify-between mb-3.5">
               <div class="flex items-center gap-2">
-                <i data-lucide="shirt" class="w-4 h-4 text-slate-700"></i>
+                <i data-lucide="shirt" class="w-4 h-4 text-slate-700 shrink-0"></i>
                 <h4 class="font-bold text-slate-900 text-sm">Lengan Panjang</h4>
               </div>
-              <span id="subtotalLongBadge" class="text-xs font-bold text-slate-600 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
+              <span id="subtotalLongBadge" class="text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
             </div>
             <div id="longSleeveMatrix" class="space-y-2.5"></div>
           </div>
@@ -503,11 +508,11 @@
       </div>
 
       <!-- 3. DETAIL SABLON & UPLOAD DESAIN -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
-        <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">3</span>
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">3</span>
           <div>
-            <h3 class="font-bold text-lg text-slate-900">Detail Sablon &amp; Upload Desain</h3>
+            <h3 class="font-bold text-base sm:text-lg text-slate-900">Detail Sablon &amp; Upload Desain</h3>
             <p class="text-xs text-slate-500">Tentukan sisi cetak, ukuran sablon, serta unggah file desain Anda</p>
           </div>
         </div>
@@ -515,22 +520,22 @@
         <!-- Pilihan Sisi Sablon -->
         <div class="mb-6">
           <label class="block text-sm font-semibold text-slate-700 mb-2.5">Sisi Sablon <span class="text-red-500">*</span></label>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
             <label class="cursor-pointer">
               <input type="radio" name="printSide" value="Depan Saja" checked class="peer sr-only" />
-              <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 text-center font-semibold text-sm transition">
+              <div class="min-h-[46px] px-4 py-3 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-sm transition">
                 Depan Saja
               </div>
             </label>
             <label class="cursor-pointer">
               <input type="radio" name="printSide" value="Belakang Saja" class="peer sr-only" />
-              <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 text-center font-semibold text-sm transition">
+              <div class="min-h-[46px] px-4 py-3 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-sm transition">
                 Belakang Saja
               </div>
             </label>
             <label class="cursor-pointer">
               <input type="radio" name="printSide" value="Depan & Belakang" class="peer sr-only" />
-              <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 text-center font-semibold text-sm transition">
+              <div class="min-h-[46px] px-4 py-3 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-sm transition">
                 Depan &amp; Belakang
               </div>
             </label>
@@ -542,7 +547,7 @@
           <!-- Sablon Depan -->
           <div id="frontPrintFields" class="p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="sm:col-span-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-700">
-              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 shrink-0"></i>
               <span>Spesifikasi Sablon Depan</span>
             </div>
             <div>
@@ -564,7 +569,7 @@
           <!-- Sablon Belakang -->
           <div id="backPrintFields" class="hidden p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="sm:col-span-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
-              <i data-lucide="arrow-down-left" class="w-4 h-4"></i>
+              <i data-lucide="arrow-down-left" class="w-4 h-4 shrink-0"></i>
               <span>Spesifikasi Sablon Belakang</span>
             </div>
             <div>
@@ -601,18 +606,19 @@
           </div>
 
           <!-- Preview File Terunggah -->
-          <div id="filePreviewBox" class="hidden mt-3 p-4 rounded-2xl bg-white border border-brand-200 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3.5 min-w-0">
-              <img id="previewImageThumb" src="" alt="Preview Desain" class="hidden w-14 h-14 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100" />
-              <div id="previewPdfIcon" class="hidden w-14 h-14 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0">
-                <i data-lucide="file-text" class="w-7 h-7"></i>
+          <div id="filePreviewBox" class="hidden mt-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-brand-200 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+              <img id="previewImageThumb" src="" alt="Preview Desain" class="hidden w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100" />
+              <div id="previewPdfIcon" class="hidden w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0">
+                <i data-lucide="file-text" class="w-6 h-6 sm:w-7 sm:h-7"></i>
               </div>
               <div class="min-w-0">
-                <p id="previewFileName" class="text-sm font-bold text-slate-900 truncate">desain.png</p>
-                <p id="previewFileMeta" class="text-xs text-slate-500 mt-0.5">1.2 MB • Siap diunggah ke Google Drive</p>
+                <p id="previewFileName" class="text-xs sm:text-sm font-bold text-slate-900 truncate">desain.png</p>
+                <p id="previewFileMeta" class="text-[11px] sm:text-xs text-slate-500 mt-0.5 truncate">1.2 MB • Siap diunggah ke Drive</p>
               </div>
             </div>
-            <button type="button" id="removeFileBtn" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 transition shrink-0">
+            <button type="button" id="removeFileBtn"
+              class="px-3 py-2 rounded-xl text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 transition shrink-0 whitespace-nowrap">
               Hapus
             </button>
           </div>
@@ -627,11 +633,11 @@
       </div>
 
       <!-- 4. PENGIRIMAN & PEMBAYARAN -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
-        <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">4</span>
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">4</span>
           <div>
-            <h3 class="font-bold text-lg text-slate-900">Pengiriman &amp; Pembayaran</h3>
+            <h3 class="font-bold text-base sm:text-lg text-slate-900">Pengiriman &amp; Pembayaran</h3>
             <p class="text-xs text-slate-500">Pilih opsi pengambilan pesanan serta rencana pembayaran DP</p>
           </div>
         </div>
@@ -639,25 +645,25 @@
         <!-- Radio Card Metode Pengiriman -->
         <div class="mb-6">
           <label class="block text-sm font-semibold text-slate-700 mb-2.5">Metode Pengiriman <span class="text-red-500">*</span></label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <label class="cursor-pointer">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="cursor-pointer block">
               <input type="radio" name="shippingMethod" value="Ambil Sendiri" checked class="peer sr-only" />
-              <div class="p-4 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
+              <div class="h-full p-4 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
                 <i data-lucide="store" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
                 <div>
                   <p class="font-bold text-sm text-slate-900">Ambil Sendiri</p>
-                  <p class="text-xs text-slate-500 mt-0.5">Ambil langsung di workshop tanpa biaya ongkir</p>
+                  <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Ambil langsung di workshop tanpa biaya ongkir</p>
                 </div>
               </div>
             </label>
 
-            <label class="cursor-pointer">
+            <label class="cursor-pointer block">
               <input type="radio" name="shippingMethod" value="Kirim Kurir/Ekspedisi" class="peer sr-only" />
-              <div class="p-4 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
+              <div class="h-full p-4 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
                 <i data-lucide="truck" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
                 <div>
                   <p class="font-bold text-sm text-slate-900">Kirim Kurir / Ekspedisi</p>
-                  <p class="text-xs text-slate-500 mt-0.5">Dikirim via JNE, J&amp;T, Cargo, atau kurir instan</p>
+                  <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Dikirim via JNE, J&amp;T, Cargo, atau kurir instan</p>
                 </div>
               </div>
             </label>
@@ -665,7 +671,7 @@
         </div>
 
         <!-- Metode Pembayaran & Nominal Rupiah -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
           <div>
             <label for="paymentMethod" class="block text-sm font-semibold text-slate-700 mb-1.5">Metode Pembayaran</label>
             <select id="paymentMethod" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600">
@@ -690,53 +696,53 @@
       </div>
 
       <!-- 5. KETENTUAN ORDER & TOMBOL UTAMA -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
         <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">5</span>
+          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">5</span>
           <div>
-            <h3 class="font-bold text-lg text-slate-900">Ketentuan Order</h3>
+            <h3 class="font-bold text-base sm:text-lg text-slate-900">Ketentuan Order</h3>
             <p class="text-xs text-slate-500">Harap baca poin berikut sebelum mengirimkan pesanan</p>
           </div>
         </div>
 
-        <ul class="space-y-2.5 text-sm text-slate-600 bg-[#F8FAFC] p-4 sm:p-5 rounded-xl border border-slate-200 mb-5">
+        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 bg-[#F8FAFC] p-4 sm:p-5 rounded-xl border border-slate-200 mb-5">
           <li class="flex items-start gap-2.5">
-            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
+            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
             <span><strong>Kesesuaian Ukuran &amp; Warna:</strong> Pastikan pilihan warna kaos, jenis lengan, dan rincian ukuran (S–XXL) sudah tepat karena pesanan custom diproduksi khusus sesuai data order.</span>
           </li>
           <li class="flex items-start gap-2.5">
-            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
+            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
             <span><strong>Kualitas File Desain:</strong> Disarankan mengunggah file resolusi tinggi (PNG transparan min. 300 DPI atau PDF vektor) agar hasil cetak tajam dan tidak pecah.</span>
           </li>
           <li class="flex items-start gap-2.5">
-            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
+            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
             <span><strong>Konfirmasi Mockup Sebelum Diproses:</strong> Admin akan mengirimkan digital mockup &amp; rincian tagihan final via WhatsApp untuk persetujuan (ACC) sebelum naik produksi.</span>
           </li>
           <li class="flex items-start gap-2.5">
-            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
+            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
             <span><strong>Estimasi Pengerjaan:</strong> Waktu produksi standar adalah 3–7 hari kerja (menyesuaikan jumlah pcs &amp; antrean) terhitung setelah DP terkonfirmasi.</span>
           </li>
         </ul>
 
         <!-- Checkbox Persetujuan Wajib -->
         <label class="flex items-start gap-3 cursor-pointer select-none mb-6">
-          <input type="checkbox" id="termsCheckbox" class="mt-1 w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
-          <span class="text-sm font-medium text-slate-800">
+          <input type="checkbox" id="termsCheckbox" class="mt-0.5 w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500 shrink-0" />
+          <span class="text-xs sm:text-sm font-medium text-slate-800 leading-relaxed">
             Saya telah memeriksa seluruh rincian pesanan dan menyetujui ketentuan order di atas. <span class="text-red-500">*</span>
           </span>
         </label>
 
         <!-- Error Alert Box -->
-        <div id="formErrorBox" class="hidden mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium flex items-center gap-2.5">
+        <div id="formErrorBox" class="hidden mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-medium flex items-center gap-2.5">
           <i data-lucide="alert-circle" class="w-5 h-5 shrink-0"></i>
           <span id="formErrorText">Mohon lengkapi data yang wajib diisi.</span>
         </div>
 
         <!-- Submit Button -->
         <button type="submit" id="submitOrderBtn" disabled
-          class="w-full py-4 px-6 rounded-2xl font-extrabold text-base text-white bg-brand-600 hover:bg-brand-700 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed shadow-lg shadow-brand-600/20 disabled:shadow-none transition-all flex items-center justify-center gap-2.5">
-          <i data-lucide="send" class="w-5 h-5"></i>
-          <span>Order Sekarang &amp; Lanjut ke WhatsApp</span>
+          class="w-full py-3.5 sm:py-4 px-5 rounded-2xl font-extrabold text-sm sm:text-base text-white bg-brand-600 hover:bg-brand-700 active:scale-[0.99] disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed shadow-lg shadow-brand-600/20 disabled:shadow-none transition-all flex items-center justify-center gap-2.5 text-center leading-snug">
+          <i data-lucide="send" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
+          <span>Order Sekarang &amp; Lanjut WhatsApp</span>
         </button>
       </div>
     </form>
@@ -754,24 +760,24 @@
           Pesanan Tercatat di Sistem
         </span>
         <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Bukti Order Berhasil Dibuat!</h3>
-        <p class="text-sm sm:text-base text-slate-600 mt-1.5 max-w-xl mx-auto">
+        <p class="text-xs sm:text-base text-slate-600 mt-1.5 max-w-xl mx-auto">
           Data pesanan Anda telah tersimpan otomatis. Jika aplikasi WhatsApp belum terbuka otomatis, gunakan tombol di bawah ini untuk mengirim rincian ke Admin.
         </p>
       </div>
 
       <!-- Ringkasan ID & Link Drive -->
-      <div class="max-w-lg mx-auto bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5 text-left space-y-3 text-sm">
-        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5">
-          <span class="text-slate-500">ID Order</span>
-          <span id="successOrderId" class="font-extrabold text-slate-900 font-mono">-</span>
+      <div class="max-w-lg mx-auto bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 sm:p-5 text-left space-y-3 text-xs sm:text-sm">
+        <div class="flex justify-between items-center gap-3 border-b border-slate-200 pb-2.5">
+          <span class="text-slate-500 shrink-0">ID Order</span>
+          <span id="successOrderId" class="font-extrabold text-slate-900 font-mono text-right">-</span>
         </div>
-        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5">
-          <span class="text-slate-500">Nama Pemesan</span>
-          <span id="successCustomerName" class="font-bold text-slate-900">-</span>
+        <div class="flex justify-between items-center gap-3 border-b border-slate-200 pb-2.5">
+          <span class="text-slate-500 shrink-0">Nama Pemesan</span>
+          <span id="successCustomerName" class="font-bold text-slate-900 text-right truncate">-</span>
         </div>
-        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5">
-          <span class="text-slate-500">Total Pesanan</span>
-          <span id="successTotalPcs" class="font-bold text-brand-700">-</span>
+        <div class="flex justify-between items-center gap-3 border-b border-slate-200 pb-2.5">
+          <span class="text-slate-500 shrink-0">Total Pesanan</span>
+          <span id="successTotalPcs" class="font-bold text-brand-700 text-right">-</span>
         </div>
         <div class="flex justify-between items-center gap-3">
           <span class="text-slate-500 shrink-0">File Desain</span>
@@ -780,25 +786,25 @@
       </div>
 
       <!-- Tombol Cadangan WhatsApp & Salin Teks -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-1 max-w-md mx-auto">
         <a id="reopenWaBtn" href="#"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition">
-          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          class="w-full sm:flex-1 inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm px-5 py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition whitespace-nowrap">
+          <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
           <span>Buka WhatsApp Lagi</span>
         </a>
 
         <button type="button" id="copyOrderTextBtn"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm px-6 py-3.5 rounded-xl border border-slate-300 transition">
-          <i data-lucide="copy" class="w-4 h-4"></i>
+          class="w-full sm:flex-1 inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm px-5 py-3.5 rounded-xl border border-slate-300 transition whitespace-nowrap">
+          <i data-lucide="copy" class="w-4 h-4 shrink-0"></i>
           <span id="copyBtnLabel">Salin Teks Order</span>
         </button>
       </div>
 
-      <div class="pt-3 flex items-center justify-center gap-5">
-        <button type="button" onclick="resetOrderPage()" class="text-xs font-bold text-brand-600 hover:text-brand-700 underline">
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-5">
+        <button type="button" onclick="resetOrderPage()" class="text-xs font-bold text-brand-600 hover:text-brand-700 underline whitespace-nowrap">
           + Buat Pesanan Baru
         </button>
-        <button type="button" onclick="openStorefrontPage()" class="text-xs font-semibold text-slate-500 hover:text-slate-800 underline">
+        <button type="button" onclick="openStorefrontPage()" class="text-xs font-semibold text-slate-500 hover:text-slate-800 underline whitespace-nowrap">
           Kembali ke Beranda
         </button>
       </div>
@@ -809,7 +815,7 @@
        FOOTER
   ========================================================== -->
   <footer class="bg-white border-t border-slate-200 py-8 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
       <div class="flex items-center gap-2 font-bold text-slate-800">
         <i data-lucide="shirt" class="w-4 h-4 text-brand-600"></i>
         <span>KaosCraft Custom Lab</span>
@@ -824,19 +830,19 @@
   <div id="sizeChartModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target === this) closeSizeChartModal()">
     <div class="bg-white rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-slate-200 animate-modal-pop">
       <!-- Header Modal -->
-      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-xl bg-brand-600 flex items-center justify-center">
+      <div class="px-5 sm:px-6 py-4 bg-slate-900 text-white flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-8 h-8 rounded-xl bg-brand-600 flex items-center justify-center shrink-0">
             <i data-lucide="ruler" class="w-4 h-4 text-white"></i>
           </div>
-          <div>
-            <h3 class="font-extrabold text-base">Panduan Ukuran Kaos (Size Chart)</h3>
-            <p class="text-[11px] text-slate-300">Regular Fit Asian Size • Satuan Centimeter (cm)</p>
+          <div class="min-w-0">
+            <h3 class="font-extrabold text-sm sm:text-base truncate">Panduan Ukuran Kaos (Size Chart)</h3>
+            <p class="text-[11px] text-slate-300 truncate">Regular Fit Asian Size • Satuan Centimeter (cm)</p>
           </div>
         </div>
 
         <button type="button" onclick="closeSizeChartModal()" aria-label="Tutup Panduan Ukuran"
-          class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+          class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition shrink-0">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
@@ -898,10 +904,10 @@
           </table>
         </div>
 
-        <div class="flex items-center justify-between gap-3 pt-1">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
           <p class="text-[11px] text-slate-500">*Toleransi ukuran jahitan ±1–2 cm karena proses potong &amp; obras.</p>
           <button type="button" onclick="closeSizeChartModal()"
-            class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition shrink-0">
+            class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition shrink-0 whitespace-nowrap">
             Mengerti
           </button>
         </div>
@@ -915,53 +921,57 @@
   <div id="tutorialModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target === this) closeTutorialModal()">
     <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-200 animate-modal-pop">
       <!-- Top Header Modal -->
-      <div class="bg-brand-600 px-6 py-5 text-white flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-          <span class="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center font-extrabold text-sm">
+      <div class="bg-brand-600 px-5 sm:px-6 py-4 sm:py-5 text-white flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span class="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center font-extrabold text-sm shrink-0">
             ?
           </span>
-          <div>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-brand-100">Pusat Bantuan</p>
-            <h3 class="font-extrabold text-base leading-tight">Panduan Cara Memesan</h3>
+          <div class="min-w-0">
+            <p class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-brand-100">Pusat Bantuan</p>
+            <h3 class="font-extrabold text-sm sm:text-base leading-tight truncate">Panduan Cara Memesan</h3>
           </div>
         </div>
 
         <button
           type="button"
           onclick="closeTutorialModal()"
-          class="text-xs font-bold px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white transition">
+          class="text-xs font-bold px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white transition shrink-0 whitespace-nowrap">
           Tutup
         </button>
       </div>
 
       <!-- Body Step Content -->
-      <div class="p-6 sm:p-7">
+      <div class="p-5 sm:p-7">
         <!-- Progress Bar -->
         <div class="flex items-center gap-1.5 mb-6" id="tutorialProgressBars"></div>
 
         <!-- Step Visual Icon & Content -->
-        <div id="tutorialStepBody" class="text-center space-y-4 min-h-[195px] flex flex-col items-center justify-center"></div>
+        <div id="tutorialStepBody" class="text-center space-y-3.5 min-h-[195px] flex flex-col items-center justify-center"></div>
 
-        <!-- Footer Controls -->
-        <div class="mt-7 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-          <button
-            type="button"
-            id="tutorialPrevBtn"
-            onclick="changeTutorialStep(-1)"
-            class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:pointer-events-none transition">
-            Sebelumnya
-          </button>
+        <!-- Footer Controls (Grid 3 Kolom Simetris agar Tombol Tidak Tertumpuk di HP) -->
+        <div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-3 items-center gap-2">
+          <div class="text-left">
+            <button
+              type="button"
+              id="tutorialPrevBtn"
+              onclick="changeTutorialStep(-1)"
+              class="inline-flex items-center justify-center px-3 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-100 disabled:opacity-30 disabled:pointer-events-none transition whitespace-nowrap">
+              Sebelumnya
+            </button>
+          </div>
 
-          <span id="tutorialStepCounter" class="text-xs font-bold text-slate-400">1 dari 4</span>
+          <span id="tutorialStepCounter" class="text-xs font-bold text-slate-400 text-center whitespace-nowrap">1 / 4</span>
 
-          <button
-            type="button"
-            id="tutorialNextBtn"
-            onclick="changeTutorialStep(1)"
-            class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-600 hover:bg-brand-700 text-white shadow-sm transition">
-            <span id="tutorialNextLabel">Lanjut</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </button>
+          <div class="text-right">
+            <button
+              type="button"
+              id="tutorialNextBtn"
+              onclick="changeTutorialStep(1)"
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brand-600 hover:bg-brand-700 text-white shadow-sm transition whitespace-nowrap">
+              <span id="tutorialNextLabel">Lanjut</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 shrink-0"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -1108,7 +1118,7 @@
     // 4. STATE APLIKASI
     // =========================================================
     const state = {
-      currentView: "storefront", // "storefront" | "order"
+      currentView: "storefront",
       tutorialStep: 0,
       selectedColor: "Hitam Jet Black",
       quantities: {
@@ -1165,7 +1175,6 @@
         }
       });
 
-      // Tutup modal dengan tombol Escape
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
           closeSizeChartModal();
@@ -1257,7 +1266,6 @@
     // =========================================================
     function openTutorialModal() {
       hideMobileMenu();
-      // Hentikan animasi badge pop-up kecil setelah diklik pertama kali
       const miniBadge = document.getElementById("helpMiniPopupBadge");
       if (miniBadge) miniBadge.classList.add("hidden");
 
@@ -1306,7 +1314,7 @@
         <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${step.desc}</p>
       `;
 
-      document.getElementById("tutorialStepCounter").textContent = `${state.tutorialStep + 1} dari ${total}`;
+      document.getElementById("tutorialStepCounter").textContent = `${state.tutorialStep + 1} / ${total}`;
       document.getElementById("tutorialPrevBtn").disabled = state.tutorialStep === 0;
 
       const isLast = state.tutorialStep === total - 1;
@@ -1324,7 +1332,7 @@
       const totalPages = Math.ceil(CATALOG_PRODUCTS.length / 2);
 
       slider.innerHTML = CATALOG_PRODUCTS.map(item => `
-        <article class="snap-start shrink-0 w-[calc(50%-0.4375rem)] sm:w-[calc(50%-0.75rem)] bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col group">
+        <article class="snap-start shrink-0 w-[calc(50%-0.375rem)] sm:w-[calc(50%-0.75rem)] bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col group">
           <div class="relative aspect-[4/5] bg-slate-100 overflow-hidden">
             <img
               src="${item.image}"
@@ -1338,21 +1346,21 @@
             </span>
           </div>
 
-          <div class="p-3.5 sm:p-5 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
+          <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between gap-3 sm:gap-4">
             <div>
-              <h3 class="font-bold text-slate-900 text-xs sm:text-lg leading-snug line-clamp-1">${item.title}</h3>
+              <h3 class="font-bold text-slate-900 text-xs sm:text-base lg:text-lg leading-snug line-clamp-1">${item.title}</h3>
               <p class="text-[11px] sm:text-xs text-slate-600 mt-1 sm:mt-1.5 leading-relaxed line-clamp-2">${item.description}</p>
             </div>
 
-            <div class="pt-2.5 sm:pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-              <div>
+            <div class="pt-2.5 sm:pt-3 border-t border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
+              <div class="min-w-0">
                 <p class="text-[10px] sm:text-[11px] text-slate-400 font-medium">Estimasi Harga</p>
-                <p class="text-xs sm:text-base font-extrabold text-brand-700">${item.price}</p>
+                <p class="text-xs sm:text-sm lg:text-base font-extrabold text-brand-700 truncate">${item.price}</p>
               </div>
               <button
                 type="button"
                 onclick="selectCatalogModel('${item.id}')"
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-brand-50 hover:bg-brand-600 text-brand-700 hover:text-white border border-brand-200 hover:border-brand-600 font-bold text-[11px] sm:text-xs px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl transition-all">
+                class="w-full lg:w-auto inline-flex items-center justify-center gap-1.5 bg-brand-50 hover:bg-brand-600 active:scale-[0.99] text-brand-700 hover:text-white border border-brand-200 hover:border-brand-600 font-bold text-[11px] sm:text-xs px-3 py-2.5 sm:px-4 rounded-xl transition-all whitespace-nowrap shrink-0">
                 <span>Order Model Ini</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5 shrink-0"></i>
               </button>
@@ -1387,7 +1395,7 @@
 
     function getCatalogPageStep() {
       const slider = document.getElementById("catalogSlider");
-      const gap = window.innerWidth >= 640 ? 24 : 14;
+      const gap = window.innerWidth >= 640 ? 24 : 12;
       return slider.clientWidth + gap;
     }
 
@@ -1410,7 +1418,7 @@
       const currentPage = Math.min(totalPages - 1, Math.max(0, Math.round(slider.scrollLeft / step)));
 
       const counterEl = document.getElementById("catalogPageCounter");
-      if (counterEl) counterEl.textContent = `${currentPage + 1} / ${totalPages}`;
+      if (counterEl) counterEl.textContent = `Halaman ${currentPage + 1} / ${totalPages}`;
 
       const prevBtn = document.getElementById("catalogPrevBtn");
       const nextBtn = document.getElementById("catalogNextBtn");
@@ -1446,9 +1454,9 @@
 
       formContainer.innerHTML = TSHIRT_COLORS.map(c => `
         <button type="button" data-color="${c.name}" onclick="selectColor('${c.name}')"
-          class="color-swatch-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-xs font-semibold text-slate-700 transition">
+          class="color-swatch-btn w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-xs font-semibold text-slate-700 text-left transition">
           <span class="w-4 h-4 rounded-full shrink-0" style="background-color:${c.hex}; border: 1.5px solid ${c.border};"></span>
-          <span>${c.name}</span>
+          <span class="truncate">${c.name}</span>
         </button>
       `).join("");
 
@@ -1496,22 +1504,22 @@
     function renderSleeveGroup(type, containerId) {
       const container = document.getElementById(containerId);
       container.innerHTML = SIZES.map(size => `
-        <div class="flex items-center justify-between bg-white px-3.5 py-2 rounded-xl border border-slate-200">
-          <div class="flex items-center gap-2.5">
-            <span class="w-8 h-8 rounded-lg bg-slate-100 text-slate-900 font-extrabold text-xs flex items-center justify-center">${size}</span>
-            <span class="text-xs font-medium text-slate-500">Size ${size}</span>
+        <div class="flex items-center justify-between gap-2 bg-white px-3 py-2 rounded-xl border border-slate-200">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="w-8 h-8 rounded-lg bg-slate-100 text-slate-900 font-extrabold text-xs flex items-center justify-center shrink-0">${size}</span>
+            <span class="hidden min-[360px]:inline text-xs font-semibold text-slate-600 truncate">Ukuran ${size}</span>
           </div>
 
-          <div class="flex items-center gap-1.5">
+          <div class="inline-flex items-center gap-1 bg-slate-50 p-1 rounded-xl border border-slate-200 shrink-0">
             <button type="button" onclick="adjustQty('${type}', '${size}', -1)" aria-label="Kurangi ${size}"
-              class="w-8 h-8 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 active:scale-95 text-slate-700 font-bold flex items-center justify-center transition">
-              -
+              class="w-8 h-8 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 active:scale-95 text-slate-700 font-extrabold text-sm flex items-center justify-center transition">
+              −
             </button>
             <input type="number" min="0" value="0" id="qty_${type}_${size}"
               onchange="setQtyDirect('${type}', '${size}', this.value)"
-              class="w-12 text-center font-bold text-sm text-slate-900 border border-slate-200 rounded-lg py-1 focus:outline-none focus:border-brand-600" />
+              class="w-11 text-center font-bold text-sm text-slate-900 bg-transparent focus:outline-none" />
             <button type="button" onclick="adjustQty('${type}', '${size}', 1)" aria-label="Tambah ${size}"
-              class="w-8 h-8 rounded-lg border border-brand-200 bg-brand-50 hover:bg-brand-600 hover:text-white active:scale-95 text-brand-700 font-bold flex items-center justify-center transition">
+              class="w-8 h-8 rounded-lg bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-extrabold text-sm flex items-center justify-center transition">
               +
             </button>
           </div>
@@ -1645,7 +1653,7 @@
 
         document.getElementById("previewFileName").textContent = file.name;
         const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
-        document.getElementById("previewFileMeta").textContent = `${sizeMB} MB • Siap diunggah ke Google Drive`;
+        document.getElementById("previewFileMeta").textContent = `${sizeMB} MB • Siap diunggah ke Drive`;
 
         if (file.type === "application/pdf") {
           imgThumb.classList.add("hidden");

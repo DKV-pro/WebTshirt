@@ -62,11 +62,45 @@
       scrollbar-width: none;
     }
     @keyframes modalPop {
-      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      from { opacity: 0; transform: scale(0.95) translateY(8px); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
     .animate-modal-pop {
-      animation: modalPop 0.22s ease-out forwards;
+      animation: modalPop 0.2s ease-out forwards;
+    }
+    /* Animasi pop-up kecil pada ikon tanda tanya tombol bantuan */
+    @keyframes questionMiniPopup {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      18% {
+        transform: translateY(-4px) scale(1.12);
+      }
+      32% {
+        transform: translateY(0) scale(0.96);
+      }
+      45% {
+        transform: translateY(-2px) scale(1.05);
+      }
+      60% {
+        transform: translateY(0) scale(1);
+      }
+    }
+    @keyframes bubbleFloat {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-3px) scale(1.04);
+      }
+    }
+    .animate-question-pop {
+      animation: questionMiniPopup 2.6s ease-in-out infinite;
+    }
+    .animate-help-bubble {
+      animation: bubbleFloat 2.4s ease-in-out infinite;
     }
   </style>
 </head>
@@ -93,18 +127,27 @@
         <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
           <button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition-colors">Katalog</button>
           <button type="button" onclick="openStorefrontPage('cara-pesan')" class="hover:text-brand-600 transition-colors">Cara Pesan</button>
-          <button type="button" onclick="openStorefrontPage('size-chart')" class="hover:text-brand-600 transition-colors">Size Chart</button>
         </nav>
 
-        <!-- Actions: Panduan + Order Sekarang -->
-        <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Actions: Tombol Bantuan (Animasi Pop-Up Ikon ?) + Order Sekarang -->
+        <div class="flex items-center gap-2.5 sm:gap-3">
           <button
             type="button"
+            id="helpNavbarBtn"
             onclick="openTutorialModal()"
-            title="Lihat Panduan Memesan"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-semibold transition">
-            <i data-lucide="help-circle" class="w-4 h-4 text-brand-600"></i>
-            <span class="hidden sm:inline">Panduan</span>
+            aria-label="Bantuan Cara Pesan"
+            class="relative inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-brand-50 hover:border-brand-300 text-slate-700 text-xs sm:text-sm font-semibold transition group">
+            <!-- Ikon Tanda Tanya dengan Animasi Pop-Up Kecil -->
+            <span class="relative flex items-center justify-center w-5 h-5 rounded-full bg-brand-100 text-brand-700 font-extrabold text-xs animate-question-pop">
+              ?
+            </span>
+            <span class="hidden sm:inline">Bantuan</span>
+
+            <!-- Pop-up mini badge "?" melayang di sudut tombol -->
+            <span id="helpMiniPopupBadge"
+              class="animate-help-bubble pointer-events-none absolute -top-2 -right-1.5 px-1.5 py-0.5 rounded-full bg-amber-500 text-white text-[9px] font-extrabold leading-none shadow-sm border border-white">
+              ?
+            </span>
           </button>
 
           <button
@@ -126,13 +169,12 @@
     <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-3 space-y-1.5">
       <button type="button" onclick="openStorefrontPage('katalog')" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Katalog Produk</button>
       <button type="button" onclick="openStorefrontPage('cara-pesan')" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Cara Pesan</button>
-      <button type="button" onclick="openStorefrontPage('size-chart')" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Size Chart &amp; Warna</button>
-      <button type="button" onclick="openTutorialModal()" class="block w-full text-left py-2 text-sm font-semibold text-brand-600">Lihat Panduan Tutorial</button>
+      <button type="button" onclick="openTutorialModal()" class="block w-full text-left py-2 text-sm font-semibold text-brand-600">Bantuan &amp; Tutorial Order</button>
     </div>
   </header>
 
   <!-- =========================================================
-       VIEW 1: HALAMAN ETALASE TOKO (HERO + KATALOG SLIDER + INFO)
+       VIEW 1: HALAMAN ETALASE TOKO (RINGKAS: HERO + KATALOG SLIDER + 4 LANGKAH)
   ========================================================== -->
   <main id="storefrontView" class="flex-1">
 
@@ -261,127 +303,39 @@
       </div>
     </section>
 
-    <!-- SEKSI 3 — CARA PEMESANAN & SIZE CHART -->
-    <section id="cara-pesan" class="py-16 sm:py-20 bg-white border-t border-slate-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-
-        <!-- 4 Langkah Cara Pesan -->
-        <div>
-          <div class="text-center max-w-2xl mx-auto mb-10">
-            <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Alur Pemesanan Mudah</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">4 Langkah Order Kaos Custom</h2>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
-              <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">01</div>
-              <h3 class="font-bold text-slate-900 text-base mb-1.5">Pilih Model</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Tentukan paket bahan, jenis lengan, serta referensi sablon dari katalog tersedia.</p>
-            </div>
-
-            <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
-              <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">02</div>
-              <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Form &amp; Upload Desain</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Masukkan rincian ukuran S–XXL, posisi cetak, dan unggah file desain (PNG/JPG/PDF).</p>
-            </div>
-
-            <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
-              <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">03</div>
-              <h3 class="font-bold text-slate-900 text-base mb-1.5">Kirim Konfirmasi WA</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Data otomatis tersimpan &amp; Anda langsung diarahkan ke WhatsApp Admin untuk ACC mockup.</p>
-            </div>
-
-            <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
-              <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">04</div>
-              <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi &amp; Kirim</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Pesanan diproduksi presisi oleh tim workshop kami dan dikirim ke alamat Anda.</p>
-            </div>
-          </div>
+    <!-- SEKSI 3 — CARA PEMESANAN (4 LANGKAH RINGKAS) -->
+    <section id="cara-pesan" class="py-14 sm:py-18 bg-white border-t border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Alur Pemesanan Mudah</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">4 Langkah Order Kaos Custom</h2>
         </div>
 
-        <!-- Warna Tersedia & Tabel Size Chart -->
-        <div id="size-chart" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
-          <!-- Katalog Swatches Warna -->
-          <div class="lg:col-span-5 bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6">
-            <div class="flex items-center gap-2 mb-2">
-              <i data-lucide="palette" class="w-5 h-5 text-brand-600"></i>
-              <h3 class="font-bold text-lg text-slate-900">Pilihan Warna Cotton Combed</h3>
-            </div>
-            <p class="text-sm text-slate-600 mb-5">Klik salah satu warna di bawah untuk membuka Form Order dengan warna tersebut:</p>
-
-            <div id="referenceColorSwatches" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
-
-            <div class="mt-5 p-3.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-600 flex items-start gap-2.5">
-              <i data-lucide="info" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-              <span>Butuh warna khusus (seperti Lilac, Sage Green, atau Burgundy)? Anda dapat mengetikkannya langsung pada kolom <strong>Warna Custom</strong> di halaman form order.</span>
-            </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">01</div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Pilih Model</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Tentukan paket bahan, jenis lengan, serta referensi sablon dari katalog tersedia.</p>
           </div>
 
-          <!-- Tabel Panduan Ukuran -->
-          <div class="lg:col-span-7 bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6">
-            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
-              <div class="flex items-center gap-2">
-                <i data-lucide="ruler" class="w-5 h-5 text-brand-600"></i>
-                <h3 class="font-bold text-lg text-slate-900">Panduan Ukuran (Size Chart)</h3>
-              </div>
-              <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 border border-brand-200">Regular Fit Asian Size (cm)</span>
-            </div>
-            <p class="text-sm text-slate-600 mb-4">Ukur lebar dada dari ketiak kiri ke kanan dan panjang dari bahu tertinggi ke ujung bawah kaos.</p>
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">02</div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Form &amp; Upload Desain</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Pilih warna kaos, jumlah per ukuran S–XXL, dan unggah file desain (PNG/JPG/PDF).</p>
+          </div>
 
-            <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
-              <table class="w-full text-sm text-left">
-                <thead class="bg-slate-900 text-white text-xs uppercase">
-                  <tr>
-                    <th class="px-4 py-3 font-bold">Ukuran</th>
-                    <th class="px-4 py-3 font-bold">Lebar Dada</th>
-                    <th class="px-4 py-3 font-bold">Panjang Baju</th>
-                    <th class="px-4 py-3 font-bold">Lengan Pendek</th>
-                    <th class="px-4 py-3 font-bold">Lengan Panjang</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 text-slate-700">
-                  <tr class="hover:bg-slate-50">
-                    <td class="px-4 py-3 font-bold text-slate-900">S</td>
-                    <td class="px-4 py-3">47 cm</td>
-                    <td class="px-4 py-3">67 cm</td>
-                    <td class="px-4 py-3">20 cm</td>
-                    <td class="px-4 py-3">57 cm</td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="px-4 py-3 font-bold text-slate-900">M</td>
-                    <td class="px-4 py-3">50 cm</td>
-                    <td class="px-4 py-3">70 cm</td>
-                    <td class="px-4 py-3">21 cm</td>
-                    <td class="px-4 py-3">59 cm</td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="px-4 py-3 font-bold text-slate-900">L</td>
-                    <td class="px-4 py-3">53 cm</td>
-                    <td class="px-4 py-3">73 cm</td>
-                    <td class="px-4 py-3">22 cm</td>
-                    <td class="px-4 py-3">61 cm</td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="px-4 py-3 font-bold text-slate-900">XL</td>
-                    <td class="px-4 py-3">56 cm</td>
-                    <td class="px-4 py-3">75 cm</td>
-                    <td class="px-4 py-3">23 cm</td>
-                    <td class="px-4 py-3">63 cm</td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="px-4 py-3 font-bold text-slate-900">XXL</td>
-                    <td class="px-4 py-3">59 cm</td>
-                    <td class="px-4 py-3">78 cm</td>
-                    <td class="px-4 py-3">24 cm</td>
-                    <td class="px-4 py-3">65 cm</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="text-xs text-slate-500 mt-3">*Toleransi ukuran jahitan ±1–2 cm karena proses potong dan obras konveksi.</p>
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">03</div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Kirim Konfirmasi WA</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Data otomatis tersimpan &amp; Anda langsung diarahkan ke WhatsApp Admin untuk ACC mockup.</p>
+          </div>
+
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">04</div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi &amp; Kirim</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Pesanan diproduksi presisi oleh tim workshop kami dan dikirim ke alamat Anda.</p>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -471,7 +425,7 @@
         </div>
       </div>
 
-      <!-- 2. DETAIL PESANAN KAOS -->
+      <!-- 2. DETAIL PESANAN KAOS (PILIH WARNA & UKURAN + TOMBOL PANDUAN UKURAN) -->
       <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
         <div class="flex items-center justify-between flex-wrap gap-3 pb-4 mb-6 border-b border-slate-100">
           <div class="flex items-center gap-3">
@@ -490,7 +444,7 @@
           </div>
         </div>
 
-        <!-- Pilihan Warna Kaos -->
+        <!-- Pilihan Warna Kaos (HANYA DI HALAMAN ORDER) -->
         <div class="mb-7">
           <label class="block text-sm font-semibold text-slate-700 mb-2">
             Warna Kaos <span class="text-red-500">*</span>
@@ -503,6 +457,21 @@
             <input type="text" id="customColorInput" placeholder="Atau ketik warna custom di sini (misal: Sage Green, Misty Muda, dll)..."
               class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
           </div>
+        </div>
+
+        <!-- Header Matriks Ukuran + Tombol Ikon Panduan Ukuran -->
+        <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+          <label class="block text-sm font-semibold text-slate-700">
+            Jumlah Pesanan Per Ukuran <span class="text-red-500">*</span>
+          </label>
+
+          <button
+            type="button"
+            onclick="openSizeChartModal()"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 border border-brand-200 text-xs font-bold transition shadow-xs">
+            <i data-lucide="ruler" class="w-4 h-4 text-brand-600"></i>
+            <span>Panduan Ukuran</span>
+          </button>
         </div>
 
         <!-- Matriks Ukuran: 2 Kelompok Jelas -->
@@ -850,27 +819,118 @@
   </footer>
 
   <!-- =========================================================
-       MODAL PANDUAN MEMESAN (FIRST-TIME ONBOARDING TOUR)
+       MODAL 1: PANDUAN UKURAN (MUNCUL SAAT KLIK ICON PANDUAN DI ORDER)
   ========================================================== -->
-  <div id="tutorialModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+  <div id="sizeChartModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target === this) closeSizeChartModal()">
+    <div class="bg-white rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-slate-200 animate-modal-pop">
+      <!-- Header Modal -->
+      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-brand-600 flex items-center justify-center">
+            <i data-lucide="ruler" class="w-4 h-4 text-white"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-base">Panduan Ukuran Kaos (Size Chart)</h3>
+            <p class="text-[11px] text-slate-300">Regular Fit Asian Size • Satuan Centimeter (cm)</p>
+          </div>
+        </div>
+
+        <button type="button" onclick="closeSizeChartModal()" aria-label="Tutup Panduan Ukuran"
+          class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Body Tabel Ukuran -->
+      <div class="p-5 sm:p-6 space-y-4">
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          Ukur <strong>lebar dada</strong> dari ketiak kiri ke kanan dan <strong>panjang baju</strong> dari bahu tertinggi ke ujung bawah kaos.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200">
+          <table class="w-full text-xs sm:text-sm text-left">
+            <thead class="bg-brand-600 text-white text-[11px] sm:text-xs uppercase">
+              <tr>
+                <th class="px-3.5 py-3 font-bold">Ukuran</th>
+                <th class="px-3.5 py-3 font-bold">Lebar Dada</th>
+                <th class="px-3.5 py-3 font-bold">Panjang Baju</th>
+                <th class="px-3.5 py-3 font-bold">Lengan Pendek</th>
+                <th class="px-3.5 py-3 font-bold">Lengan Panjang</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700 bg-white">
+              <tr class="hover:bg-slate-50">
+                <td class="px-3.5 py-3 font-extrabold text-slate-900">S</td>
+                <td class="px-3.5 py-3">47 cm</td>
+                <td class="px-3.5 py-3">67 cm</td>
+                <td class="px-3.5 py-3">20 cm</td>
+                <td class="px-3.5 py-3">57 cm</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3.5 py-3 font-extrabold text-slate-900">M</td>
+                <td class="px-3.5 py-3">50 cm</td>
+                <td class="px-3.5 py-3">70 cm</td>
+                <td class="px-3.5 py-3">21 cm</td>
+                <td class="px-3.5 py-3">59 cm</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3.5 py-3 font-extrabold text-slate-900">L</td>
+                <td class="px-3.5 py-3">53 cm</td>
+                <td class="px-3.5 py-3">73 cm</td>
+                <td class="px-3.5 py-3">22 cm</td>
+                <td class="px-3.5 py-3">61 cm</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3.5 py-3 font-extrabold text-slate-900">XL</td>
+                <td class="px-3.5 py-3">56 cm</td>
+                <td class="px-3.5 py-3">75 cm</td>
+                <td class="px-3.5 py-3">23 cm</td>
+                <td class="px-3.5 py-3">63 cm</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3.5 py-3 font-extrabold text-slate-900">XXL</td>
+                <td class="px-3.5 py-3">59 cm</td>
+                <td class="px-3.5 py-3">78 cm</td>
+                <td class="px-3.5 py-3">24 cm</td>
+                <td class="px-3.5 py-3">65 cm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-1">
+          <p class="text-[11px] text-slate-500">*Toleransi ukuran jahitan ±1–2 cm karena proses potong &amp; obras.</p>
+          <button type="button" onclick="closeSizeChartModal()"
+            class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition shrink-0">
+            Mengerti
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 2: BANTUAN / TUTORIAL ORDER (TERSEMBUNYI, DIBUKA VIA TOMBOL ?)
+  ========================================================== -->
+  <div id="tutorialModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target === this) closeTutorialModal()">
     <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-200 animate-modal-pop">
       <!-- Top Header Modal -->
       <div class="bg-brand-600 px-6 py-5 text-white flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <span class="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center">
-            <i data-lucide="compass" class="w-4 h-4"></i>
+          <span class="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center font-extrabold text-sm">
+            ?
           </span>
           <div>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-brand-100">Panduan Singkat</p>
-            <h3 class="font-extrabold text-base leading-tight">Cara Pesan Kaos Custom</h3>
+            <p class="text-[11px] font-bold uppercase tracking-wider text-brand-100">Pusat Bantuan</p>
+            <h3 class="font-extrabold text-base leading-tight">Panduan Cara Memesan</h3>
           </div>
         </div>
 
         <button
           type="button"
-          onclick="closeTutorialModal(true)"
+          onclick="closeTutorialModal()"
           class="text-xs font-bold px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white transition">
-          Lewati
+          Tutup
         </button>
       </div>
 
@@ -880,9 +940,7 @@
         <div class="flex items-center gap-1.5 mb-6" id="tutorialProgressBars"></div>
 
         <!-- Step Visual Icon & Content -->
-        <div id="tutorialStepBody" class="text-center space-y-4 min-h-[195px] flex flex-col items-center justify-center">
-          <!-- Diisi via JS -->
-        </div>
+        <div id="tutorialStepBody" class="text-center space-y-4 min-h-[195px] flex flex-col items-center justify-center"></div>
 
         <!-- Footer Controls -->
         <div class="mt-7 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
@@ -929,10 +987,9 @@
     // =========================================================
     const GAS_WEB_APP_URL = "URL_WEB_APP_GAS_ANDA";
     const ADMIN_WHATSAPP = "628XXXXXXXXXX"; // Format awalan 62 tanpa tanda +
-    const TUTORIAL_STORAGE_KEY = "kaoscraft_tutorial_seen_v1";
 
     // =========================================================
-    // 2. DATA PANDUAN TUTORIAL (ONBOARDING)
+    // 2. DATA PANDUAN TUTORIAL (DIBUKA DARI TOMBOL BANTUAN ?)
     // =========================================================
     const TUTORIAL_STEPS = [
       {
@@ -943,9 +1000,9 @@
       },
       {
         icon: "shirt",
-        badge: "Langkah 2 • Isi Data & Ukuran Kaos",
+        badge: "Langkah 2 • Isi Data, Warna & Ukuran",
         title: "Tentukan Warna & Jumlah Per Ukuran",
-        desc: "Pada halaman form pemesanan, isi Nama & No. WhatsApp Anda, pilih warna kaos, lalu tekan tombol <strong>( + )</strong> pada ukuran <strong>S, M, L, XL, XXL</strong> untuk Lengan Pendek atau Lengan Panjang."
+        desc: "Pada halaman form pemesanan, isi Nama & No. WhatsApp Anda, pilih warna kaos, klik <strong>\"Panduan Ukuran\"</strong> bila perlu melihat tabel cm, lalu atur jumlah <strong>S–XXL</strong>."
       },
       {
         icon: "upload-cloud",
@@ -1068,14 +1125,14 @@
     // =========================================================
     document.addEventListener("DOMContentLoaded", () => {
       renderCatalogSlider();
-      renderColorSwatches();
+      renderOrderColorSwatches();
       renderSizeMatrices();
       setupPrintSideListeners();
       setupDropzone();
       setupCurrencyFormatters();
       setupValidationAndSubmit();
       setupMobileMenu();
-      setupRoutingAndOnboarding();
+      setupRouting();
       lucide.createIcons();
     });
 
@@ -1092,13 +1149,11 @@
     // =========================================================
     // 6. NAVIGASI HALAMAN (STOREFRONT VS HALAMAN FORM ORDER)
     // =========================================================
-    function setupRoutingAndOnboarding() {
-      // Cek jika URL dibuka langsung dengan #order
+    function setupRouting() {
       if (window.location.hash === "#order") {
         openOrderPage(null, false);
       }
 
-      // Sinkronkan tombol Back/Forward browser
       window.addEventListener("hashchange", () => {
         if (window.location.hash === "#order") {
           if (state.currentView !== "order") openOrderPage(null, false);
@@ -1110,11 +1165,13 @@
         }
       });
 
-      // Tampilkan panduan otomatis hanya jika pengunjung baru pertama kali membuka web
-      const hasSeenTutorial = localStorage.getItem(TUTORIAL_STORAGE_KEY);
-      if (!hasSeenTutorial) {
-        openTutorialModal();
-      }
+      // Tutup modal dengan tombol Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeSizeChartModal();
+          closeTutorialModal();
+        }
+      });
     }
 
     function openOrderPage(options = null, pushHash = true) {
@@ -1124,12 +1181,10 @@
       document.getElementById("storefrontView").classList.add("hidden");
       document.getElementById("orderPageView").classList.remove("hidden");
 
-      // Jika sebelumnya menampilkan halaman sukses, kembalikan ke form order
       if (!document.getElementById("orderSuccessView").classList.contains("hidden")) {
         resetOrderPage(false);
       }
 
-      // Terapkan data dari kartu katalog jika ada
       if (options && options.product) {
         const product = options.product;
         selectColor(product.defaultColor);
@@ -1148,11 +1203,6 @@
 
         document.getElementById("selectedModelText").textContent = `${product.title} (${product.badge} • ${product.price})`;
         document.getElementById("selectedModelBanner").classList.remove("hidden");
-      }
-
-      // Terapkan warna dari swatch Size Chart jika ada
-      if (options && options.colorName) {
-        selectColor(options.colorName);
       }
 
       if (pushHash) {
@@ -1189,24 +1239,35 @@
     }
 
     // =========================================================
-    // 7. MODAL PANDUAN MEMESAN (FIRST-TIME ONBOARDING)
+    // 7. MODAL PANDUAN UKURAN (DIBUKA DARI HALAMAN ORDER)
+    // =========================================================
+    function openSizeChartModal() {
+      document.getElementById("sizeChartModal").classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+      lucide.createIcons();
+    }
+
+    function closeSizeChartModal() {
+      document.getElementById("sizeChartModal").classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // =========================================================
+    // 8. MODAL BANTUAN / TUTORIAL (DIBUKA HANYA DARI TOMBOL ?)
     // =========================================================
     function openTutorialModal() {
       hideMobileMenu();
+      // Hentikan animasi badge pop-up kecil setelah diklik pertama kali
+      const miniBadge = document.getElementById("helpMiniPopupBadge");
+      if (miniBadge) miniBadge.classList.add("hidden");
+
       state.tutorialStep = 0;
       renderTutorialStep();
       document.getElementById("tutorialModal").classList.remove("hidden");
       document.body.classList.add("overflow-hidden");
     }
 
-    function closeTutorialModal(markAsSeen = true) {
-      if (markAsSeen) {
-        try {
-          localStorage.setItem(TUTORIAL_STORAGE_KEY, "true");
-        } catch (e) {
-          // Abaikan jika mode private browser memblokir storage
-        }
-      }
+    function closeTutorialModal() {
       document.getElementById("tutorialModal").classList.add("hidden");
       document.body.classList.remove("overflow-hidden");
     }
@@ -1216,8 +1277,7 @@
       if (nextStep < 0) return;
 
       if (nextStep >= TUTORIAL_STEPS.length) {
-        // Selesai pada langkah terakhir -> tutup & simpan status sudah pernah melihat
-        closeTutorialModal(true);
+        closeTutorialModal();
         return;
       }
 
@@ -1229,13 +1289,11 @@
       const step = TUTORIAL_STEPS[state.tutorialStep];
       const total = TUTORIAL_STEPS.length;
 
-      // Render progress bars di atas
       const barsContainer = document.getElementById("tutorialProgressBars");
       barsContainer.innerHTML = TUTORIAL_STEPS.map((_, idx) => `
         <div class="h-1.5 flex-1 rounded-full transition-all duration-300 ${idx <= state.tutorialStep ? "bg-brand-600" : "bg-slate-200"}"></div>
       `).join("");
 
-      // Render isi step
       const bodyEl = document.getElementById("tutorialStepBody");
       bodyEl.innerHTML = `
         <div class="w-16 h-16 rounded-2xl bg-brand-50 border border-brand-200 text-brand-600 flex items-center justify-center shadow-sm">
@@ -1248,18 +1306,17 @@
         <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${step.desc}</p>
       `;
 
-      // Update indikator & tombol navigasi modal
       document.getElementById("tutorialStepCounter").textContent = `${state.tutorialStep + 1} dari ${total}`;
       document.getElementById("tutorialPrevBtn").disabled = state.tutorialStep === 0;
 
       const isLast = state.tutorialStep === total - 1;
-      document.getElementById("tutorialNextLabel").textContent = isLast ? "Mulai Jelajahi" : "Lanjut";
+      document.getElementById("tutorialNextLabel").textContent = isLast ? "Selesai" : "Lanjut";
 
       lucide.createIcons();
     }
 
     // =========================================================
-    // 8. RENDER & KONTROL KATALOG HORIZONTAL SLIDER (2 PER LAYAR)
+    // 9. RENDER & KONTROL KATALOG HORIZONTAL SLIDER (2 PER LAYAR)
     // =========================================================
     function renderCatalogSlider() {
       const slider = document.getElementById("catalogSlider");
@@ -1382,19 +1439,10 @@
     }
 
     // =========================================================
-    // 9. RENDER COLOR SWATCHES (REFERENSI & FORM)
+    // 10. RENDER COLOR SWATCHES (KHUSUS DI HALAMAN ORDER)
     // =========================================================
-    function renderColorSwatches() {
-      const refContainer = document.getElementById("referenceColorSwatches");
+    function renderOrderColorSwatches() {
       const formContainer = document.getElementById("formColorSwatches");
-
-      refContainer.innerHTML = TSHIRT_COLORS.map(c => `
-        <button type="button" onclick="pickColorFromReference('${c.name}')"
-          class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-slate-200 hover:border-brand-500 text-left transition">
-          <span class="w-5 h-5 rounded-full shrink-0" style="background-color:${c.hex}; border: 1.5px solid ${c.border};"></span>
-          <span class="text-xs font-semibold text-slate-700 truncate">${c.name}</span>
-        </button>
-      `).join("");
 
       formContainer.innerHTML = TSHIRT_COLORS.map(c => `
         <button type="button" data-color="${c.name}" onclick="selectColor('${c.name}')"
@@ -1421,10 +1469,6 @@
       selectColor(state.selectedColor);
     }
 
-    function pickColorFromReference(colorName) {
-      openOrderPage({ colorName });
-    }
-
     function selectColor(colorName) {
       state.selectedColor = colorName;
       document.getElementById("customColorInput").value = "";
@@ -1441,7 +1485,7 @@
     }
 
     // =========================================================
-    // 10. MATRIKS UKURAN (LENGAN PENDEK & LENGAN PANJANG)
+    // 11. MATRIKS UKURAN (LENGAN PENDEK & LENGAN PANJANG)
     // =========================================================
     function renderSizeMatrices() {
       renderSleeveGroup("short", "shortSleeveMatrix");
@@ -1501,7 +1545,7 @@
     }
 
     // =========================================================
-    // 11. CONDITIONAL FIELDS SISI SABLON
+    // 12. CONDITIONAL FIELDS SISI SABLON
     // =========================================================
     function setupPrintSideListeners() {
       document.querySelectorAll('input[name="printSide"]').forEach(radio => {
@@ -1528,7 +1572,7 @@
     }
 
     // =========================================================
-    // 12. DROPZONE UPLOAD DESAIN (MAX 8 MB & BASE64)
+    // 13. DROPZONE UPLOAD DESAIN (MAX 8 MB & BASE64)
     // =========================================================
     function setupDropzone() {
       const dropzone = document.getElementById("dropzoneArea");
@@ -1619,7 +1663,7 @@
     }
 
     // =========================================================
-    // 13. FORMATTER RUPIAH OTOMATIS (Rp 150.000)
+    // 14. FORMATTER RUPIAH OTOMATIS (Rp 150.000)
     // =========================================================
     function formatRupiah(valueStr) {
       const digits = valueStr.replace(/\D/g, "");
@@ -1636,7 +1680,7 @@
     }
 
     // =========================================================
-    // 14. VALIDASI & SUBMIT KE GOOGLE APPS SCRIPT + REDIRECT WA
+    // 15. VALIDASI & SUBMIT KE GOOGLE APPS SCRIPT + REDIRECT WA
     // =========================================================
     function setupValidationAndSubmit() {
       const termsCheckbox = document.getElementById("termsCheckbox");

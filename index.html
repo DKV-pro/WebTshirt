@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KaosCraft Studio — Custom Kaos & Sablon Premium</title>
+  <meta name="description" content="Pesan kaos custom satuan maupun partai besar dengan bahan Cotton Combed premium dan sablon DTF / Plastisol presisi." />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ECFDF5',
+              100: '#D1FAE5',
+              200: '#A7F3D0',
+              500: '#10B981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065F46',
+              900: '#064E3B',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #F8FAFC;
+      color: #0F172A;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    /* Hilangkan panah default pada input number */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .swatch-ring {
+      box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #059669;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-100 selection:text-brand-900">
+
+  <!-- =========================================================
+       STICKY TOP NAVBAR
+  ========================================================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-18">
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm group-hover:bg-brand-700 transition-colors">
+            <i data-lucide="shirt" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="font-extrabold text-lg tracking-tight text-slate-900">KaosCraft</span>
+            <span class="hidden sm:inline-block text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full ml-1.5 border border-brand-200">Custom Lab</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+          <a href="#katalog" class="hover:text-brand-600 transition-colors">Katalog</a>
+          <a href="#cara-pesan" class="hover:text-brand-600 transition-colors">Cara Pesan</a>
+          <a href="#size-chart" class="hover:text-brand-600 transition-colors">Size Chart</a>
+        </nav>
+
+        <!-- Primary CTA + Mobile Toggle -->
+        <div class="flex items-center gap-3">
+          <a href="#order-section" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm shadow-brand-600/20 transition-all">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span>Order Sekarang</span>
+          </a>
+          <button id="mobileMenuBtn" type="button" aria-label="Buka Menu" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-3 space-y-2">
+      <a href="#katalog" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Katalog Produk</a>
+      <a href="#cara-pesan" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Cara Pesan</a>
+      <a href="#size-chart" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-600">Size Chart & Warna</a>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       SEKSI 1 — HERO BANNER TOKO
+  ========================================================== -->
+  <section class="relative overflow-hidden bg-white border-b border-slate-200/80">
+    <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- Left Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs sm:text-sm font-semibold">
+            <i data-lucide="sparkles" class="w-4 h-4 text-brand-600"></i>
+            <span>Bisa Satuan & Partai Besar • Garansi Jahitan & Cetak</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            Wujudkan Kaos Custom <span class="text-brand-600">Desain Bebas</span> dengan Kualitas Distro.
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+            Menggunakan 100% <strong class="font-semibold text-slate-800">Cotton Combed 24s & 30s</strong> yang adem menyerap keringat, dipadukan teknologi sablon <strong class="font-semibold text-slate-800">DTF High-Res & Plastisol</strong> yang tajam, lentur, dan anti retak.
+          </p>
+
+          <!-- Key USPs -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
+            <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+              <span>Combed 24s / 30s Ori</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+              <span>Sablon Tajam & Awet</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+              <span>Free Mockup Preview</span>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
+            <a href="#order-section" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition-all">
+              <i data-lucide="pen-tool" class="w-4 h-4"></i>
+              <span>Isi Form Order</span>
+            </a>
+            <a href="#katalog" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl border border-slate-300 transition-all">
+              <i data-lucide="layout-grid" class="w-4 h-4 text-slate-600"></i>
+              <span>Lihat Katalog</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Showcase Card -->
+        <div class="lg:col-span-5">
+          <div class="relative bg-slate-900 rounded-3xl p-4 sm:p-5 shadow-xl border border-slate-800">
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-800 relative">
+              <img
+                src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"
+                alt="Contoh Produksi Kaos Custom Cotton Combed"
+                class="w-full h-full object-cover opacity-95"
+              />
+              <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg flex items-center justify-between">
+                <div>
+                  <p class="text-[11px] font-bold uppercase tracking-wider text-brand-600">Best Seller Paket Komunitas</p>
+                  <p class="text-sm font-bold text-slate-900">Combed 24s + Sablon DTF A3</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[11px] text-slate-500">Mulai dari</p>
+                  <p class="text-sm font-extrabold text-brand-700">Rp 65.000</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SEKSI 2 — KATALOG CONTOH PRODUK (GRID E-COMMERCE)
+  ========================================================== -->
+  <section id="katalog" class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Katalog Paket & Referensi</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pilih Model & Spesifikasi Kaos</h2>
+        <p class="text-sm sm:text-base text-slate-600 mt-1.5">Klik <strong>"Order Model Ini"</strong> untuk langsung mengisi paket pilihan ke dalam form pemesanan.</p>
+      </div>
+      <div class="text-xs font-medium text-slate-500 bg-white px-3.5 py-2 rounded-xl border border-slate-200 self-start sm:self-auto">
+        *Harga menyesuaikan jumlah pesanan & ukuran cetak
+      </div>
+    </div>
+
+    <!-- Grid Kartu Produk (Di-render via JS agar URL gambar mudah diganti) -->
+    <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+  </section>
+
+  <!-- =========================================================
+       SEKSI 3 — CARA PEMESANAN & SIZE CHART
+  ========================================================== -->
+  <section id="cara-pesan" class="py-16 sm:py-20 bg-white border-y border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+      <!-- 4 Langkah Cara Pesan -->
+      <div>
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Alur Pemesanan Mudah</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">4 Langkah Order Kaos Custom</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">01</div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Pilih Model</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Tentukan paket bahan, jenis lengan, serta referensi sablon dari katalog tersedia.</p>
+          </div>
+
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">02</div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Form & Upload Desain</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Masukkan rincian ukuran S–XXL, posisi cetak, dan unggah file desain (PNG/JPG/PDF).</p>
+          </div>
+
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">03</div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Kirim Konfirmasi WA</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Data otomatis tersimpan & Anda langsung diarahkan ke WhatsApp Admin untuk ACC mockup.</p>
+          </div>
+
+          <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">04</div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi & Kirim</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Pesanan diproduksi presisi oleh tim workshop kami dan dikirim ke alamat Anda.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warna Tersedia & Tabel Size Chart -->
+      <div id="size-chart" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
+        <!-- Katalog Swatches Warna -->
+        <div class="lg:col-span-5 bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6">
+          <div class="flex items-center gap-2 mb-2">
+            <i data-lucide="palette" class="w-5 h-5 text-brand-600"></i>
+            <h3 class="font-bold text-lg text-slate-900">Pilihan Warna Cotton Combed</h3>
+          </div>
+          <p class="text-sm text-slate-600 mb-5">Klik salah satu warna di bawah untuk langsung memilihnya pada Form Order:</p>
+
+          <div id="referenceColorSwatches" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+
+          <div class="mt-5 p-3.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-600 flex items-start gap-2.5">
+            <i data-lucide="info" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+            <span>Butuh warna khusus (seperti Lilac, Sage Green, atau Burgundy)? Anda dapat mengetikkannya langsung pada kolom <strong>Warna Custom</strong> di form.</span>
+          </div>
+        </div>
+
+        <!-- Tabel Panduan Ukuran -->
+        <div class="lg:col-span-7 bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+            <div class="flex items-center gap-2">
+              <i data-lucide="ruler" class="w-5 h-5 text-brand-600"></i>
+              <h3 class="font-bold text-lg text-slate-900">Panduan Ukuran (Size Chart)</h3>
+            </div>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 border border-brand-200">Regular Fit Asian Size (cm)</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-4">Ukur lebar dada dari ketiak kiri ke kanan dan panjang dari bahu tertinggi ke ujung bawah kaos.</p>
+
+          <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+            <table class="w-full text-sm text-left">
+              <thead class="bg-slate-900 text-white text-xs uppercase">
+                <tr>
+                  <th class="px-4 py-3 font-bold">Ukuran</th>
+                  <th class="px-4 py-3 font-bold">Lebar Dada</th>
+                  <th class="px-4 py-3 font-bold">Panjang Baju</th>
+                  <th class="px-4 py-3 font-bold">Lengan Pendek</th>
+                  <th class="px-4 py-3 font-bold">Lengan Panjang</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 text-slate-700">
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-3 font-bold text-slate-900">S</td>
+                  <td class="px-4 py-3">47 cm</td>
+                  <td class="px-4 py-3">67 cm</td>
+                  <td class="px-4 py-3">20 cm</td>
+                  <td class="px-4 py-3">57 cm</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-3 font-bold text-slate-900">M</td>
+                  <td class="px-4 py-3">50 cm</td>
+                  <td class="px-4 py-3">70 cm</td>
+                  <td class="px-4 py-3">21 cm</td>
+                  <td class="px-4 py-3">59 cm</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-3 font-bold text-slate-900">L</td>
+                  <td class="px-4 py-3">53 cm</td>
+                  <td class="px-4 py-3">73 cm</td>
+                  <td class="px-4 py-3">22 cm</td>
+                  <td class="px-4 py-3">61 cm</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-3 font-bold text-slate-900">XL</td>
+                  <td class="px-4 py-3">56 cm</td>
+                  <td class="px-4 py-3">75 cm</td>
+                  <td class="px-4 py-3">23 cm</td>
+                  <td class="px-4 py-3">63 cm</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="px-4 py-3 font-bold text-slate-900">XXL</td>
+                  <td class="px-4 py-3">59 cm</td>
+                  <td class="px-4 py-3">78 cm</td>
+                  <td class="px-4 py-3">24 cm</td>
+                  <td class="px-4 py-3">65 cm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-500 mt-3">*Toleransi ukuran jahitan ±1–2 cm karena proses potong dan obras konveksi.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SEKSI 4 — FORM PEMESANAN KAOS INTERAKTIF
+  ========================================================== -->
+  <section id="order-section" class="py-16 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Title -->
+    <div class="text-center mb-10">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Formulir Pemesanan Online</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Detail Pesanan Custom Kaos</h2>
+      <p class="text-sm sm:text-base text-slate-600 mt-1.5">Lengkapi data di bawah. Setelah klik order, rincian otomatis tersimpan dan diteruskan ke WhatsApp Admin.</p>
+    </div>
+
+    <!-- Banner Paket Terpilih dari Katalog (Muncul jika user klik "Order Model Ini") -->
+    <div id="selectedModelBanner" class="hidden mb-6 bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shrink-0">
+          <i data-lucide="tag" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-brand-700 uppercase">Paket Katalog Dipilih</p>
+          <p id="selectedModelText" class="text-sm font-bold text-slate-900">-</p>
+        </div>
+      </div>
+      <button type="button" onclick="clearSelectedModel()" class="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2.5 py-1 rounded-lg hover:bg-white transition">
+        Hapus
+      </button>
+    </div>
+
+    <!-- CONTAINER UTAMA FORM -->
+    <form id="orderForm" novalidate class="space-y-8">
+
+      <!-- 1. DATA PEMESAN -->
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
+          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">1</span>
+          <div>
+            <h3 class="font-bold text-lg text-slate-900">Data Pemesan</h3>
+            <p class="text-xs text-slate-500">Informasi kontak untuk konfirmasi mockup & pengiriman</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="customerName" class="block text-sm font-semibold text-slate-700 mb-1.5">
+              Nama Pemesan / Instansi <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="customerName" required placeholder="Contoh: Budi Santoso / Komunitas Gowes"
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
+          </div>
+
+          <div>
+            <label for="customerWhatsapp" class="block text-sm font-semibold text-slate-700 mb-1.5">
+              No. WhatsApp Aktif <span class="text-red-500">*</span>
+            </label>
+            <input type="tel" id="customerWhatsapp" inputmode="numeric" required placeholder="Contoh: 081234567890"
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
+            <p id="waErrorMsg" class="hidden text-xs text-red-600 font-medium mt-1">Nomor WhatsApp wajib diisi hanya dengan angka (10–15 digit).</p>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="customerAddress" class="block text-sm font-semibold text-slate-700 mb-1.5">
+              Alamat Lengkap <span class="text-red-500">*</span>
+            </label>
+            <textarea id="customerAddress" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, Kelurahan, Kecamatan, Kota/Kabupaten, Kode Pos"
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. DETAIL PESANAN KAOS -->
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center justify-between flex-wrap gap-3 pb-4 mb-6 border-b border-slate-100">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">2</span>
+            <div>
+              <h3 class="font-bold text-lg text-slate-900">Detail Pesanan Kaos</h3>
+              <p class="text-xs text-slate-500">Pilih warna kaos dan tentukan jumlah per ukuran</p>
+            </div>
+          </div>
+
+          <!-- Real-Time Total Counter Badge -->
+          <div class="bg-brand-600 text-white px-4 py-2 rounded-xl shadow-sm flex items-center gap-2.5">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            <span class="text-xs font-medium">Total Pesanan:</span>
+            <span id="totalPcsBadge" class="text-base font-extrabold">0 pcs</span>
+          </div>
+        </div>
+
+        <!-- Pilihan Warna Kaos -->
+        <div class="mb-7">
+          <label class="block text-sm font-semibold text-slate-700 mb-2">
+            Warna Kaos <span class="text-red-500">*</span>
+            <span id="activeColorLabel" class="ml-2 text-xs font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">Hitam Jet Black</span>
+          </label>
+
+          <!-- Swatch Buttons -->
+          <div id="formColorSwatches" class="flex flex-wrap gap-2.5 mb-3"></div>
+
+          <!-- Custom Color Input -->
+          <div class="mt-3">
+            <input type="text" id="customColorInput" placeholder="Atau ketik warna custom di sini (misal: Sage Green, Misty Muda, dll)..."
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
+          </div>
+        </div>
+
+        <!-- Matriks Ukuran: 2 Kelompok Jelas (Lengan Panjang & Lengan Pendek) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Kelompok 1: Lengan Pendek -->
+          <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <i data-lucide="shirt" class="w-4 h-4 text-brand-600"></i>
+                <h4 class="font-bold text-slate-900 text-sm">Lengan Pendek</h4>
+              </div>
+              <span id="subtotalShortBadge" class="text-xs font-bold text-slate-600 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
+            </div>
+            <div id="shortSleeveMatrix" class="space-y-2.5"></div>
+          </div>
+
+          <!-- Kelompok 2: Lengan Panjang -->
+          <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <i data-lucide="shirt" class="w-4 h-4 text-slate-700"></i>
+                <h4 class="font-bold text-slate-900 text-sm">Lengan Panjang</h4>
+              </div>
+              <span id="subtotalLongBadge" class="text-xs font-bold text-slate-600 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
+            </div>
+            <div id="longSleeveMatrix" class="space-y-2.5"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. DETAIL SABLON & UPLOAD DESAIN -->
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
+          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">3</span>
+          <div>
+            <h3 class="font-bold text-lg text-slate-900">Detail Sablon & Upload Desain</h3>
+            <p class="text-xs text-slate-500">Tentukan sisi cetak, ukuran sablon, serta unggah file desain Anda</p>
+          </div>
+        </div>
+
+        <!-- Pilihan Sisi Sablon -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-slate-700 mb-2.5">Sisi Sablon <span class="text-red-500">*</span></label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <label class="cursor-pointer">
+              <input type="radio" name="printSide" value="Depan Saja" checked class="peer sr-only" />
+              <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 text-center font-semibold text-sm transition">
+                Depan Saja
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="printSide" value="Belakang Saja" class="peer sr-only" />
+              <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 text-center font-semibold text-sm transition">
+                Belakang Saja
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="printSide" value="Depan & Belakang" class="peer sr-only" />
+              <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 text-center font-semibold text-sm transition">
+                Depan & Belakang
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Conditional Fields: Sablon Depan & Belakang -->
+        <div class="space-y-4 mb-6">
+          <!-- Sablon Depan -->
+          <div id="frontPrintFields" class="p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-700">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              <span>Spesifikasi Sablon Depan</span>
+            </div>
+            <div>
+              <label for="frontPrintSize" class="block text-xs font-semibold text-slate-700 mb-1.5">Ukuran Sablon Depan (cm)</label>
+              <input type="text" id="frontPrintSize" placeholder="Contoh: Logo 10x10 cm atau A4 (21x29 cm)" value="Logo Dada 10x10 cm"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600" />
+            </div>
+            <div>
+              <label for="frontPrintPosition" class="block text-xs font-semibold text-slate-700 mb-1.5">Posisi Depan</label>
+              <select id="frontPrintPosition" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600">
+                <option value="Dada Kiri">Dada Kiri</option>
+                <option value="Dada Kanan">Dada Kanan</option>
+                <option value="Tengah Dada">Tengah Dada</option>
+                <option value="Full Depan (A3)">Full Depan (A3)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Sablon Belakang -->
+          <div id="backPrintFields" class="hidden p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
+              <i data-lucide="arrow-down-left" class="w-4 h-4"></i>
+              <span>Spesifikasi Sablon Belakang</span>
+            </div>
+            <div>
+              <label for="backPrintSize" class="block text-xs font-semibold text-slate-700 mb-1.5">Ukuran Sablon Belakang (cm)</label>
+              <input type="text" id="backPrintSize" placeholder="Contoh: A3 (29x42 cm) atau 25x30 cm" value="A3 (29x42 cm)"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600" />
+            </div>
+            <div>
+              <label for="backPrintPosition" class="block text-xs font-semibold text-slate-700 mb-1.5">Posisi Belakang</label>
+              <select id="backPrintPosition" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600">
+                <option value="Tengah Punggung">Tengah Punggung</option>
+                <option value="Full Punggung (A3)">Full Punggung (A3)</option>
+                <option value="Tengkuk / Leher Atas">Tengkuk / Leher Atas</option>
+                <option value="Bawah Punggung">Bawah Punggung</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropzone Upload Desain -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-slate-700 mb-2">
+            Upload File Desain <span class="text-xs font-normal text-slate-500">(PNG, JPG, WEBP, SVG, atau PDF — Maks. 8 MB)</span>
+          </label>
+
+          <div id="dropzoneArea"
+            class="border-2 border-dashed border-slate-300 hover:border-brand-500 bg-[#F8FAFC] hover:bg-brand-50/40 rounded-2xl p-6 text-center cursor-pointer transition-all">
+            <input type="file" id="designFileInput" accept="image/png,image/jpeg,image/webp,image/svg+xml,application/pdf" class="hidden" />
+            <div class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-brand-600 flex items-center justify-center mx-auto mb-3 shadow-sm">
+              <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+            </div>
+            <p class="text-sm font-bold text-slate-800">Klik untuk pilih file atau seret & lepas di sini</p>
+            <p class="text-xs text-slate-500 mt-1">Mendukung gambar resolusi tinggi & dokumen PDF vektor (maksimal 8 MB)</p>
+          </div>
+
+          <!-- Preview File Terunggah -->
+          <div id="filePreviewBox" class="hidden mt-3 p-4 rounded-2xl bg-white border border-brand-200 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5 min-w-0">
+              <img id="previewImageThumb" src="" alt="Preview Desain" class="hidden w-14 h-14 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100" />
+              <div id="previewPdfIcon" class="hidden w-14 h-14 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0">
+                <i data-lucide="file-text" class="w-7 h-7"></i>
+              </div>
+              <div class="min-w-0">
+                <p id="previewFileName" class="text-sm font-bold text-slate-900 truncate">desain.png</p>
+                <p id="previewFileMeta" class="text-xs text-slate-500 mt-0.5">1.2 MB • Siap diunggah ke Google Drive</p>
+              </div>
+            </div>
+            <button type="button" id="removeFileBtn" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 transition shrink-0">
+              Hapus
+            </button>
+          </div>
+        </div>
+
+        <!-- Catatan Tambahan Desain -->
+        <div>
+          <label for="designNotes" class="block text-sm font-semibold text-slate-700 mb-1.5">Catatan Tambahan Desain / Paket</label>
+          <textarea id="designNotes" rows="3" placeholder="Tuliskan detail bahan (misal: Combed 24s), jenis sablon (DTF/Plastisol), kode warna Pantone, atau instruksi posisi khusus..."
+            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition"></textarea>
+        </div>
+      </div>
+
+      <!-- 4. PENGIRIMAN & PEMBAYARAN -->
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
+          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">4</span>
+          <div>
+            <h3 class="font-bold text-lg text-slate-900">Pengiriman & Pembayaran</h3>
+            <p class="text-xs text-slate-500">Pilih opsi pengambilan pesanan serta rencana pembayaran DP</p>
+          </div>
+        </div>
+
+        <!-- Radio Card Metode Pengiriman -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-slate-700 mb-2.5">Metode Pengiriman <span class="text-red-500">*</span></label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <label class="cursor-pointer">
+              <input type="radio" name="shippingMethod" value="Ambil Sendiri" checked class="peer sr-only" />
+              <div class="p-4 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
+                <i data-lucide="store" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                <div>
+                  <p class="font-bold text-sm text-slate-900">Ambil Sendiri</p>
+                  <p class="text-xs text-slate-500 mt-0.5">Ambil langsung di workshop tanpa biaya ongkir</p>
+                </div>
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="shippingMethod" value="Kirim Kurir/Ekspedisi" class="peer sr-only" />
+              <div class="p-4 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
+                <i data-lucide="truck" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                <div>
+                  <p class="font-bold text-sm text-slate-900">Kirim Kurir / Ekspedisi</p>
+                  <p class="text-xs text-slate-500 mt-0.5">Dikirim via JNE, J&T, Cargo, atau kurir instan</p>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Metode Pembayaran & Nominal Rupiah -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div>
+            <label for="paymentMethod" class="block text-sm font-semibold text-slate-700 mb-1.5">Metode Pembayaran</label>
+            <select id="paymentMethod" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600">
+              <option value="Transfer Bank">Transfer Bank</option>
+              <option value="QRIS / E-Wallet">QRIS / E-Wallet</option>
+              <option value="Tunai">Tunai</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="dpAmount" class="block text-sm font-semibold text-slate-700 mb-1.5">Nominal DP</label>
+            <input type="text" id="dpAmount" inputmode="numeric" placeholder="Rp 0"
+              class="currency-input w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600" />
+          </div>
+
+          <div>
+            <label for="remainingAmount" class="block text-sm font-semibold text-slate-700 mb-1.5">Sisa Pembayaran</label>
+            <input type="text" id="remainingAmount" inputmode="numeric" placeholder="Rp 0"
+              class="currency-input w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. KETENTUAN ORDER & TOMBOL UTAMA -->
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">5</span>
+          <div>
+            <h3 class="font-bold text-lg text-slate-900">Ketentuan Order</h3>
+            <p class="text-xs text-slate-500">Harap baca poin berikut sebelum mengirimkan pesanan</p>
+          </div>
+        </div>
+
+        <ul class="space-y-2.5 text-sm text-slate-600 bg-[#F8FAFC] p-4 sm:p-5 rounded-xl border border-slate-200 mb-5">
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
+            <span><strong>Kesesuaian Ukuran & Warna:</strong> Pastikan pilihan warna kaos, jenis lengan, dan rincian ukuran (S–XXL) sudah tepat karena pesanan custom diproduksi khusus sesuai data order.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
+            <span><strong>Kualitas File Desain:</strong> Disarankan mengunggah file resolusi tinggi (PNG transparan min. 300 DPI atau PDF vektor) agar hasil cetak tajam dan tidak pecah.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
+            <span><strong>Konfirmasi Mockup Sebelum Diproses:</strong> Admin akan mengirimkan digital mockup & rincian tagihan final via WhatsApp untuk persetujuan (ACC) sebelum naik produksi.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
+            <span><strong>Estimasi Pengerjaan:</strong> Waktu produksi standar adalah 3–7 hari kerja (menyesuaikan jumlah pcs & antrean) terhitung setelah DP terkonfirmasi.</span>
+          </li>
+        </ul>
+
+        <!-- Checkbox Persetujuan Wajib -->
+        <label class="flex items-start gap-3 cursor-pointer select-none mb-6">
+          <input type="checkbox" id="termsCheckbox" class="mt-1 w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
+          <span class="text-sm font-medium text-slate-800">
+            Saya telah memeriksa seluruh rincian pesanan dan menyetujui ketentuan order di atas. <span class="text-red-500">*</span>
+          </span>
+        </label>
+
+        <!-- Error Alert Box -->
+        <div id="formErrorBox" class="hidden mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium flex items-center gap-2.5">
+          <i data-lucide="alert-circle" class="w-5 h-5 shrink-0"></i>
+          <span id="formErrorText">Mohon lengkapi data yang wajib diisi.</span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitOrderBtn" disabled
+          class="w-full py-4 px-6 rounded-2xl font-extrabold text-base text-white bg-brand-600 hover:bg-brand-700 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed shadow-lg shadow-brand-600/20 disabled:shadow-none transition-all flex items-center justify-center gap-2.5">
+          <i data-lucide="send" class="w-5 h-5"></i>
+          <span>Order Sekarang & Lanjut ke WhatsApp</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- =========================================================
+         HALAMAN BUKTI ORDER BERHASIL (TAMPIL SETELAH SUBMIT SUKSES)
+    ========================================================== -->
+    <div id="orderSuccessView" class="hidden bg-white border border-brand-200 rounded-3xl p-6 sm:p-10 shadow-md text-center space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto">
+        <i data-lucide="check-circle-2" class="w-9 h-9"></i>
+      </div>
+
+      <div>
+        <span class="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200 text-xs font-bold uppercase tracking-wider">
+          Pesanan Tercatat di Sistem
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Bukti Order Berhasil Dibuat!</h3>
+        <p class="text-sm sm:text-base text-slate-600 mt-1.5 max-w-xl mx-auto">
+          Data pesanan Anda telah tersimpan otomatis. Jika aplikasi WhatsApp belum terbuka otomatis, gunakan tombol di bawah ini untuk mengirim rincian ke Admin.
+        </p>
+      </div>
+
+      <!-- Ringkasan ID & Link Drive -->
+      <div class="max-w-lg mx-auto bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5 text-left space-y-3 text-sm">
+        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5">
+          <span class="text-slate-500">ID Order</span>
+          <span id="successOrderId" class="font-extrabold text-slate-900 font-mono">-</span>
+        </div>
+        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5">
+          <span class="text-slate-500">Nama Pemesan</span>
+          <span id="successCustomerName" class="font-bold text-slate-900">-</span>
+        </div>
+        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5">
+          <span class="text-slate-500">Total Pesanan</span>
+          <span id="successTotalPcs" class="font-bold text-brand-700">-</span>
+        </div>
+        <div class="flex justify-between items-center gap-3">
+          <span class="text-slate-500 shrink-0">File Desain</span>
+          <span id="successFileLink" class="font-semibold text-slate-800 truncate text-right">-</span>
+        </div>
+      </div>
+
+      <!-- Tombol Cadangan WhatsApp & Salin Teks -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+        <a id="reopenWaBtn" href="#"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Buka WhatsApp Lagi</span>
+        </a>
+
+        <button type="button" id="copyOrderTextBtn"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm px-6 py-3.5 rounded-xl border border-slate-300 transition">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span id="copyBtnLabel">Salin Teks Order</span>
+        </button>
+      </div>
+
+      <div class="pt-2">
+        <button type="button" onclick="resetOrderPage()" class="text-xs font-semibold text-slate-500 hover:text-brand-600 underline">
+          + Buat Pesanan Baru
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="bg-white border-t border-slate-200 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center gap-2 font-bold text-slate-800">
+        <i data-lucide="shirt" class="w-4 h-4 text-brand-600"></i>
+        <span>KaosCraft Custom Lab</span>
+      </div>
+      <p>&copy; 2026 KaosCraft Studio. Layanan Produksi Kaos & Sablon Custom.</p>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       LOADING OVERLAY
+  ========================================================== -->
+  <div id="loadingOverlay" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl space-y-4">
+      <div class="w-12 h-12 border-4 border-brand-200 border-t-brand-600 rounded-full animate-spin mx-auto"></div>
+      <h4 class="font-extrabold text-lg text-slate-900">Menyimpan pesanan &amp; mengunggah desain...</h4>
+      <p class="text-xs text-slate-500 leading-relaxed">Mohon tunggu sebentar, jangan tutup halaman ini hingga diarahkan ke WhatsApp Admin.</p>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       APPLICATION LOGIC (VANILLA JS)
+  ========================================================== -->
+  <script>
+    // =========================================================
+    // 1. KONFIGURASI UTAMA (WAJIB DISESUAIKAN)
+    // =========================================================
+    const GAS_WEB_APP_URL = "URL_WEB_APP_GAS_ANDA";
+    const ADMIN_WHATSAPP = "628XXXXXXXXXX"; // Format awalan 62 tanpa tanda +
+
+    // =========================================================
+    // 2. DATA KATALOG PRODUK & WARNA KAOS
+    // =========================================================
+    // Ganti properti `image` di bawah dengan URL foto produk Anda sendiri (rasio 4:5)
+    const CATALOG_PRODUCTS = [
+      {
+        id: "paket-dtf-24s",
+        title: "Paket Komunitas Combed 24s",
+        badge: "Cotton Combed 24s + DTF",
+        price: "Mulai Rp 65.000",
+        description: "Bahan tebal sedang yang adem untuk acara komunitas, panitia event, dan merchandise.",
+        defaultColor: "Hitam Jet Black",
+        defaultPrintSide: "Depan & Belakang",
+        specNote: "Paket Katalog: Combed 24s + Sablon DTF (Estimasi mulai Rp 65.000/pcs)",
+        image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "paket-longsleeve-plastisol",
+        title: "Long Sleeve Plastisol Ink",
+        badge: "Lengan Panjang + Plastisol",
+        price: "Mulai Rp 82.000",
+        description: "Kaos lengan panjang rib karet dengan tinta plastisol standar distro yang pekat dan tahan lama.",
+        defaultColor: "Navy Dongker",
+        defaultPrintSide: "Depan & Belakang",
+        specNote: "Paket Katalog: Lengan Panjang Combed 24s + Sablon Plastisol (Estimasi mulai Rp 82.000/pcs)",
+        image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "paket-minimalis-30s",
+        title: "Daily Tee Logo Dada",
+        badge: "Cotton Combed 30s + DTF",
+        price: "Mulai Rp 58.000",
+        description: "Potongan ringan & sejuk untuk seragam cafe, kru toko, maupun brand clothing minimalis.",
+        defaultColor: "Putih Solid",
+        defaultPrintSide: "Depan Saja",
+        specNote: "Paket Katalog: Combed 30s + Sablon DTF Logo Dada (Estimasi mulai Rp 58.000/pcs)",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "paket-heavyweight-20s",
+        title: "Heavyweight Streetwear",
+        badge: "Cotton Combed 20s + Puff/DTF",
+        price: "Mulai Rp 88.000",
+        description: "Gramasi tebal kokoh bergaya streetwear modern dengan hasil sablon full punggung presisi.",
+        defaultColor: "Cream / Sand",
+        defaultPrintSide: "Depan & Belakang",
+        specNote: "Paket Katalog: Heavyweight Combed 20s + Sablon Streetwear (Estimasi mulai Rp 88.000/pcs)",
+        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "paket-gathering-maroon",
+        title: "Seragam Gathering & Outing",
+        badge: "Cotton Combed 24s + Plastisol",
+        price: "Mulai Rp 68.000",
+        description: "Pilihan favorit perusahaan dan kampus untuk kegiatan outing, gathering, dan bakti sosial.",
+        defaultColor: "Maroon",
+        defaultPrintSide: "Depan & Belakang",
+        specNote: "Paket Katalog: Seragam Gathering Combed 24s + Plastisol (Estimasi mulai Rp 68.000/pcs)",
+        image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "paket-jersey-polyflex",
+        title: "Custom Nomor & Nama Satuan",
+        badge: "Combed 24s + Polyflex Korea",
+        price: "Mulai Rp 72.000",
+        description: "Cocok untuk jersey panitia atau tim dengan nama punggung/nomor berbeda tiap kaos.",
+        defaultColor: "Hijau Botol",
+        defaultPrintSide: "Belakang Saja",
+        specNote: "Paket Katalog: Combed 24s + Sablon Polyflex Nama/Nomor (Estimasi mulai Rp 72.000/pcs)",
+        image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    const TSHIRT_COLORS = [
+      { name: "Hitam Jet Black", hex: "#111827", border: "#111827" },
+      { name: "Putih Solid", hex: "#FFFFFF", border: "#CBD5E1" },
+      { name: "Navy Dongker", hex: "#1E293B", border: "#1E293B" },
+      { name: "Maroon", hex: "#7F1D1D", border: "#7F1D1D" },
+      { name: "Hijau Botol", hex: "#064E3B", border: "#064E3B" },
+      { name: "Abu Misty", hex: "#94A3B8", border: "#94A3B8" },
+      { name: "Cream / Sand", hex: "#E7DFD5", border: "#CBD5E1" },
+      { name: "Biru Benhur", hex: "#1D4ED8", border: "#1D4ED8" },
+      { name: "Kuning Mustard", hex: "#D97706", border: "#D97706" }
+    ];
+
+    const SIZES = ["S", "M", "L", "XL", "XXL"];
+
+    // =========================================================
+    // 3. STATE APLIKASI
+    // =========================================================
+    const state = {
+      selectedColor: "Hitam Jet Black",
+      quantities: {
+        short: { S: 0, M: 0, L: 0, XL: 0, XXL: 0 },
+        long: { S: 0, M: 0, L: 0, XL: 0, XXL: 0 }
+      },
+      uploadedFile: null, // { name, mimeType, size, base64 }
+      lastWhatsAppText: "",
+      lastWhatsAppUrl: ""
+    };
+
+    // =========================================================
+    // 4. INISIALISASI UI SAAT DOM READY
+    // =========================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCatalog();
+      renderColorSwatches();
+      renderSizeMatrices();
+      setupPrintSideListeners();
+      setupDropzone();
+      setupCurrencyFormatters();
+      setupValidationAndSubmit();
+      setupMobileMenu();
+      lucide.createIcons();
+    });
+
+    function setupMobileMenu() {
+      const btn = document.getElementById("mobileMenuBtn");
+      const menu = document.getElementById("mobileMenu");
+      btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+      menu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => menu.classList.add("hidden"));
+      });
+    }
+
+    // =========================================================
+    // 5. RENDER KATALOG PRODUK
+    // =========================================================
+    function renderCatalog() {
+      const grid = document.getElementById("catalogGrid");
+      grid.innerHTML = CATALOG_PRODUCTS.map(item => `
+        <article class="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col group">
+          <div class="relative aspect-[4/5] bg-slate-100 overflow-hidden">
+            <img
+              src="${item.image}"
+              alt="${item.title}"
+              loading="lazy"
+              onerror="this.src='https://placehold.co/800x1000/e2e8f0/475569?text=Foto+Produk+Kaos'"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <span class="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
+              ${item.badge}
+            </span>
+          </div>
+
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-bold text-slate-900 text-base leading-snug">${item.title}</h3>
+              </div>
+              <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">${item.description}</p>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+              <div>
+                <p class="text-[11px] text-slate-400 font-medium">Estimasi Harga</p>
+                <p class="text-sm font-extrabold text-brand-700">${item.price}</p>
+              </div>
+              <button
+                type="button"
+                onclick="selectCatalogModel('${item.id}')"
+                class="inline-flex items-center gap-1.5 bg-brand-50 hover:bg-brand-600 text-brand-700 hover:text-white border border-brand-200 hover:border-brand-600 font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all">
+                <span>Order Model Ini</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function selectCatalogModel(productId) {
+      const product = CATALOG_PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+
+      // Pastikan tampilan form aktif (jika sebelumnya sudah submit)
+      if (!document.getElementById("orderSuccessView").classList.contains("hidden")) {
+        resetOrderPage(false);
+      }
+
+      // Isi warna default katalog
+      selectColor(product.defaultColor);
+
+      // Isi sisi sablon default katalog
+      const radio = document.querySelector(`input[name="printSide"][value="${product.defaultPrintSide}"]`);
+      if (radio) {
+        radio.checked = true;
+        updatePrintSideVisibility();
+      }
+
+      // Tambahkan catatan paket ke textarea catatan desain
+      const notesEl = document.getElementById("designNotes");
+      const existingNote = notesEl.value.trim();
+      if (!existingNote.includes(product.specNote)) {
+        notesEl.value = existingNote ? `${product.specNote}\n${existingNote}` : product.specNote;
+      }
+
+      // Tampilkan banner paket terpilih
+      document.getElementById("selectedModelText").textContent = `${product.title} (${product.badge} • ${product.price})`;
+      document.getElementById("selectedModelBanner").classList.remove("hidden");
+
+      // Scroll mulus ke Form Order
+      document.getElementById("order-section").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function clearSelectedModel() {
+      document.getElementById("selectedModelBanner").classList.add("hidden");
+    }
+
+    // =========================================================
+    // 6. RENDER COLOR SWATCHES (REFERENSI & FORM)
+    // =========================================================
+    function renderColorSwatches() {
+      const refContainer = document.getElementById("referenceColorSwatches");
+      const formContainer = document.getElementById("formColorSwatches");
+
+      refContainer.innerHTML = TSHIRT_COLORS.map(c => `
+        <button type="button" onclick="pickColorFromReference('${c.name}')"
+          class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-slate-200 hover:border-brand-500 text-left transition">
+          <span class="w-5 h-5 rounded-full shrink-0" style="background-color:${c.hex}; border: 1.5px solid ${c.border};"></span>
+          <span class="text-xs font-semibold text-slate-700 truncate">${c.name}</span>
+        </button>
+      `).join("");
+
+      formContainer.innerHTML = TSHIRT_COLORS.map(c => `
+        <button type="button" data-color="${c.name}" onclick="selectColor('${c.name}')"
+          class="color-swatch-btn inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-xs font-semibold text-slate-700 transition">
+          <span class="w-4 h-4 rounded-full shrink-0" style="background-color:${c.hex}; border: 1.5px solid ${c.border};"></span>
+          <span>${c.name}</span>
+        </button>
+      `).join("");
+
+      const customInput = document.getElementById("customColorInput");
+      customInput.addEventListener("input", (e) => {
+        const val = e.target.value.trim();
+        if (val) {
+          state.selectedColor = val;
+          document.getElementById("activeColorLabel").textContent = val;
+          document.querySelectorAll(".color-swatch-btn").forEach(btn => {
+            btn.classList.remove("border-brand-600", "bg-brand-50", "text-brand-800", "ring-2", "ring-brand-500/20");
+          });
+        } else {
+          selectColor(TSHIRT_COLORS[0].name);
+        }
+      });
+
+      selectColor(state.selectedColor);
+    }
+
+    function pickColorFromReference(colorName) {
+      selectColor(colorName);
+      document.getElementById("order-section").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function selectColor(colorName) {
+      state.selectedColor = colorName;
+      document.getElementById("customColorInput").value = "";
+      document.getElementById("activeColorLabel").textContent = colorName;
+
+      document.querySelectorAll(".color-swatch-btn").forEach(btn => {
+        const isSelected = btn.getAttribute("data-color") === colorName;
+        if (isSelected) {
+          btn.classList.add("border-brand-600", "bg-brand-50", "text-brand-800", "ring-2", "ring-brand-500/20");
+        } else {
+          btn.classList.remove("border-brand-600", "bg-brand-50", "text-brand-800", "ring-2", "ring-brand-500/20");
+        }
+      });
+    }
+
+    // =========================================================
+    // 7. MATRIKS UKURAN (LENGAN PENDEK & LENGAN PANJANG)
+    // =========================================================
+    function renderSizeMatrices() {
+      renderSleeveGroup("short", "shortSleeveMatrix");
+      renderSleeveGroup("long", "longSleeveMatrix");
+      updateTotals();
+    }
+
+    function renderSleeveGroup(type, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = SIZES.map(size => `
+        <div class="flex items-center justify-between bg-white px-3.5 py-2 rounded-xl border border-slate-200">
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-lg bg-slate-100 text-slate-900 font-extrabold text-xs flex items-center justify-center">${size}</span>
+            <span class="text-xs font-medium text-slate-500">Size ${size}</span>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="adjustQty('${type}', '${size}', -1)" aria-label="Kurangi ${size}"
+              class="w-8 h-8 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 active:scale-95 text-slate-700 font-bold flex items-center justify-center transition">
+              -
+            </button>
+            <input type="number" min="0" value="0" id="qty_${type}_${size}"
+              onchange="setQtyDirect('${type}', '${size}', this.value)"
+              class="w-12 text-center font-bold text-sm text-slate-900 border border-slate-200 rounded-lg py-1 focus:outline-none focus:border-brand-600" />
+            <button type="button" onclick="adjustQty('${type}', '${size}', 1)" aria-label="Tambah ${size}"
+              class="w-8 h-8 rounded-lg border border-brand-200 bg-brand-50 hover:bg-brand-600 hover:text-white active:scale-95 text-brand-700 font-bold flex items-center justify-center transition">
+              +
+            </button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function adjustQty(type, size, delta) {
+      const current = state.quantities[type][size] || 0;
+      const next = Math.max(0, current + delta);
+      state.quantities[type][size] = next;
+      document.getElementById(`qty_${type}_${size}`).value = next;
+      updateTotals();
+    }
+
+    function setQtyDirect(type, size, rawValue) {
+      const parsed = Math.max(0, parseInt(rawValue, 10) || 0);
+      state.quantities[type][size] = parsed;
+      document.getElementById(`qty_${type}_${size}`).value = parsed;
+      updateTotals();
+    }
+
+    function updateTotals() {
+      const shortTotal = SIZES.reduce((sum, s) => sum + state.quantities.short[s], 0);
+      const longTotal = SIZES.reduce((sum, s) => sum + state.quantities.long[s], 0);
+      const grandTotal = shortTotal + longTotal;
+
+      document.getElementById("subtotalShortBadge").textContent = `${shortTotal} pcs`;
+      document.getElementById("subtotalLongBadge").textContent = `${longTotal} pcs`;
+      document.getElementById("totalPcsBadge").textContent = `${grandTotal} pcs`;
+    }
+
+    // =========================================================
+    // 8. CONDITIONAL FIELDS SISI SABLON
+    // =========================================================
+    function setupPrintSideListeners() {
+      document.querySelectorAll('input[name="printSide"]').forEach(radio => {
+        radio.addEventListener("change", updatePrintSideVisibility);
+      });
+      updatePrintSideVisibility();
+    }
+
+    function updatePrintSideVisibility() {
+      const selected = document.querySelector('input[name="printSide"]:checked').value;
+      const frontBox = document.getElementById("frontPrintFields");
+      const backBox = document.getElementById("backPrintFields");
+
+      if (selected === "Depan Saja") {
+        frontBox.classList.remove("hidden");
+        backBox.classList.add("hidden");
+      } else if (selected === "Belakang Saja") {
+        frontBox.classList.add("hidden");
+        backBox.classList.remove("hidden");
+      } else {
+        frontBox.classList.remove("hidden");
+        backBox.classList.remove("hidden");
+      }
+    }
+
+    // =========================================================
+    // 9. DROPZONE UPLOAD DESAIN (MAX 8 MB & BASE64)
+    // =========================================================
+    function setupDropzone() {
+      const dropzone = document.getElementById("dropzoneArea");
+      const fileInput = document.getElementById("designFileInput");
+      const removeBtn = document.getElementById("removeFileBtn");
+
+      dropzone.addEventListener("click", () => fileInput.click());
+
+      dropzone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropzone.classList.add("border-brand-600", "bg-brand-50/60");
+      });
+
+      dropzone.addEventListener("dragleave", () => {
+        dropzone.classList.remove("border-brand-600", "bg-brand-50/60");
+      });
+
+      dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("border-brand-600", "bg-brand-50/60");
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleSelectedFile(e.dataTransfer.files[0]);
+        }
+      });
+
+      fileInput.addEventListener("change", (e) => {
+        if (e.target.files && e.target.files[0]) {
+          handleSelectedFile(e.target.files[0]);
+        }
+      });
+
+      removeBtn.addEventListener("click", () => {
+        state.uploadedFile = null;
+        fileInput.value = "";
+        document.getElementById("filePreviewBox").classList.add("hidden");
+        dropzone.classList.remove("hidden");
+      });
+    }
+
+    function handleSelectedFile(file) {
+      const MAX_BYTES = 8 * 1024 * 1024; // 8 MB
+      const allowedTypes = ["image/png", "image/jpeg", "image/webp", "image/svg+xml", "application/pdf"];
+
+      if (!allowedTypes.includes(file.type)) {
+        showFormError("Format file tidak didukung. Gunakan PNG, JPG, WEBP, SVG, atau PDF.");
+        return;
+      }
+
+      if (file.size > MAX_BYTES) {
+        showFormError("Ukuran file melebihi batas maksimal 8 MB. Silakan kompres file terlebih dahulu.");
+        return;
+      }
+
+      hideFormError();
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const dataUrl = evt.target.result;
+        const base64Pure = dataUrl.split(",")[1];
+
+        state.uploadedFile = {
+          name: file.name,
+          mimeType: file.type,
+          size: file.size,
+          base64: base64Pure
+        };
+
+        // Update UI Preview
+        const previewBox = document.getElementById("filePreviewBox");
+        const imgThumb = document.getElementById("previewImageThumb");
+        const pdfIcon = document.getElementById("previewPdfIcon");
+
+        document.getElementById("previewFileName").textContent = file.name;
+        const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+        document.getElementById("previewFileMeta").textContent = `${sizeMB} MB • Siap diunggah ke Google Drive`;
+
+        if (file.type === "application/pdf") {
+          imgThumb.classList.add("hidden");
+          pdfIcon.classList.remove("hidden");
+        } else {
+          pdfIcon.classList.add("hidden");
+          imgThumb.src = dataUrl;
+          imgThumb.classList.remove("hidden");
+        }
+
+        document.getElementById("dropzoneArea").classList.add("hidden");
+        previewBox.classList.remove("hidden");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // =========================================================
+    // 10. FORMATTER RUPIAH OTOMATIS (Rp 150.000)
+    // =========================================================
+    function formatRupiah(valueStr) {
+      const digits = valueStr.replace(/\D/g, "");
+      if (!digits) return "";
+      return "Rp " + parseInt(digits, 10).toLocaleString("id-ID");
+    }
+
+    function setupCurrencyFormatters() {
+      document.querySelectorAll(".currency-input").forEach(input => {
+        input.addEventListener("input", (e) => {
+          e.target.value = formatRupiah(e.target.value);
+        });
+      });
+    }
+
+    // =========================================================
+    // 11. VALIDASI & SUBMIT KE GOOGLE APPS SCRIPT + REDIRECT WA
+    // =========================================================
+    function setupValidationAndSubmit() {
+      const termsCheckbox = document.getElementById("termsCheckbox");
+      const submitBtn = document.getElementById("submitOrderBtn");
+      const waInput = document.getElementById("customerWhatsapp");
+
+      termsCheckbox.addEventListener("change", () => {
+        submitBtn.disabled = !termsCheckbox.checked;
+      });
+
+      // Validasi angka real-time pada No. WhatsApp
+      waInput.addEventListener("input", (e) => {
+        const cleaned = e.target.value.replace(/[^0-9]/g, "");
+        e.target.value = cleaned;
+        const errEl = document.getElementById("waErrorMsg");
+        if (cleaned.length > 0 && (cleaned.length < 9 || cleaned.length > 15)) {
+          errEl.classList.remove("hidden");
+        } else {
+          errEl.classList.add("hidden");
+        }
+      });
+
+      document.getElementById("orderForm").addEventListener("submit", handleFormSubmit);
+    }
+
+    function showFormError(msg) {
+      const box = document.getElementById("formErrorBox");
+      document.getElementById("formErrorText").textContent = msg;
+      box.classList.remove("hidden");
+      box.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function hideFormError() {
+      document.getElementById("formErrorBox").classList.add("hidden");
+    }
+
+    function formatSizeBreakdown(qtyObj) {
+      const parts = [];
+      SIZES.forEach(s => {
+        if (qtyObj[s] > 0) parts.push(`${s}: ${qtyObj[s]}`);
+      });
+      return parts.length > 0 ? parts.join(", ") : "-";
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      hideFormError();
+
+      const customerName = document.getElementById("customerName").value.trim();
+      const customerWhatsapp = document.getElementById("customerWhatsapp").value.trim();
+      const customerAddress = document.getElementById("customerAddress").value.trim();
+      const tshirtColor = state.selectedColor.trim();
+
+      const shortTotal = SIZES.reduce((sum, s) => sum + state.quantities.short[s], 0);
+      const longTotal = SIZES.reduce((sum, s) => sum + state.quantities.long[s], 0);
+      const totalPcs = shortTotal + longTotal;
+
+      // Validasi Wajib
+      if (!customerName) return showFormError("Nama Pemesan / Instansi wajib diisi.");
+      if (!/^[0-9]{9,15}$/.test(customerWhatsapp)) {
+        return showFormError("No. WhatsApp wajib diisi dengan angka yang valid (9–15 digit).");
+      }
+      if (!customerAddress) return showFormError("Alamat lengkap wajib diisi.");
+      if (!tshirtColor) return showFormError("Silakan pilih atau ketik warna kaos terlebih dahulu.");
+      if (totalPcs <= 0) return showFormError("Jumlah pesanan minimal 1 pcs pada Lengan Pendek atau Lengan Panjang.");
+      if (!document.getElementById("termsCheckbox").checked) {
+        return showFormError("Anda wajib mencentang persetujuan Ketentuan Order.");
+      }
+
+      if (!GAS_WEB_APP_URL || GAS_WEB_APP_URL === "URL_WEB_APP_GAS_ANDA") {
+        return showFormError("Konfigurasi GAS_WEB_APP_URL belum diisi pada index.html. Silakan masukkan URL Web App Google Apps Script Anda.");
+      }
+
+      // Kumpulkan detail sablon sesuai kondisi
+      const printSide = document.querySelector('input[name="printSide"]:checked').value;
+      const frontDetail = (printSide === "Depan Saja" || printSide === "Depan & Belakang")
+        ? `${document.getElementById("frontPrintSize").value.trim() || "-"} (${document.getElementById("frontPrintPosition").value})`
+        : "-";
+      const backDetail = (printSide === "Belakang Saja" || printSide === "Depan & Belakang")
+        ? `${document.getElementById("backPrintSize").value.trim() || "-"} (${document.getElementById("backPrintPosition").value})`
+        : "-";
+
+      const shippingMethod = document.querySelector('input[name="shippingMethod"]:checked').value;
+      const paymentMethod = document.getElementById("paymentMethod").value;
+      const dpAmount = document.getElementById("dpAmount").value.trim() || "Rp 0";
+      const remainingAmount = document.getElementById("remainingAmount").value.trim() || "Rp 0";
+      const designNotes = document.getElementById("designNotes").value.trim() || "-";
+
+      const shortBreakdown = formatSizeBreakdown(state.quantities.short);
+      const longBreakdown = formatSizeBreakdown(state.quantities.long);
+
+      const payload = {
+        customerName,
+        customerWhatsapp,
+        customerAddress,
+        tshirtColor,
+        longSleeveSummary: longBreakdown,
+        shortSleeveSummary: shortBreakdown,
+        totalPcs,
+        printSide,
+        frontPrintDetail: frontDetail,
+        backPrintDetail: backDetail,
+        designNotes,
+        shippingMethod,
+        paymentMethod,
+        dpAmount,
+        remainingAmount,
+        designFile: state.uploadedFile // null jika tidak upload file
+      };
+
+      // Tampilkan Loading Overlay
+      document.getElementById("loadingOverlay").classList.remove("hidden");
+
+      try {
+        const response = await fetch(GAS_WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (!result || result.status !== "success") {
+          throw new Error(result && result.message ? result.message : "Gagal menyimpan data ke server.");
+        }
+
+        const orderId = result.orderId;
+        const fileUrl = result.fileUrl || "Belum upload desain";
+
+        // Susun Teks WhatsApp Terstruktur
+        const pesanWhatsApp = buildWhatsAppMessage({
+          orderId,
+          customerName,
+          customerWhatsapp,
+          customerAddress,
+          tshirtColor,
+          longBreakdown,
+          shortBreakdown,
+          totalPcs,
+          printSide,
+          frontDetail,
+          backDetail,
+          fileUrl,
+          designNotes,
+          shippingMethod,
+          paymentMethod,
+          dpAmount,
+          remainingAmount
+        });
+
+        const waUrl = `https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(pesanWhatsApp)}`;
+        state.lastWhatsAppText = pesanWhatsApp;
+        state.lastWhatsAppUrl = waUrl;
+
+        // Ubah Tampilan di Latar Belakang ke Halaman Bukti Order Berhasil
+        renderSuccessScreen({
+          orderId,
+          customerName,
+          totalPcs,
+          fileUrl,
+          waUrl
+        });
+
+        document.getElementById("loadingOverlay").classList.add("hidden");
+
+        // Redirect Langsung ke WhatsApp Admin (Aman dari Pop-Up Blocker Mobile)
+        window.location.href = waUrl;
+
+      } catch (err) {
+        document.getElementById("loadingOverlay").classList.add("hidden");
+        showFormError("Terjadi kendala saat mengirim pesanan: " + err.message);
+      }
+    }
+
+    function buildWhatsAppMessage(d) {
+      const lines = [
+        `*HALO ADMIN, SAYA INGIN KONFIRMASI ORDER KAOS CUSTOM*`,
+        `━━━━━━━━━━━━━━━━━━━━━━`,
+        `*ID Order:* ${d.orderId}`,
+        ``,
+        `*1. DATA PEMESAN*`,
+        `• Nama/Instansi: ${d.customerName}`,
+        `• No. WhatsApp: ${d.customerWhatsapp}`,
+        `• Alamat: ${d.customerAddress}`,
+        ``,
+        `*2. RINCIAN KAOS*`,
+        `• Warna Kaos: ${d.tshirtColor}`
+      ];
+
+      if (d.shortBreakdown !== "-") {
+        lines.push(`• Lengan Pendek: ${d.shortBreakdown}`);
+      }
+      if (d.longBreakdown !== "-") {
+        lines.push(`• Lengan Panjang: ${d.longBreakdown}`);
+      }
+      lines.push(`• *Total Pesanan:* *${d.totalPcs} pcs*`);
+
+      lines.push(
+        ``,
+        `*3. DETAIL SABLON & DESAIN*`,
+        `• Sisi Sablon: ${d.printSide}`
+      );
+      if (d.frontDetail !== "-") {
+        lines.push(`• Sablon Depan: ${d.frontDetail}`);
+      }
+      if (d.backDetail !== "-") {
+        lines.push(`• Sablon Belakang: ${d.backDetail}`);
+      }
+      lines.push(
+        `• Link File Desain: ${d.fileUrl}`,
+        `• Catatan Desain: ${d.designNotes}`,
+        ``,
+        `*4. PENGIRIMAN & PEMBAYARAN*`,
+        `• Pengiriman: ${d.shippingMethod}`,
+        `• Pembayaran: ${d.paymentMethod}`,
+        `• Nominal DP: ${d.dpAmount}`,
+        `• Sisa Pembayaran: ${d.remainingAmount}`,
+        `━━━━━━━━━━━━━━━━━━━━━━`,
+        `Mohon info mockup & total tagihan finalnya ya Admin. Terima kasih!`
+      );
+
+      return lines.join("\n");
+    }
+
+    function renderSuccessScreen({ orderId, customerName, totalPcs, fileUrl, waUrl }) {
+      document.getElementById("orderForm").classList.add("hidden");
+      document.getElementById("selectedModelBanner").classList.add("hidden");
+
+      const successView = document.getElementById("orderSuccessView");
+      successView.classList.remove("hidden");
+
+      document.getElementById("successOrderId").textContent = orderId;
+      document.getElementById("successCustomerName").textContent = customerName;
+      document.getElementById("successTotalPcs").textContent = `${totalPcs} pcs`;
+
+      const fileLinkEl = document.getElementById("successFileLink");
+      if (fileUrl.startsWith("http")) {
+        fileLinkEl.innerHTML = `<a href="${fileUrl}" target="_blank" rel="noopener" class="text-brand-600 underline hover:text-brand-700">Lihat Desain di Drive</a>`;
+      } else {
+        fileLinkEl.textContent = fileUrl;
+      }
+
+      const reopenBtn = document.getElementById("reopenWaBtn");
+      reopenBtn.href = waUrl;
+
+      const copyBtn = document.getElementById("copyOrderTextBtn");
+      copyBtn.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(state.lastWhatsAppText);
+          document.getElementById("copyBtnLabel").textContent = "Teks Order Tersalin!";
+          setTimeout(() => {
+            document.getElementById("copyBtnLabel").textContent = "Salin Teks Order";
+          }, 2500);
+        } catch {
+          alert("Gagal menyalin otomatis. Silakan salin manual melalui WhatsApp.");
+        }
+      };
+
+      lucide.createIcons();
+    }
+
+    function resetOrderPage(scrollTop = true) {
+      document.getElementById("orderForm").reset();
+      SIZES.forEach(s => {
+        state.quantities.short[s] = 0;
+        state.quantities.long[s] = 0;
+        document.getElementById(`qty_short_${s}`).value = 0;
+        document.getElementById(`qty_long_${s}`).value = 0;
+      });
+      updateTotals();
+      state.uploadedFile = null;
+      document.getElementById("filePreviewBox").classList.add("hidden");
+      document.getElementById("dropzoneArea").classList.remove("hidden");
+      document.getElementById("submitOrderBtn").disabled = true;
+      selectColor(TSHIRT_COLORS[0].name);
+      updatePrintSideVisibility();
+
+      document.getElementById("orderSuccessView").classList.add("hidden");
+      document.getElementById("orderForm").classList.remove("hidden");
+
+      if (scrollTop) {
+        document.getElementById("order-section").scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  </script>
+</body>
+</html>

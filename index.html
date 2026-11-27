@@ -55,8 +55,13 @@
     input[type="number"] {
       -moz-appearance: textfield;
     }
-    .swatch-ring {
-      box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #059669;
+    /* Sembunyikan scrollbar horizontal pada slider katalog agar bersih */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
@@ -112,7 +117,7 @@
   ========================================================== -->
   <section class="relative overflow-hidden bg-white border-b border-slate-200/80">
     <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         <!-- Left Copy -->
         <div class="lg:col-span-7 space-y-6">
@@ -185,22 +190,55 @@
   </section>
 
   <!-- =========================================================
-       SEKSI 2 — KATALOG CONTOH PRODUK (GRID E-COMMERCE)
+       SEKSI 2 — KATALOG CONTOH PRODUK (HORIZONTAL SLIDER 2 PER LAYAR)
   ========================================================== -->
-  <section id="katalog" class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+  <section id="katalog" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header Katalog + Kontrol Panah Slider -->
+    <div class="flex items-end justify-between gap-4 mb-7 sm:mb-9">
       <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Katalog Paket & Referensi</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pilih Model & Spesifikasi Kaos</h2>
-        <p class="text-sm sm:text-base text-slate-600 mt-1.5">Klik <strong>"Order Model Ini"</strong> untuk langsung mengisi paket pilihan ke dalam form pemesanan.</p>
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Katalog Paket &amp; Referensi</span>
+        <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pilih Model &amp; Spesifikasi Kaos</h2>
+        <p class="text-xs sm:text-base text-slate-600 mt-1">Geser ke samping untuk melihat paket lain, lalu klik <strong>"Order Model Ini"</strong>.</p>
       </div>
-      <div class="text-xs font-medium text-slate-500 bg-white px-3.5 py-2 rounded-xl border border-slate-200 self-start sm:self-auto">
-        *Harga menyesuaikan jumlah pesanan & ukuran cetak
+
+      <!-- Tombol Navigasi Slider -->
+      <div class="flex items-center gap-2 shrink-0">
+        <span id="catalogPageCounter" class="hidden sm:inline-block text-xs font-bold text-slate-500 mr-2">1 / 3</span>
+        <button
+          type="button"
+          id="catalogPrevBtn"
+          onclick="scrollCatalog(-1)"
+          aria-label="Slide Sebelumnya"
+          class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition">
+          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <button
+          type="button"
+          id="catalogNextBtn"
+          onclick="scrollCatalog(1)"
+          aria-label="Slide Berikutnya"
+          class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center text-slate-700 shadow-sm transition">
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
       </div>
     </div>
 
-    <!-- Grid Kartu Produk (Di-render via JS agar URL gambar mudah diganti) -->
-    <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+    <!-- Track Horizontal Slider (2 Kartu Per Layar) -->
+    <div class="relative">
+      <div
+        id="catalogSlider"
+        class="flex gap-3.5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-2">
+        <!-- Kartu produk di-render via JS -->
+      </div>
+    </div>
+
+    <!-- Pagination Dots & Info Harga -->
+    <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div id="catalogDots" class="flex items-center justify-center gap-2"></div>
+      <p class="text-[11px] sm:text-xs font-medium text-slate-500">
+        *Geser kartu ke samping • Harga menyesuaikan jumlah pcs &amp; ukuran cetak
+      </p>
+    </div>
   </section>
 
   <!-- =========================================================
@@ -225,19 +263,19 @@
 
           <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">02</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Form & Upload Desain</h3>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Form &amp; Upload Desain</h3>
             <p class="text-sm text-slate-600 leading-relaxed">Masukkan rincian ukuran S–XXL, posisi cetak, dan unggah file desain (PNG/JPG/PDF).</p>
           </div>
 
           <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">03</div>
             <h3 class="font-bold text-slate-900 text-base mb-1.5">Kirim Konfirmasi WA</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">Data otomatis tersimpan & Anda langsung diarahkan ke WhatsApp Admin untuk ACC mockup.</p>
+            <p class="text-sm text-slate-600 leading-relaxed">Data otomatis tersimpan &amp; Anda langsung diarahkan ke WhatsApp Admin untuk ACC mockup.</p>
           </div>
 
           <div class="bg-[#F8FAFC] border border-slate-200/80 rounded-2xl p-6 relative">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">04</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi & Kirim</h3>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi &amp; Kirim</h3>
             <p class="text-sm text-slate-600 leading-relaxed">Pesanan diproduksi presisi oleh tim workshop kami dan dikirim ke alamat Anda.</p>
           </div>
         </div>
@@ -365,7 +403,7 @@
           <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">1</span>
           <div>
             <h3 class="font-bold text-lg text-slate-900">Data Pemesan</h3>
-            <p class="text-xs text-slate-500">Informasi kontak untuk konfirmasi mockup & pengiriman</p>
+            <p class="text-xs text-slate-500">Informasi kontak untuk konfirmasi mockup &amp; pengiriman</p>
           </div>
         </div>
 
@@ -466,7 +504,7 @@
         <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
           <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">3</span>
           <div>
-            <h3 class="font-bold text-lg text-slate-900">Detail Sablon & Upload Desain</h3>
+            <h3 class="font-bold text-lg text-slate-900">Detail Sablon &amp; Upload Desain</h3>
             <p class="text-xs text-slate-500">Tentukan sisi cetak, ukuran sablon, serta unggah file desain Anda</p>
           </div>
         </div>
@@ -490,7 +528,7 @@
             <label class="cursor-pointer">
               <input type="radio" name="printSide" value="Depan & Belakang" class="peer sr-only" />
               <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 text-center font-semibold text-sm transition">
-                Depan & Belakang
+                Depan &amp; Belakang
               </div>
             </label>
           </div>
@@ -555,8 +593,8 @@
             <div class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-brand-600 flex items-center justify-center mx-auto mb-3 shadow-sm">
               <i data-lucide="upload-cloud" class="w-6 h-6"></i>
             </div>
-            <p class="text-sm font-bold text-slate-800">Klik untuk pilih file atau seret & lepas di sini</p>
-            <p class="text-xs text-slate-500 mt-1">Mendukung gambar resolusi tinggi & dokumen PDF vektor (maksimal 8 MB)</p>
+            <p class="text-sm font-bold text-slate-800">Klik untuk pilih file atau seret &amp; lepas di sini</p>
+            <p class="text-xs text-slate-500 mt-1">Mendukung gambar resolusi tinggi &amp; dokumen PDF vektor (maksimal 8 MB)</p>
           </div>
 
           <!-- Preview File Terunggah -->
@@ -590,7 +628,7 @@
         <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
           <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200">4</span>
           <div>
-            <h3 class="font-bold text-lg text-slate-900">Pengiriman & Pembayaran</h3>
+            <h3 class="font-bold text-lg text-slate-900">Pengiriman &amp; Pembayaran</h3>
             <p class="text-xs text-slate-500">Pilih opsi pengambilan pesanan serta rencana pembayaran DP</p>
           </div>
         </div>
@@ -616,7 +654,7 @@
                 <i data-lucide="truck" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
                 <div>
                   <p class="font-bold text-sm text-slate-900">Kirim Kurir / Ekspedisi</p>
-                  <p class="text-xs text-slate-500 mt-0.5">Dikirim via JNE, J&T, Cargo, atau kurir instan</p>
+                  <p class="text-xs text-slate-500 mt-0.5">Dikirim via JNE, J&amp;T, Cargo, atau kurir instan</p>
                 </div>
               </div>
             </label>
@@ -661,7 +699,7 @@
         <ul class="space-y-2.5 text-sm text-slate-600 bg-[#F8FAFC] p-4 sm:p-5 rounded-xl border border-slate-200 mb-5">
           <li class="flex items-start gap-2.5">
             <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
-            <span><strong>Kesesuaian Ukuran & Warna:</strong> Pastikan pilihan warna kaos, jenis lengan, dan rincian ukuran (S–XXL) sudah tepat karena pesanan custom diproduksi khusus sesuai data order.</span>
+            <span><strong>Kesesuaian Ukuran &amp; Warna:</strong> Pastikan pilihan warna kaos, jenis lengan, dan rincian ukuran (S–XXL) sudah tepat karena pesanan custom diproduksi khusus sesuai data order.</span>
           </li>
           <li class="flex items-start gap-2.5">
             <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
@@ -669,11 +707,11 @@
           </li>
           <li class="flex items-start gap-2.5">
             <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
-            <span><strong>Konfirmasi Mockup Sebelum Diproses:</strong> Admin akan mengirimkan digital mockup & rincian tagihan final via WhatsApp untuk persetujuan (ACC) sebelum naik produksi.</span>
+            <span><strong>Konfirmasi Mockup Sebelum Diproses:</strong> Admin akan mengirimkan digital mockup &amp; rincian tagihan final via WhatsApp untuk persetujuan (ACC) sebelum naik produksi.</span>
           </li>
           <li class="flex items-start gap-2.5">
             <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-1"></i>
-            <span><strong>Estimasi Pengerjaan:</strong> Waktu produksi standar adalah 3–7 hari kerja (menyesuaikan jumlah pcs & antrean) terhitung setelah DP terkonfirmasi.</span>
+            <span><strong>Estimasi Pengerjaan:</strong> Waktu produksi standar adalah 3–7 hari kerja (menyesuaikan jumlah pcs &amp; antrean) terhitung setelah DP terkonfirmasi.</span>
           </li>
         </ul>
 
@@ -695,7 +733,7 @@
         <button type="submit" id="submitOrderBtn" disabled
           class="w-full py-4 px-6 rounded-2xl font-extrabold text-base text-white bg-brand-600 hover:bg-brand-700 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed shadow-lg shadow-brand-600/20 disabled:shadow-none transition-all flex items-center justify-center gap-2.5">
           <i data-lucide="send" class="w-5 h-5"></i>
-          <span>Order Sekarang & Lanjut ke WhatsApp</span>
+          <span>Order Sekarang &amp; Lanjut ke WhatsApp</span>
         </button>
       </div>
     </form>
@@ -770,7 +808,7 @@
         <i data-lucide="shirt" class="w-4 h-4 text-brand-600"></i>
         <span>KaosCraft Custom Lab</span>
       </div>
-      <p>&copy; 2026 KaosCraft Studio. Layanan Produksi Kaos & Sablon Custom.</p>
+      <p>&copy; 2026 KaosCraft Studio. Layanan Produksi Kaos &amp; Sablon Custom.</p>
     </div>
   </footer>
 
@@ -803,7 +841,7 @@
       {
         id: "paket-dtf-24s",
         title: "Paket Komunitas Combed 24s",
-        badge: "Cotton Combed 24s + DTF",
+        badge: "Combed 24s + DTF",
         price: "Mulai Rp 65.000",
         description: "Bahan tebal sedang yang adem untuk acara komunitas, panitia event, dan merchandise.",
         defaultColor: "Hitam Jet Black",
@@ -825,7 +863,7 @@
       {
         id: "paket-minimalis-30s",
         title: "Daily Tee Logo Dada",
-        badge: "Cotton Combed 30s + DTF",
+        badge: "Combed 30s + DTF",
         price: "Mulai Rp 58.000",
         description: "Potongan ringan & sejuk untuk seragam cafe, kru toko, maupun brand clothing minimalis.",
         defaultColor: "Putih Solid",
@@ -836,7 +874,7 @@
       {
         id: "paket-heavyweight-20s",
         title: "Heavyweight Streetwear",
-        badge: "Cotton Combed 20s + Puff/DTF",
+        badge: "Combed 20s + Puff/DTF",
         price: "Mulai Rp 88.000",
         description: "Gramasi tebal kokoh bergaya streetwear modern dengan hasil sablon full punggung presisi.",
         defaultColor: "Cream / Sand",
@@ -847,7 +885,7 @@
       {
         id: "paket-gathering-maroon",
         title: "Seragam Gathering & Outing",
-        badge: "Cotton Combed 24s + Plastisol",
+        badge: "Combed 24s + Plastisol",
         price: "Mulai Rp 68.000",
         description: "Pilihan favorit perusahaan dan kampus untuk kegiatan outing, gathering, dan bakti sosial.",
         defaultColor: "Maroon",
@@ -858,7 +896,7 @@
       {
         id: "paket-jersey-polyflex",
         title: "Custom Nomor & Nama Satuan",
-        badge: "Combed 24s + Polyflex Korea",
+        badge: "Combed 24s + Polyflex",
         price: "Mulai Rp 72.000",
         description: "Cocok untuk jersey panitia atau tim dengan nama punggung/nomor berbeda tiap kaos.",
         defaultColor: "Hijau Botol",
@@ -900,7 +938,7 @@
     // 4. INISIALISASI UI SAAT DOM READY
     // =========================================================
     document.addEventListener("DOMContentLoaded", () => {
-      renderCatalog();
+      renderCatalogSlider();
       renderColorSwatches();
       renderSizeMatrices();
       setupPrintSideListeners();
@@ -921,12 +959,16 @@
     }
 
     // =========================================================
-    // 5. RENDER KATALOG PRODUK
+    // 5. RENDER & KONTROL KATALOG HORIZONTAL SLIDER (2 PER LAYAR)
     // =========================================================
-    function renderCatalog() {
-      const grid = document.getElementById("catalogGrid");
-      grid.innerHTML = CATALOG_PRODUCTS.map(item => `
-        <article class="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col group">
+    function renderCatalogSlider() {
+      const slider = document.getElementById("catalogSlider");
+      const dotsContainer = document.getElementById("catalogDots");
+      const totalPages = Math.ceil(CATALOG_PRODUCTS.length / 2);
+
+      // Render kartu produk dengan lebar 50% (2 kartu per layar) + snap-start
+      slider.innerHTML = CATALOG_PRODUCTS.map(item => `
+        <article class="snap-start shrink-0 w-[calc(50%-0.4375rem)] sm:w-[calc(50%-0.75rem)] bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col group">
           <div class="relative aspect-[4/5] bg-slate-100 overflow-hidden">
             <img
               src="${item.image}"
@@ -935,35 +977,117 @@
               onerror="this.src='https://placehold.co/800x1000/e2e8f0/475569?text=Foto+Produk+Kaos'"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <span class="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
+            <span class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-slate-900/85 backdrop-blur-md text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full max-w-[calc(100%-1.25rem)] truncate">
               ${item.badge}
             </span>
           </div>
 
-          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+          <div class="p-3.5 sm:p-5 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
             <div>
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="font-bold text-slate-900 text-base leading-snug">${item.title}</h3>
-              </div>
-              <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">${item.description}</p>
+              <h3 class="font-bold text-slate-900 text-xs sm:text-lg leading-snug line-clamp-1">${item.title}</h3>
+              <p class="text-[11px] sm:text-xs text-slate-600 mt-1 sm:mt-1.5 leading-relaxed line-clamp-2">${item.description}</p>
             </div>
 
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+            <div class="pt-2.5 sm:pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
               <div>
-                <p class="text-[11px] text-slate-400 font-medium">Estimasi Harga</p>
-                <p class="text-sm font-extrabold text-brand-700">${item.price}</p>
+                <p class="text-[10px] sm:text-[11px] text-slate-400 font-medium">Estimasi Harga</p>
+                <p class="text-xs sm:text-base font-extrabold text-brand-700">${item.price}</p>
               </div>
               <button
                 type="button"
                 onclick="selectCatalogModel('${item.id}')"
-                class="inline-flex items-center gap-1.5 bg-brand-50 hover:bg-brand-600 text-brand-700 hover:text-white border border-brand-200 hover:border-brand-600 font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all">
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-brand-50 hover:bg-brand-600 text-brand-700 hover:text-white border border-brand-200 hover:border-brand-600 font-bold text-[11px] sm:text-xs px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl transition-all">
                 <span>Order Model Ini</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 shrink-0"></i>
               </button>
             </div>
           </div>
         </article>
       `).join("");
+
+      // Render pagination dots
+      dotsContainer.innerHTML = Array.from({ length: totalPages }, (_, i) => `
+        <button
+          type="button"
+          onclick="goToCatalogPage(${i})"
+          aria-label="Halaman Katalog ${i + 1}"
+          class="catalog-dot h-2 rounded-full transition-all duration-300 ${i === 0 ? "w-6 bg-brand-600" : "w-2 bg-slate-300 hover:bg-slate-400"}">
+        </button>
+      `).join("");
+
+      // Update indikator saat pengguna menggeser slider
+      let isTicking = false;
+      slider.addEventListener("scroll", () => {
+        if (!isTicking) {
+          window.requestAnimationFrame(() => {
+            updateCatalogIndicators();
+            isTicking = false;
+          });
+          isTicking = true;
+        }
+      });
+
+      window.addEventListener("resize", updateCatalogIndicators);
+      updateCatalogIndicators();
+    }
+
+    function getCatalogPageStep() {
+      const slider = document.getElementById("catalogSlider");
+      const gap = window.innerWidth >= 640 ? 24 : 14; // sm:gap-6 (24px) vs gap-3.5 (14px)
+      return slider.clientWidth + gap;
+    }
+
+    function scrollCatalog(direction) {
+      const slider = document.getElementById("catalogSlider");
+      const step = getCatalogPageStep();
+      slider.scrollBy({
+        left: direction * step,
+        behavior: "smooth"
+      });
+    }
+
+    function goToCatalogPage(pageIndex) {
+      const slider = document.getElementById("catalogSlider");
+      const step = getCatalogPageStep();
+      slider.scrollTo({
+        left: pageIndex * step,
+        behavior: "smooth"
+      });
+    }
+
+    function updateCatalogIndicators() {
+      const slider = document.getElementById("catalogSlider");
+      const totalPages = Math.ceil(CATALOG_PRODUCTS.length / 2);
+      const step = getCatalogPageStep();
+      if (step <= 0) return;
+
+      const currentPage = Math.min(
+        totalPages - 1,
+        Math.max(0, Math.round(slider.scrollLeft / step))
+      );
+
+      // Update teks counter (contoh: 1 / 3)
+      const counterEl = document.getElementById("catalogPageCounter");
+      if (counterEl) {
+        counterEl.textContent = `${currentPage + 1} / ${totalPages}`;
+      }
+
+      // Update state tombol Prev / Next
+      const prevBtn = document.getElementById("catalogPrevBtn");
+      const nextBtn = document.getElementById("catalogNextBtn");
+      if (prevBtn) prevBtn.disabled = currentPage === 0;
+      if (nextBtn) nextBtn.disabled = currentPage >= totalPages - 1;
+
+      // Update pagination dots
+      document.querySelectorAll(".catalog-dot").forEach((dot, idx) => {
+        if (idx === currentPage) {
+          dot.classList.remove("w-2", "bg-slate-300");
+          dot.classList.add("w-6", "bg-brand-600");
+        } else {
+          dot.classList.remove("w-6", "bg-brand-600");
+          dot.classList.add("w-2", "bg-slate-300");
+        }
+      });
     }
 
     function selectCatalogModel(productId) {

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KaosCraft Studio — Pusat Kaos Polos & Sablon Custom Satuan / Partai</title>
-  <meta name="description" content="Pusat produksi kaos custom dan sablon satuan maupun partai besar dengan bahan 100% Cotton Combed dan teknologi cetak DTF, Plastisol, serta Polyflex." />
+  <title>KaosCraft Studio — Pusat Kaos Polos & Sablon DTF Custom Satuan</title>
+  <meta name="description" content="Desain kaos custom Anda secara online dan cetak dengan Sablon DTF High-Res di atas bahan 100% Cotton Combed. Bisa satuan maupun partai besar." />
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -90,47 +90,46 @@
 <body class="antialiased selection:bg-brand-100 selection:text-brand-900 min-h-screen flex flex-col">
 
   <!-- =========================================================
-       TOP ANNOUNCEMENT BAR (ALA CITITEX RETAIL STOREFRONT)
+       TOP ANNOUNCEMENT BAR
   ========================================================== -->
-  <div class="bg-slate-900 text-white text-[11px] sm:text-xs font-medium py-2 px-4 text-center">
+  <div class="bg-brand-700 text-white text-[11px] sm:text-xs font-medium py-2 px-4 text-center">
     <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-brand-400 font-bold">
-        <i data-lucide="zap" class="w-3.5 h-3.5 shrink-0"></i>
-        <span>BISA ORDER SATUAN (1 PCS)</span>
+      <span class="inline-flex items-center gap-1.5 font-extrabold tracking-wide">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 shrink-0"></i>
+        <span>SPESIALIS SABLON DTF SATUAN &amp; PARTAI</span>
       </span>
-      <span class="hidden sm:inline text-slate-600">•</span>
-      <span>Gratis Preview Mockup Sebelum Cetak</span>
-      <span class="hidden md:inline text-slate-600">•</span>
+      <span class="hidden sm:inline text-brand-300">•</span>
+      <span>Desain Sendiri Langsung di Website</span>
+      <span class="hidden md:inline text-brand-300">•</span>
       <span class="hidden md:inline">100% Cotton Combed Standar Distro</span>
     </div>
   </div>
 
   <!-- =========================================================
-       STICKY TOP NAVBAR
+       STICKY TOP NAVBAR (CLEAN WHITE RETAIL HEADER)
   ========================================================== -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90">
     <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between gap-2 h-16">
         <!-- Brand Logo -->
-        <button type="button" onclick="openStorefrontPage()" class="flex items-center gap-2 sm:gap-2.5 group text-left min-w-0 shrink">
-          <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm group-hover:bg-brand-700 transition-colors shrink-0">
+        <button type="button" onclick="openStorefrontPage()" class="flex items-center gap-2.5 group text-left min-w-0 shrink">
+          <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-xs group-hover:bg-brand-700 transition-colors shrink-0">
             <i data-lucide="shirt" class="w-5 h-5"></i>
           </div>
           <div class="truncate">
             <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900">KaosCraft</span>
-            <span class="hidden lg:inline-block text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2 py-0.5 rounded-md ml-1.5 border border-brand-200">Apparel &amp; Print</span>
+            <span class="hidden lg:inline-block text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2 py-0.5 rounded-md ml-1.5 border border-brand-200">DTF Print Lab</span>
           </div>
         </button>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-slate-600">
           <button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition-colors whitespace-nowrap">Katalog Produk</button>
-          <button type="button" onclick="openStorefrontPage('jenis-sablon')" class="hover:text-brand-600 transition-colors whitespace-nowrap">Jenis Sablon</button>
-          <button type="button" onclick="openStorefrontPage('keunggulan')" class="hover:text-brand-600 transition-colors whitespace-nowrap">Keunggulan</button>
+          <button type="button" onclick="openStorefrontPage('keunggulan-dtf')" class="hover:text-brand-600 transition-colors whitespace-nowrap">Keunggulan DTF</button>
           <button type="button" onclick="openStorefrontPage('cara-pesan')" class="hover:text-brand-600 transition-colors whitespace-nowrap">Cara Order</button>
         </nav>
 
-        <!-- Actions: Tombol Bantuan (?) + Order Sekarang + Hamburger -->
+        <!-- Actions: Tombol Bantuan (?) + Studio Desain & Order + Hamburger -->
         <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
           <button
             type="button"
@@ -153,8 +152,8 @@
             type="button"
             onclick="openOrderPage()"
             class="inline-flex items-center justify-center gap-1.5 h-9 sm:h-10 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white text-xs sm:text-sm font-bold px-3.5 sm:px-4 rounded-xl shadow-sm shadow-brand-600/20 transition-all whitespace-nowrap shrink-0">
-            <i data-lucide="shopping-bag" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
-            <span>Order<span class="hidden min-[380px]:inline"> Sekarang</span></span>
+            <i data-lucide="pen-tool" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+            <span>Desain<span class="hidden min-[380px]:inline"> &amp; Order</span></span>
           </button>
 
           <button id="mobileMenuBtn" type="button" aria-label="Buka Menu"
@@ -171,13 +170,9 @@
         <i data-lucide="layout-grid" class="w-4 h-4 text-slate-400"></i>
         <span>Katalog Produk</span>
       </button>
-      <button type="button" onclick="openStorefrontPage('jenis-sablon')" class="flex items-center gap-2.5 w-full text-left py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600">
-        <i data-lucide="printer" class="w-4 h-4 text-slate-400"></i>
-        <span>Jenis Sablon</span>
-      </button>
-      <button type="button" onclick="openStorefrontPage('keunggulan')" class="flex items-center gap-2.5 w-full text-left py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600">
-        <i data-lucide="shield-check" class="w-4 h-4 text-slate-400"></i>
-        <span>Keunggulan Workshop</span>
+      <button type="button" onclick="openStorefrontPage('keunggulan-dtf')" class="flex items-center gap-2.5 w-full text-left py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600">
+        <i data-lucide="sparkles" class="w-4 h-4 text-slate-400"></i>
+        <span>Keunggulan Sablon DTF</span>
       </button>
       <button type="button" onclick="openStorefrontPage('cara-pesan')" class="flex items-center gap-2.5 w-full text-left py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-600">
         <i data-lucide="list-ordered" class="w-4 h-4 text-slate-400"></i>
@@ -185,114 +180,125 @@
       </button>
       <button type="button" onclick="openTutorialModal()" class="flex items-center gap-2.5 w-full text-left py-2.5 px-3 rounded-xl text-sm font-semibold text-brand-700 bg-brand-50/70">
         <i data-lucide="help-circle" class="w-4 h-4 text-brand-600"></i>
-        <span>Bantuan &amp; Tutorial Order</span>
+        <span>Bantuan &amp; Tutorial Desain</span>
       </button>
     </div>
   </header>
 
   <!-- =========================================================
-       VIEW 1: HALAMAN DEPAN ETALASE RITEL (GAYA CITITEX.COM)
+       VIEW 1: HALAMAN DEPAN ETALASE RITEL CERAH (ALA CITITEX)
   ========================================================== -->
   <main id="storefrontView" class="flex-1">
 
-    <!-- 1. HERO PROMO BANNER SLIDER (CITITEX RETAIL CAMPAIGN STYLE) -->
-    <section class="relative bg-white border-b border-slate-200 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14 lg:py-16">
-        <div id="heroBannerContainer" class="relative rounded-3xl overflow-hidden bg-slate-900 text-white shadow-xl border border-slate-800">
-          <!-- Slide Content Rendered via JS -->
-          <div id="heroSlideContent" class="grid grid-cols-1 lg:grid-cols-12 items-center min-h-[420px] sm:min-h-[460px]"></div>
+    <!-- 1. BRIGHT RETAIL HERO SECTION -->
+    <section class="bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <!-- Left Copy -->
+          <div class="lg:col-span-6 space-y-5 sm:space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-extrabold uppercase tracking-wider">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0"></i>
+              <span>Custom Kaos Sablon DTF • Bisa Satuan</span>
+            </div>
 
-          <!-- Slider Controls (Prev / Next & Dots) -->
-          <div class="px-5 sm:px-10 py-4 bg-slate-950/70 backdrop-blur-md border-t border-white/10 flex items-center justify-between gap-4">
-            <div id="heroDots" class="flex items-center gap-2"></div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+              Desain Kaos Custom Sendiri &amp; Cetak <span class="text-brand-600">Sablon DTF</span> Presisi.
+            </h1>
 
-            <div class="flex items-center gap-2">
-              <button type="button" onclick="changeHeroSlide(-1)" aria-label="Banner Sebelumnya"
-                class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
-                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            <p class="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed">
+              Pilih model kaos 100% <strong class="font-semibold text-slate-800">Cotton Combed 24s / 30s</strong>, atur warna, unggah gambar atau tambahkan tulisan langsung di kanvas desain kami, lalu pesan dalam hitungan menit.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+              <button type="button" onclick="openOrderPage()"
+                class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white font-bold text-sm px-6 py-4 rounded-xl shadow-md shadow-brand-600/20 transition-all whitespace-nowrap">
+                <i data-lucide="pen-tool" class="w-4 h-4 shrink-0"></i>
+                <span>Mulai Desain Kaos Sendiri</span>
               </button>
-              <button type="button" onclick="changeHeroSlide(1)" aria-label="Banner Berikutnya"
-                class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
-                <i data-lucide="chevron-right" class="w-4 h-4"></i>
-              </button>
+              <a href="#katalog"
+                class="inline-flex items-center justify-center gap-2 bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold text-sm px-6 py-4 rounded-xl border border-slate-300 transition-all whitespace-nowrap">
+                <i data-lucide="layout-grid" class="w-4 h-4 text-slate-600 shrink-0"></i>
+                <span>Lihat Katalog Paket</span>
+              </a>
+            </div>
+
+            <!-- Retail Quick Specs -->
+            <div class="pt-2 grid grid-cols-3 gap-3 border-t border-slate-100">
+              <div>
+                <p class="text-lg sm:text-xl font-extrabold text-slate-900">1 Pcs</p>
+                <p class="text-[11px] sm:text-xs text-slate-500">Tanpa Minimal Order</p>
+              </div>
+              <div>
+                <p class="text-lg sm:text-xl font-extrabold text-slate-900">Full Color</p>
+                <p class="text-[11px] sm:text-xs text-slate-500">DTF High-Resolution</p>
+              </div>
+              <div>
+                <p class="text-lg sm:text-xl font-extrabold text-slate-900">Live Preview</p>
+                <p class="text-[11px] sm:text-xs text-slate-500">Simulasi Depan &amp; Belakang</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Visual Showcase (Bright Studio Card) -->
+          <div class="lg:col-span-6">
+            <div class="relative rounded-3xl bg-[#F8FAFC] border border-slate-200 p-4 sm:p-6 shadow-sm">
+              <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-white border border-slate-200/80 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=80"
+                  alt="Kaos Polos Cotton Combed Siap Sablon DTF"
+                  class="w-full h-full object-cover"
+                />
+                <!-- Floating Interactive Badge -->
+                <button type="button" onclick="openOrderPage()"
+                  class="absolute top-3.5 right-3.5 inline-flex items-center gap-1.5 bg-white/95 hover:bg-brand-600 text-slate-900 hover:text-white backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-extrabold shadow-md border border-slate-200/80 transition">
+                  <i data-lucide="wand-2" class="w-3.5 h-3.5 text-brand-600 group-hover:text-white"></i>
+                  <span>Coba Studio Desain</span>
+                </button>
+
+                <!-- Bottom Spec Strip -->
+                <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-md border border-slate-200/70 flex items-center justify-between gap-3">
+                  <div class="min-w-0">
+                    <p class="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-brand-600 truncate">Paket Favorit Satuan &amp; Komunitas</p>
+                    <p class="text-xs sm:text-sm font-extrabold text-slate-900 truncate">Cotton Combed 24s + Sablon DTF</p>
+                  </div>
+                  <div class="text-right shrink-0">
+                    <p class="text-[10px] text-slate-500">Mulai dari</p>
+                    <p class="text-xs sm:text-sm font-extrabold text-brand-700">Rp 58.000</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. BARIS KEUNGGULAN UTAMA (TRUST STRIP ALA CITITEX) -->
-    <section id="keunggulan" class="bg-white border-b border-slate-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80">
-            <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center shrink-0 shadow-xs">
-              <i data-lucide="shirt" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <h2 class="font-extrabold text-sm text-slate-900">Bisa Satuan &amp; Grosir</h2>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">Order mulai dari 1 pcs hingga ribuan pcs untuk kebutuhan event &amp; instansi.</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80">
-            <div class="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
-              <i data-lucide="award" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <h2 class="font-extrabold text-sm text-slate-900">100% Cotton Combed</h2>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">Bahan katun asli 20s, 24s, dan 30s yang lembut, adem, serta jahitan rantai rapi.</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80">
-            <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center shrink-0 shadow-xs">
-              <i data-lucide="palette" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <h2 class="font-extrabold text-sm text-slate-900">Free Digital Mockup</h2>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">Simulasi posisi dan skala sablon dikirimkan via WhatsApp untuk ACC sebelum naik cetak.</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80">
-            <div class="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
-              <i data-lucide="shield-check" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <h2 class="font-extrabold text-sm text-slate-900">Garansi Kualitas Cetak</h2>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">Tinta pekat, detail tajam, lentur anti retak, dan melewati QC ketat sebelum kirim.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. KATALOG PRODUK & PAKET KAOS (DENGAN FILTER KATEGORI) -->
+    <!-- 2. KATALOG PRODUK KAOS & PAKET SABLON DTF -->
     <section id="katalog" class="py-12 sm:py-18 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-7">
         <div>
-          <span class="text-xs font-extrabold uppercase tracking-wider text-brand-600">Katalog Produk &amp; Paket</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pilih Varian Kaos &amp; Sablon</h2>
-          <p class="text-xs sm:text-sm text-slate-600 mt-1">Klik salah satu paket di bawah untuk langsung mengisi formulir pemesanan.</p>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-brand-600">Katalog Produk Sablon DTF</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pilih Model Kaos untuk Didesain</h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">Klik salah satu model di bawah untuk langsung membuka studio desain &amp; formulir order.</p>
         </div>
 
-        <!-- Category Filter Tabs -->
+        <!-- Filter Tabs -->
         <div id="catalogFilterTabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
           <button type="button" data-filter="all" onclick="filterCatalog('all')"
-            class="catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-white whitespace-nowrap transition">
-            Semua Paket
+            class="catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 text-white whitespace-nowrap transition">
+            Semua Model
           </button>
           <button type="button" data-filter="satuan" onclick="filterCatalog('satuan')"
-            class="catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:border-slate-400 whitespace-nowrap transition">
+            class="catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:border-brand-500 whitespace-nowrap transition">
             Satuan &amp; Daily
           </button>
           <button type="button" data-filter="komunitas" onclick="filterCatalog('komunitas')"
-            class="catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:border-slate-400 whitespace-nowrap transition">
+            class="catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:border-brand-500 whitespace-nowrap transition">
             Komunitas &amp; Event
           </button>
           <button type="button" data-filter="longsleeve" onclick="filterCatalog('longsleeve')"
-            class="catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:border-slate-400 whitespace-nowrap transition">
+            class="catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:border-brand-500 whitespace-nowrap transition">
             Lengan Panjang
           </button>
         </div>
@@ -300,154 +306,115 @@
 
       <!-- Product Grid (2 Kolom di HP, 3 Kolom di Desktop) -->
       <div id="catalogGrid" class="grid grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6"></div>
-
-      <div class="mt-8 text-center">
-        <p class="text-xs text-slate-500 mb-3">*Punya spesifikasi bahan atau jumlah grosir khusus?</p>
-        <button type="button" onclick="openOrderPage()"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold transition whitespace-nowrap">
-          <i data-lucide="pen-tool" class="w-4 h-4"></i>
-          <span>Custom Spesifikasi Bebas di Form Order</span>
-        </button>
-      </div>
     </section>
 
-    <!-- 4. TEKNOLOGI & JENIS SABLON (EDUKASI CEPAT ALA CITITEX) -->
-    <section id="jenis-sablon" class="py-12 sm:py-18 bg-white border-y border-slate-200">
+    <!-- 3. KEUNGGULAN SABLON DTF KAMI -->
+    <section id="keunggulan-dtf" class="py-12 sm:py-18 bg-white border-y border-slate-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-10">
-          <span class="text-xs font-extrabold uppercase tracking-wider text-brand-600">Pilihan Metode Cetak</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Teknologi Sablon Sesuai Kebutuhan Desain</h2>
-          <p class="text-xs sm:text-sm text-slate-600 mt-2">Setiap karakter desain memiliki teknik cetak terbaik agar hasil maksimal dan efisien secara biaya.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- DTF -->
-          <div class="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-6 flex flex-col justify-between space-y-5 hover:border-brand-400 transition">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-[11px] font-extrabold uppercase">Paling Populer</span>
-                <i data-lucide="sparkles" class="w-5 h-5 text-brand-600"></i>
-              </div>
-              <h3 class="text-lg font-extrabold text-slate-900">Sablon DTF High-Res</h3>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Direct Transfer Film dengan tinta CMYK + White pekat. Mampu mencetak foto, gradasi warna kompleks, dan detail kecil tanpa batasan warna.
-              </p>
-              <ul class="space-y-1.5 text-xs text-slate-700 pt-1">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0"></i><span>Bisa order satuan (tanpa minimal)</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0"></i><span>Cocok untuk desain full-color / ilustrasi</span></li>
-              </ul>
-            </div>
-            <button type="button" onclick="openOrderWithPrintNote('Metode Cetak Pilihan: Sablon DTF High-Res')"
-              class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-300 hover:border-brand-600 text-xs font-bold transition">
-              Pesan dengan Sablon DTF
-            </button>
-          </div>
-
-          <!-- Plastisol -->
-          <div class="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-6 flex flex-col justify-between space-y-5 hover:border-brand-400 transition">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-3 py-1 rounded-full bg-slate-200 text-slate-800 text-[11px] font-extrabold uppercase">Standar Distro</span>
-                <i data-lucide="layers" class="w-5 h-5 text-slate-700"></i>
-              </div>
-              <h3 class="text-lg font-extrabold text-slate-900">Sablon Plastisol Ink</h3>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Tinta berbasis minyak standar clothing line dengan daya tutup tinggi, tekstur solid lembut, dan ketahanan cuci ekstra awet.
-              </p>
-              <ul class="space-y-1.5 text-xs text-slate-700 pt-1">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0"></i><span>Ideal untuk kaos komunitas, panitia &amp; brand</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0"></i><span>Hasil warna pekat &amp; tahan lama</span></li>
-              </ul>
-            </div>
-            <button type="button" onclick="openOrderWithPrintNote('Metode Cetak Pilihan: Sablon Plastisol Ink')"
-              class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-300 hover:border-brand-600 text-xs font-bold transition">
-              Pesan dengan Sablon Plastisol
-            </button>
-          </div>
-
-          <!-- Polyflex -->
-          <div class="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-6 flex flex-col justify-between space-y-5 hover:border-brand-400 transition">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-extrabold uppercase">Custom Nama / Nomor</span>
-                <i data-lucide="scissors" class="w-5 h-5 text-amber-600"></i>
-              </div>
-              <h3 class="text-lg font-extrabold text-slate-900">Sablon Polyflex Cutting</h3>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Material vinyl elastis Korea yang dipotong presisi menggunakan mesin plotter dan dipress suhu tinggi. Tepi potongan super tajam.
-              </p>
-              <ul class="space-y-1.5 text-xs text-slate-700 pt-1">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0"></i><span>Terbaik untuk nama, nomor punggung &amp; logo vektor</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0"></i><span>Tersedia efek Matte, Neon, hingga Reflective</span></li>
-              </ul>
-            </div>
-            <button type="button" onclick="openOrderWithPrintNote('Metode Cetak Pilihan: Sablon Polyflex Cutting')"
-              class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-300 hover:border-brand-600 text-xs font-bold transition">
-              Pesan dengan Sablon Polyflex
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. CARA PEMESANAN 4 LANGKAH & BOTTOM CTA BANNER -->
-    <section id="cara-pesan" class="py-12 sm:py-18 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      <div>
-        <div class="text-center max-w-2xl mx-auto mb-9">
-          <span class="text-xs font-extrabold uppercase tracking-wider text-brand-600">Alur Pemesanan Online</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">4 Langkah Mudah Pesan Kaos Custom</h2>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-brand-600">Mengapa Sablon DTF?</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Kualitas Cetak DTF High-Resolution</h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2">Kami fokus menghadirkan hasil sablon Direct Transfer Film (DTF) terbaik dengan tinta pekat dan finishing heat-press presisi.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs">
+          <div class="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 sm:p-6 space-y-3">
+            <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-xs">
+              <i data-lucide="palette" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-extrabold text-base text-slate-900">Full Color &amp; Gradasi</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Mampu mencetak foto, ilustrasi rumit, hingga gradasi warna halus dengan tinta CMYK + White pekat.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 sm:p-6 space-y-3">
+            <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-xs">
+              <i data-lucide="shirt" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-extrabold text-base text-slate-900">100% Cotton Combed</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Menggunakan kaos katun Combed 20s, 24s, dan 30s asli yang adem, lembut di kulit, dan berjahit rantai rapi.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 sm:p-6 space-y-3">
+            <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-xs">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-extrabold text-base text-slate-900">Lentur &amp; Tahan Cuci</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Lapisan tinta elastis mengikuti tarikan kain, tidak kaku, tidak mudah retak, dan awet dicuci berulang kali.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 sm:p-6 space-y-3">
+            <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-xs">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-extrabold text-base text-slate-900">Bisa Order 1 Pcs</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Tanpa biaya pembuatan film atau minimal kuantitas. Cocok untuk hadiah personal, sampel brand, hingga seragam event.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ALUR PEMESANAN 4 LANGKAH & CTA -->
+    <section id="cara-pesan" class="py-12 sm:py-18 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div>
+        <div class="text-center max-w-2xl mx-auto mb-9">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-brand-600">Cara Order Online</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">4 Langkah Desain &amp; Pesan Kaos DTF</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">01</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Pilih Paket / Model</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Pilih varian kaos &amp; jenis sablon dari katalog atau langsung buka form order.</p>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Pilih Model &amp; Warna</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Tentukan kaos lengan pendek atau panjang beserta warna favorit Anda di studio desain.</p>
           </div>
 
-          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs">
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">02</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Warna, Ukuran &amp; Desain</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Tentukan warna kaos, jumlah S–XXL, posisi sablon, serta upload file desain Anda.</p>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Upload Gambar / Teks</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Tempel desain di sisi depan atau belakang kaos, lalu atur posisi &amp; skalanya secara langsung.</p>
           </div>
 
-          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs">
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">03</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Konfirmasi Mockup di WA</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Pesanan otomatis tercatat &amp; terhubung ke WhatsApp Admin untuk pengiriman mockup.</p>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Isi Ukuran &amp; Data</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Masukkan jumlah pesanan per ukuran (S–XXL) serta data pemesan untuk pengiriman.</p>
           </div>
 
-          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs">
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6">
             <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-sm mb-4">04</div>
-            <h3 class="font-bold text-slate-900 text-base mb-1.5">Produksi &amp; Pengiriman</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Kaos diproduksi presisi di workshop dan siap diambil atau dikirim ke alamat Anda.</p>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">Kirim ke WhatsApp Admin</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Desain &amp; data order otomatis tersimpan ke Drive lalu diarahkan ke WhatsApp Admin.</p>
           </div>
         </div>
       </div>
 
-      <!-- Bottom Retail CTA Banner -->
-      <div class="rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900 to-brand-900 p-7 sm:p-10 lg:p-12 text-white flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
-        <div class="space-y-2.5 text-center lg:text-left max-w-2xl">
-          <span class="inline-block px-3 py-1 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-bold">
-            Siap Cetak Desain Anda Hari Ini
+      <!-- Clean Bright Retail CTA Banner -->
+      <div class="rounded-3xl bg-brand-50 border border-brand-200 p-7 sm:p-10 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 text-center lg:text-left max-w-2xl">
+          <span class="inline-block px-3 py-1 rounded-full bg-white text-brand-700 border border-brand-200 text-xs font-extrabold">
+            Studio Desain Kaos Online Gratis
           </span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold leading-tight">
-            Punya Desain Kaos Sendiri? Yuk Mulai Isi Form Order Sekarang!
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+            Siap Lihat Hasil Desain Anda di Atas Kaos?
           </h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Upload file PNG, JPG, atau PDF desain Anda. Tim kami akan menyiapkan digital mockup dan rincian biaya terbaik sebelum produksi dimulai.
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Coba langsung simulasi penempatan sablon DTF depan &amp; belakang di kanvas interaktif kami sebelum mengirimkan pesanan.
           </p>
         </div>
 
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto shrink-0">
           <button type="button" onclick="openOrderPage()"
-            class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm px-6 py-4 rounded-xl shadow-lg shadow-brand-600/30 transition whitespace-nowrap">
-            <i data-lucide="upload-cloud" class="w-4 h-4 shrink-0"></i>
-            <span>Mulai Order &amp; Upload Desain</span>
-          </button>
-          <button type="button" onclick="openTutorialModal()"
-            class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm px-5 py-4 rounded-xl border border-white/15 transition whitespace-nowrap">
-            <span>Lihat Panduan Order</span>
+            class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm px-6 py-4 rounded-xl shadow-md shadow-brand-600/20 transition whitespace-nowrap">
+            <i data-lucide="pen-tool" class="w-4 h-4 shrink-0"></i>
+            <span>Buka Studio Desain &amp; Order</span>
           </button>
         </div>
       </div>
@@ -456,30 +423,25 @@
   </main>
 
   <!-- =========================================================
-       VIEW 2: HALAMAN FORM PEMESANAN KAOS (TERSEMBUNYI DEFAULT)
+       VIEW 2: STUDIO DESAIN INTERAKTIF & FORM ORDER (ALA CITITEX/ID/DESIGN)
   ========================================================== -->
-  <section id="orderPageView" class="hidden flex-1 py-6 sm:py-12 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="orderPageView" class="hidden flex-1 py-6 sm:py-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Top Breadcrumb / Back to Catalog Bar -->
+    <!-- Top Navigation Bar -->
     <div class="flex flex-wrap items-center justify-between gap-2.5 mb-6">
       <button
         type="button"
         onclick="openStorefrontPage()"
-        class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 text-slate-700 text-xs sm:text-sm font-bold shadow-sm transition whitespace-nowrap">
+        class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-brand-600 hover:text-brand-600 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition whitespace-nowrap">
         <i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
         <span>Kembali ke Beranda</span>
       </button>
 
-      <span class="text-[11px] sm:text-xs font-semibold text-slate-500 bg-white px-3 py-1.5 rounded-full border border-slate-200">
-        Halaman Pemesanan Custom
-      </span>
-    </div>
-
-    <!-- Section Title -->
-    <div class="text-center mb-7">
-      <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Formulir Pemesanan Online</span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Detail Pesanan Custom Kaos</h2>
-      <p class="text-xs sm:text-base text-slate-600 mt-1.5">Lengkapi data di bawah. Setelah klik order, rincian otomatis tersimpan dan diteruskan ke WhatsApp Admin.</p>
+      <div class="flex items-center gap-2">
+        <span class="text-[11px] sm:text-xs font-bold text-brand-700 bg-brand-50 px-3 py-1.5 rounded-full border border-brand-200">
+          Studio Desain Kaos &amp; Order DTF
+        </span>
+      </div>
     </div>
 
     <!-- Banner Paket Terpilih dari Katalog -->
@@ -499,375 +461,517 @@
       </button>
     </div>
 
-    <!-- CONTAINER UTAMA FORM -->
-    <form id="orderForm" novalidate class="space-y-6 sm:space-y-8">
+    <!-- =========================================================
+         2-COLUMN STUDIO WORKSPACE (LEFT: LIVE T-SHIRT CANVAS | RIGHT: ORDER FORM)
+    ========================================================== -->
+    <div id="studioWorkspaceGrid" class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
-      <!-- 1. DATA PEMESAN -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">1</span>
-          <div>
-            <h3 class="font-bold text-base sm:text-lg text-slate-900">Data Pemesan</h3>
-            <p class="text-xs text-slate-500">Informasi kontak untuk konfirmasi mockup &amp; pengiriman</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-          <div>
-            <label for="customerName" class="block text-sm font-semibold text-slate-700 mb-1.5">
-              Nama Pemesan / Instansi <span class="text-red-500">*</span>
-            </label>
-            <input type="text" id="customerName" required placeholder="Contoh: Budi Santoso / Komunitas Gowes"
-              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
-          </div>
-
-          <div>
-            <label for="customerWhatsapp" class="block text-sm font-semibold text-slate-700 mb-1.5">
-              No. WhatsApp Aktif <span class="text-red-500">*</span>
-            </label>
-            <input type="tel" id="customerWhatsapp" inputmode="numeric" required placeholder="Contoh: 081234567890"
-              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
-            <p id="waErrorMsg" class="hidden text-xs text-red-600 font-medium mt-1">Nomor WhatsApp wajib diisi hanya dengan angka (9–15 digit).</p>
-          </div>
-
-          <div class="sm:col-span-2">
-            <label for="customerAddress" class="block text-sm font-semibold text-slate-700 mb-1.5">
-              Alamat Lengkap <span class="text-red-500">*</span>
-            </label>
-            <textarea id="customerAddress" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, Kelurahan, Kecamatan, Kota/Kabupaten, Kode Pos"
-              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. DETAIL PESANAN KAOS (PILIH WARNA & UKURAN + TOMBOL PANDUAN UKURAN) -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
-          <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">2</span>
+      <!-- =======================================================
+           LEFT PANEL (STICKY ON PC): INTERACTIVE T-SHIRT DESIGN STUDIO
+      ======================================================== -->
+      <div class="lg:col-span-5 lg:sticky lg:top-20 space-y-4">
+        <div class="bg-white border border-slate-200/90 rounded-3xl p-4 sm:p-5 shadow-sm">
+          <!-- Studio Header & Sleeve Switch -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3.5 mb-3.5 border-b border-slate-100">
             <div>
-              <h3 class="font-bold text-base sm:text-lg text-slate-900">Detail Pesanan Kaos</h3>
-              <p class="text-xs text-slate-500">Pilih warna kaos dan tentukan jumlah per ukuran</p>
+              <h2 class="font-extrabold text-sm sm:text-base text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="wand-2" class="w-4 h-4 text-brand-600"></i>
+                <span>Studio Desain DTF</span>
+              </h2>
+              <p class="text-[11px] text-slate-500">Seret desain di kaos untuk atur posisi</p>
+            </div>
+
+            <!-- Toggle Lengan Pendek / Lengan Panjang -->
+            <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200/80">
+              <button type="button" id="studioSleeveShortBtn" onclick="setStudioSleeve('short')"
+                class="px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-white text-slate-900 shadow-2xs transition whitespace-nowrap">
+                Lengan Pendek
+              </button>
+              <button type="button" id="studioSleeveLongBtn" onclick="setStudioSleeve('long')"
+                class="px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-slate-600 hover:text-slate-900 transition whitespace-nowrap">
+                Lengan Panjang
+              </button>
             </div>
           </div>
 
-          <!-- Real-Time Total Counter Badge -->
-          <div class="bg-brand-600 text-white px-4 py-2 rounded-xl shadow-sm flex items-center justify-between sm:justify-start gap-2.5 shrink-0">
-            <div class="flex items-center gap-2">
-              <i data-lucide="layers" class="w-4 h-4 shrink-0"></i>
-              <span class="text-xs font-medium">Total Pesanan:</span>
-            </div>
-            <span id="totalPcsBadge" class="text-base font-extrabold">0 pcs</span>
-          </div>
-        </div>
-
-        <!-- Pilihan Warna Kaos -->
-        <div class="mb-7">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-            <label class="text-sm font-semibold text-slate-700">
-              Warna Kaos <span class="text-red-500">*</span>
-            </label>
-            <span id="activeColorLabel" class="text-xs font-bold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
-              Hitam Jet Black
-            </span>
-          </div>
-
-          <div id="formColorSwatches" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 mb-3"></div>
-
-          <div class="mt-3">
-            <input type="text" id="customColorInput" placeholder="Atau ketik warna custom di sini (misal: Sage Green, Misty Muda, dll)..."
-              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
-          </div>
-        </div>
-
-        <!-- Header Matriks Ukuran + Tombol Ikon Panduan Ukuran -->
-        <div class="flex items-center justify-between gap-3 mb-4">
-          <label class="text-sm font-semibold text-slate-700">
-            Jumlah Per Ukuran <span class="text-red-500">*</span>
-          </label>
-
-          <button
-            type="button"
-            onclick="openSizeChartModal()"
-            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-50 hover:bg-brand-100 active:scale-[0.99] text-brand-700 border border-brand-200 text-xs font-bold transition whitespace-nowrap shrink-0">
-            <i data-lucide="ruler" class="w-4 h-4 text-brand-600 shrink-0"></i>
-            <span>Panduan Ukuran</span>
-          </button>
-        </div>
-
-        <!-- Matriks Ukuran: 2 Kelompok Jelas -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <!-- Kelompok 1: Lengan Pendek -->
-          <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 sm:p-5">
-            <div class="flex items-center justify-between mb-3.5">
-              <div class="flex items-center gap-2">
-                <i data-lucide="shirt" class="w-4 h-4 text-brand-600 shrink-0"></i>
-                <h4 class="font-bold text-slate-900 text-sm">Lengan Pendek</h4>
-              </div>
-              <span id="subtotalShortBadge" class="text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
-            </div>
-            <div id="shortSleeveMatrix" class="space-y-2.5"></div>
-          </div>
-
-          <!-- Kelompok 2: Lengan Panjang -->
-          <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 sm:p-5">
-            <div class="flex items-center justify-between mb-3.5">
-              <div class="flex items-center gap-2">
-                <i data-lucide="shirt" class="w-4 h-4 text-slate-700 shrink-0"></i>
-                <h4 class="font-bold text-slate-900 text-sm">Lengan Panjang</h4>
-              </div>
-              <span id="subtotalLongBadge" class="text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
-            </div>
-            <div id="longSleeveMatrix" class="space-y-2.5"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. DETAIL SABLON & UPLOAD DESAIN -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">3</span>
-          <div>
-            <h3 class="font-bold text-base sm:text-lg text-slate-900">Detail Sablon &amp; Upload Desain</h3>
-            <p class="text-xs text-slate-500">Tentukan sisi cetak, ukuran sablon, serta unggah file desain Anda</p>
-          </div>
-        </div>
-
-        <!-- Pilihan Sisi Sablon -->
-        <div class="mb-6">
-          <label class="block text-sm font-semibold text-slate-700 mb-2.5">Sisi Sablon <span class="text-red-500">*</span></label>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
-            <label class="cursor-pointer">
-              <input type="radio" name="printSide" value="Depan Saja" checked class="peer sr-only" />
-              <div class="min-h-[46px] px-4 py-3 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-sm transition">
-                Depan Saja
-              </div>
-            </label>
-            <label class="cursor-pointer">
-              <input type="radio" name="printSide" value="Belakang Saja" class="peer sr-only" />
-              <div class="min-h-[46px] px-4 py-3 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-sm transition">
-                Belakang Saja
-              </div>
-            </label>
-            <label class="cursor-pointer">
-              <input type="radio" name="printSide" value="Depan & Belakang" class="peer sr-only" />
-              <div class="min-h-[46px] px-4 py-3 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-sm transition">
-                Depan &amp; Belakang
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <!-- Conditional Fields: Sablon Depan & Belakang -->
-        <div class="space-y-4 mb-6">
-          <div id="frontPrintFields" class="p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="sm:col-span-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-700">
-              <i data-lucide="arrow-up-right" class="w-4 h-4 shrink-0"></i>
-              <span>Spesifikasi Sablon Depan</span>
-            </div>
-            <div>
-              <label for="frontPrintSize" class="block text-xs font-semibold text-slate-700 mb-1.5">Ukuran Sablon Depan (cm)</label>
-              <input type="text" id="frontPrintSize" placeholder="Contoh: Logo 10x10 cm atau A4 (21x29 cm)" value="Logo Dada 10x10 cm"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600" />
-            </div>
-            <div>
-              <label for="frontPrintPosition" class="block text-xs font-semibold text-slate-700 mb-1.5">Posisi Depan</label>
-              <select id="frontPrintPosition" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600">
-                <option value="Dada Kiri">Dada Kiri</option>
-                <option value="Dada Kanan">Dada Kanan</option>
-                <option value="Tengah Dada">Tengah Dada</option>
-                <option value="Full Depan (A3)">Full Depan (A3)</option>
-              </select>
-            </div>
-          </div>
-
-          <div id="backPrintFields" class="hidden p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="sm:col-span-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
-              <i data-lucide="arrow-down-left" class="w-4 h-4 shrink-0"></i>
-              <span>Spesifikasi Sablon Belakang</span>
-            </div>
-            <div>
-              <label for="backPrintSize" class="block text-xs font-semibold text-slate-700 mb-1.5">Ukuran Sablon Belakang (cm)</label>
-              <input type="text" id="backPrintSize" placeholder="Contoh: A3 (29x42 cm) atau 25x30 cm" value="A3 (29x42 cm)"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600" />
-            </div>
-            <div>
-              <label for="backPrintPosition" class="block text-xs font-semibold text-slate-700 mb-1.5">Posisi Belakang</label>
-              <select id="backPrintPosition" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600">
-                <option value="Tengah Punggung">Tengah Punggung</option>
-                <option value="Full Punggung (A3)">Full Punggung (A3)</option>
-                <option value="Tengkuk / Leher Atas">Tengkuk / Leher Atas</option>
-                <option value="Bawah Punggung">Bawah Punggung</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dropzone Upload Desain -->
-        <div class="mb-6">
-          <label class="block text-sm font-semibold text-slate-700 mb-2">
-            Upload File Desain <span class="text-xs font-normal text-slate-500">(PNG, JPG, WEBP, SVG, atau PDF — Maks. 8 MB)</span>
-          </label>
-
-          <div id="dropzoneArea"
-            class="border-2 border-dashed border-slate-300 hover:border-brand-500 bg-[#F8FAFC] hover:bg-brand-50/40 rounded-2xl p-6 text-center cursor-pointer transition-all">
-            <input type="file" id="designFileInput" accept="image/png,image/jpeg,image/webp,image/svg+xml,application/pdf" class="hidden" />
-            <div class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-brand-600 flex items-center justify-center mx-auto mb-3 shadow-sm">
-              <i data-lucide="upload-cloud" class="w-6 h-6"></i>
-            </div>
-            <p class="text-sm font-bold text-slate-800">Klik untuk pilih file atau seret &amp; lepas di sini</p>
-            <p class="text-xs text-slate-500 mt-1">Mendukung gambar resolusi tinggi &amp; dokumen PDF vektor (maksimal 8 MB)</p>
-          </div>
-
-          <div id="filePreviewBox" class="hidden mt-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-brand-200 flex items-center justify-between gap-3">
-            <div class="flex items-center gap-3 min-w-0">
-              <img id="previewImageThumb" src="" alt="Preview Desain" class="hidden w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100" />
-              <div id="previewPdfIcon" class="hidden w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0">
-                <i data-lucide="file-text" class="w-6 h-6 sm:w-7 sm:h-7"></i>
-              </div>
-              <div class="min-w-0">
-                <p id="previewFileName" class="text-xs sm:text-sm font-bold text-slate-900 truncate">desain.png</p>
-                <p id="previewFileMeta" class="text-[11px] sm:text-xs text-slate-500 mt-0.5 truncate">1.2 MB • Siap diunggah ke Drive</p>
-              </div>
-            </div>
-            <button type="button" id="removeFileBtn"
-              class="px-3 py-2 rounded-xl text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 transition shrink-0 whitespace-nowrap">
-              Hapus
+          <!-- Switch Tampak Depan / Tampak Belakang -->
+          <div class="grid grid-cols-2 gap-2 mb-3.5">
+            <button type="button" id="viewFrontBtn" onclick="setStudioSide('front')"
+              class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-extrabold bg-brand-600 text-white shadow-xs transition">
+              <span>Tampak Depan</span>
+              <span id="frontDesignDot" class="hidden w-2 h-2 rounded-full bg-amber-300"></span>
+            </button>
+            <button type="button" id="viewBackBtn" onclick="setStudioSide('back')"
+              class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200/70 transition">
+              <span>Tampak Belakang</span>
+              <span id="backDesignDot" class="hidden w-2 h-2 rounded-full bg-brand-500"></span>
             </button>
           </div>
-        </div>
 
-        <!-- Catatan Tambahan Desain -->
-        <div>
-          <label for="designNotes" class="block text-sm font-semibold text-slate-700 mb-1.5">Catatan Tambahan Desain / Paket</label>
-          <textarea id="designNotes" rows="3" placeholder="Tuliskan detail bahan (misal: Combed 24s), jenis sablon (DTF/Plastisol), kode warna Pantone, atau instruksi posisi khusus..."
-            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition"></textarea>
-        </div>
-      </div>
+          <!-- Interactive HTML5 Canvas Area -->
+          <div class="relative rounded-2xl bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] bg-slate-50 border border-slate-200/90 overflow-hidden flex items-center justify-center p-2">
+            <canvas id="tshirtDesignCanvas" width="800" height="920" class="w-full max-w-[380px] h-auto touch-pan-y cursor-grab active:cursor-grabbing select-none"></canvas>
 
-      <!-- 4. PENGIRIMAN & PEMBAYARAN -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">4</span>
-          <div>
-            <h3 class="font-bold text-base sm:text-lg text-slate-900">Pengiriman &amp; Pembayaran</h3>
-            <p class="text-xs text-slate-500">Pilih opsi pengambilan pesanan serta rencana pembayaran DP</p>
+            <!-- Active Color & Dimension Pill -->
+            <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between gap-2 pointer-events-none">
+              <span id="canvasColorTag" class="px-2.5 py-1 rounded-lg bg-white/90 backdrop-blur-xs border border-slate-200 text-[10px] font-bold text-slate-700 shadow-2xs truncate">
+                Hitam Jet Black • Pendek
+              </span>
+              <span id="canvasPrintDimTag" class="px-2.5 py-1 rounded-lg bg-slate-900/85 text-white text-[10px] font-bold shadow-2xs whitespace-nowrap">
+                Area: Kosong
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="mb-6">
-          <label class="block text-sm font-semibold text-slate-700 mb-2.5">Metode Pengiriman <span class="text-red-500">*</span></label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <label class="cursor-pointer block">
-              <input type="radio" name="shippingMethod" value="Ambil Sendiri" checked class="peer sr-only" />
-              <div class="h-full p-4 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
-                <i data-lucide="store" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+          <!-- STUDIO DESIGN TOOLS (UPLOAD GAMBAR, TAMBAH TEKS, POSISI & SKALA) -->
+          <div class="mt-4 space-y-3.5">
+            <!-- Primary Action Buttons: Upload Gambar & Tambah Teks -->
+            <div class="grid grid-cols-2 gap-2.5">
+              <button type="button" onclick="triggerStudioImageUpload()"
+                class="inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-brand-50 hover:bg-brand-600 text-brand-700 hover:text-white border border-brand-200 hover:border-brand-600 text-xs font-bold transition whitespace-nowrap">
+                <i data-lucide="image-plus" class="w-4 h-4 shrink-0"></i>
+                <span id="uploadSideBtnText">Upload Desain Depan</span>
+              </button>
+
+              <button type="button" onclick="toggleTextEditorBox()"
+                class="inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-900 text-slate-800 hover:text-white border border-slate-200 hover:border-slate-900 text-xs font-bold transition whitespace-nowrap">
+                <i data-lucide="type" class="w-4 h-4 shrink-0"></i>
+                <span>Tambah / Edit Teks</span>
+              </button>
+            </div>
+
+            <input type="file" id="studioImageInput" accept="image/png,image/jpeg,image/webp,image/svg+xml" class="hidden" />
+
+            <!-- Custom Text Editor Drawer (Muncul saat Tambah/Edit Teks diklik) -->
+            <div id="studioTextEditor" class="hidden p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-extrabold text-slate-800">Teks Sablon (<span id="textEditorSideLabel">Depan</span>)</span>
+                <button type="button" onclick="clearSideText()" class="text-[11px] font-bold text-red-600 hover:underline">Hapus Teks</button>
+              </div>
+              <input type="text" id="studioTextInput" placeholder="Ketik tulisan pada kaos..."
+                class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-semibold focus:outline-none focus:border-brand-600" />
+              <div class="grid grid-cols-2 gap-2">
                 <div>
-                  <p class="font-bold text-sm text-slate-900">Ambil Sendiri</p>
-                  <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Ambil langsung di workshop tanpa biaya ongkir</p>
+                  <label class="block text-[10px] font-bold text-slate-500 mb-1">Gaya Huruf</label>
+                  <select id="studioTextFont" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-semibold">
+                    <option value="'Plus Jakarta Sans', sans-serif">Modern Sans</option>
+                    <option value="'Montserrat', sans-serif">Bold Streetwear</option>
+                    <option value="'Playfair Display', serif">Classic Serif</option>
+                    <option value="'Space Mono', monospace">Monospace</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-500 mb-1">Warna Teks</label>
+                  <div class="flex items-center gap-1.5">
+                    <input type="color" id="studioTextColor" value="#FFFFFF" class="w-8 h-8 rounded-lg border border-slate-300 cursor-pointer p-0.5 bg-white" />
+                    <button type="button" onclick="setQuickTextColor('#FFFFFF')" class="w-6 h-6 rounded-full bg-white border border-slate-300" title="Putih"></button>
+                    <button type="button" onclick="setQuickTextColor('#111827')" class="w-6 h-6 rounded-full bg-slate-900 border border-slate-900" title="Hitam"></button>
+                    <button type="button" onclick="setQuickTextColor('#FACC15')" class="w-6 h-6 rounded-full bg-yellow-400 border border-yellow-500" title="Kuning"></button>
+                    <button type="button" onclick="setQuickTextColor('#EF4444')" class="w-6 h-6 rounded-full bg-red-500 border border-red-600" title="Merah"></button>
+                  </div>
                 </div>
               </div>
-            </label>
+            </div>
 
-            <label class="cursor-pointer block">
-              <input type="radio" name="shippingMethod" value="Kirim Kurir/Ekspedisi" class="peer sr-only" />
-              <div class="h-full p-4 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
-                <i data-lucide="truck" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+            <!-- Position Presets & Scale Controls (Aktif jika ada Gambar/Teks di sisi aktif) -->
+            <div id="activeLayerControls" class="hidden p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] font-extrabold text-slate-700">Posisi Cepat &amp; Ukuran Cetak</span>
+                <button type="button" onclick="removeActiveSideDesign()" class="text-[11px] font-bold text-red-600 hover:underline whitespace-nowrap">
+                  Hapus Desain Sisi Ini
+                </button>
+              </div>
+
+              <!-- Preset Position Buttons -->
+              <div id="presetButtonsContainer" class="grid grid-cols-3 gap-1.5"></div>
+
+              <!-- Scale Slider -->
+              <div class="flex items-center gap-3 pt-1">
+                <i data-lucide="minimize-2" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
+                <input type="range" id="designScaleSlider" min="15" max="100" value="45"
+                  class="w-full accent-brand-600 cursor-pointer h-1.5 bg-slate-200 rounded-lg" />
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-slate-600 shrink-0"></i>
+                <span id="scalePercentLabel" class="text-[11px] font-extrabold text-slate-700 w-9 text-right shrink-0">45%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =======================================================
+           RIGHT PANEL: FORM DETAIL PESANAN & CHECKOUT
+      ======================================================== -->
+      <div class="lg:col-span-7">
+        <form id="orderForm" novalidate class="space-y-6">
+
+          <!-- 1. WARNA KAOS & JUMLAH UKURAN -->
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-7 shadow-2xs">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">1</span>
                 <div>
-                  <p class="font-bold text-sm text-slate-900">Kirim Kurir / Ekspedisi</p>
-                  <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Dikirim via JNE, J&amp;T, Cargo, atau kurir instan</p>
+                  <h3 class="font-bold text-base sm:text-lg text-slate-900">Warna Kaos &amp; Rincian Ukuran</h3>
+                  <p class="text-xs text-slate-500">Warna langsung tampil di pratinjau kaos sebelah kiri</p>
                 </div>
               </div>
+
+              <!-- Total Pcs Badge -->
+              <div class="bg-brand-600 text-white px-4 py-2 rounded-xl shadow-2xs flex items-center justify-between sm:justify-start gap-2.5 shrink-0">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="layers" class="w-4 h-4 shrink-0"></i>
+                  <span class="text-xs font-medium">Total:</span>
+                </div>
+                <span id="totalPcsBadge" class="text-base font-extrabold">0 pcs</span>
+              </div>
+            </div>
+
+            <!-- Pilihan Warna Kaos -->
+            <div class="mb-6">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                <label class="text-sm font-semibold text-slate-700">
+                  Warna Kaos <span class="text-red-500">*</span>
+                </label>
+                <span id="activeColorLabel" class="text-xs font-bold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
+                  Hitam Jet Black
+                </span>
+              </div>
+
+              <div id="formColorSwatches" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-3"></div>
+
+              <!-- Custom Color Name + Color Picker -->
+              <div class="flex items-center gap-2.5 mt-3">
+                <input type="color" id="customColorPicker" value="#111827" title="Pilih warna simulasi"
+                  class="w-11 h-10 rounded-xl border border-slate-300 bg-white p-1 cursor-pointer shrink-0" />
+                <input type="text" id="customColorInput" placeholder="Atau ketik nama warna custom (misal: Sage Green, Lilac)..."
+                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
+              </div>
+            </div>
+
+            <!-- Header Matriks Ukuran + Tombol Icon Panduan Ukuran -->
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <label class="text-sm font-semibold text-slate-700">
+                Jumlah Per Ukuran <span class="text-red-500">*</span>
+              </label>
+
+              <button
+                type="button"
+                onclick="openSizeChartModal()"
+                class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-50 hover:bg-brand-100 active:scale-[0.99] text-brand-700 border border-brand-200 text-xs font-bold transition whitespace-nowrap shrink-0">
+                <i data-lucide="ruler" class="w-4 h-4 text-brand-600 shrink-0"></i>
+                <span>Panduan Ukuran</span>
+              </button>
+            </div>
+
+            <!-- Matriks Ukuran: Lengan Pendek & Lengan Panjang -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="shirt" class="w-4 h-4 text-brand-600 shrink-0"></i>
+                    <h4 class="font-bold text-slate-900 text-sm">Lengan Pendek</h4>
+                  </div>
+                  <span id="subtotalShortBadge" class="text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
+                </div>
+                <div id="shortSleeveMatrix" class="space-y-2"></div>
+              </div>
+
+              <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="shirt" class="w-4 h-4 text-slate-700 shrink-0"></i>
+                    <h4 class="font-bold text-slate-900 text-sm">Lengan Panjang</h4>
+                  </div>
+                  <span id="subtotalLongBadge" class="text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-slate-200">0 pcs</span>
+                </div>
+                <div id="longSleeveMatrix" class="space-y-2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. SPESIFIKASI SABLON DTF & FILE CETAK -->
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-7 shadow-2xs">
+            <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+              <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">2</span>
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-slate-900">Detail Sablon DTF &amp; File Desain</h3>
+                <p class="text-xs text-slate-500">Terisi otomatis dari studio desain atau sesuaikan manual</p>
+              </div>
+            </div>
+
+            <!-- Sisi Sablon DTF -->
+            <div class="mb-5">
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Sisi Sablon DTF <span class="text-red-500">*</span></label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                <label class="cursor-pointer">
+                  <input type="radio" name="printSide" value="Depan Saja" checked class="peer sr-only" />
+                  <div class="min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-xs sm:text-sm transition">
+                    Depan Saja
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="printSide" value="Belakang Saja" class="peer sr-only" />
+                  <div class="min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-xs sm:text-sm transition">
+                    Belakang Saja
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="printSide" value="Depan & Belakang" class="peer sr-only" />
+                  <div class="min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 peer-checked:text-brand-800 flex items-center justify-center text-center font-bold text-xs sm:text-sm transition">
+                    Depan &amp; Belakang
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Ukuran & Posisi Sablon DTF -->
+            <div class="space-y-3.5 mb-5">
+              <div id="frontPrintFields" class="p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div class="sm:col-span-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-700">
+                  <i data-lucide="arrow-up-right" class="w-4 h-4 shrink-0"></i>
+                  <span>Sablon DTF Depan</span>
+                </div>
+                <div>
+                  <label for="frontPrintSize" class="block text-xs font-semibold text-slate-700 mb-1">Ukuran Cetak Depan (cm)</label>
+                  <input type="text" id="frontPrintSize" value="Logo Dada 10x10 cm"
+                    class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:border-brand-600" />
+                </div>
+                <div>
+                  <label for="frontPrintPosition" class="block text-xs font-semibold text-slate-700 mb-1">Posisi Depan</label>
+                  <select id="frontPrintPosition" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:border-brand-600">
+                    <option value="Dada Kiri">Dada Kiri</option>
+                    <option value="Dada Kanan">Dada Kanan</option>
+                    <option value="Tengah Dada">Tengah Dada</option>
+                    <option value="Full Depan (A3)">Full Depan (A3)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="backPrintFields" class="hidden p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div class="sm:col-span-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
+                  <i data-lucide="arrow-down-left" class="w-4 h-4 shrink-0"></i>
+                  <span>Sablon DTF Belakang</span>
+                </div>
+                <div>
+                  <label for="backPrintSize" class="block text-xs font-semibold text-slate-700 mb-1">Ukuran Cetak Belakang (cm)</label>
+                  <input type="text" id="backPrintSize" value="A3 (29x42 cm)"
+                    class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:border-brand-600" />
+                </div>
+                <div>
+                  <label for="backPrintPosition" class="block text-xs font-semibold text-slate-700 mb-1">Posisi Belakang</label>
+                  <select id="backPrintPosition" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:border-brand-600">
+                    <option value="Tengah Punggung">Tengah Punggung</option>
+                    <option value="Full Punggung (A3)">Full Punggung (A3)</option>
+                    <option value="Tengkuk / Leher Atas">Tengkuk / Leher Atas</option>
+                    <option value="Bawah Punggung">Bawah Punggung</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upload File Mentah Tambahan (Opsional jika sudah desain di Studio, atau wajib jika PDF) -->
+            <div class="mb-5">
+              <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+                Lampiran File Desain Siap Cetak <span class="text-xs font-normal text-slate-500">(PNG / JPG / SVG / PDF — Maks. 8 MB)</span>
+              </label>
+              <p class="text-[11px] text-slate-500 mb-2.5">
+                *Jika Anda sudah mendesain di kanvas sebelah kiri, hasil mockup otomatis ikut terkirim saat order. Anda juga dapat melampirkan file master resolusi tinggi di sini.
+              </p>
+
+              <div id="dropzoneArea"
+                class="border-2 border-dashed border-slate-300 hover:border-brand-500 bg-[#F8FAFC] hover:bg-brand-50/40 rounded-2xl p-5 text-center cursor-pointer transition-all">
+                <input type="file" id="designFileInput" accept="image/png,image/jpeg,image/webp,image/svg+xml,application/pdf" class="hidden" />
+                <div class="w-10 h-10 rounded-xl bg-white border border-slate-200 text-brand-600 flex items-center justify-center mx-auto mb-2 shadow-2xs">
+                  <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                </div>
+                <p class="text-xs sm:text-sm font-bold text-slate-800">Klik untuk pilih file master atau seret ke sini</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">Mendukung PNG transparan, JPG, SVG, dan PDF (maks. 8 MB)</p>
+              </div>
+
+              <div id="filePreviewBox" class="hidden mt-3 p-3.5 rounded-2xl bg-white border border-brand-200 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                  <img id="previewImageThumb" src="" alt="Preview Desain" class="hidden w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100" />
+                  <div id="previewPdfIcon" class="hidden w-12 h-12 rounded-xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0">
+                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p id="previewFileName" class="text-xs sm:text-sm font-bold text-slate-900 truncate">desain.png</p>
+                    <p id="previewFileMeta" class="text-[11px] text-slate-500 mt-0.5 truncate">Siap diunggah ke Google Drive</p>
+                  </div>
+                </div>
+                <button type="button" id="removeFileBtn"
+                  class="px-3 py-2 rounded-xl text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 transition shrink-0 whitespace-nowrap">
+                  Hapus
+                </button>
+              </div>
+            </div>
+
+            <!-- Catatan Tambahan -->
+            <div>
+              <label for="designNotes" class="block text-sm font-semibold text-slate-700 mb-1.5">Catatan Tambahan Sablon DTF</label>
+              <textarea id="designNotes" rows="2" placeholder="Contoh: Bahan Combed 24s, sablon DTF sesuai simulasi posisi di kanvas..."
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition"></textarea>
+            </div>
+          </div>
+
+          <!-- 3. DATA PEMESAN -->
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-7 shadow-2xs">
+            <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+              <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">3</span>
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-slate-900">Data Pemesan</h3>
+                <p class="text-xs text-slate-500">Kontak untuk pengiriman konfirmasi &amp; alamat tujuan</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="customerName" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Nama Pemesan / Instansi <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="customerName" required placeholder="Contoh: Budi Santoso / Komunitas Gowes"
+                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
+              </div>
+
+              <div>
+                <label for="customerWhatsapp" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  No. WhatsApp Aktif <span class="text-red-500">*</span>
+                </label>
+                <input type="tel" id="customerWhatsapp" inputmode="numeric" required placeholder="Contoh: 081234567890"
+                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition" />
+                <p id="waErrorMsg" class="hidden text-xs text-red-600 font-medium mt-1">Nomor WhatsApp wajib diisi hanya dengan angka (9–15 digit).</p>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="customerAddress" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Alamat Lengkap <span class="text-red-500">*</span>
+                </label>
+                <textarea id="customerAddress" rows="2" required placeholder="Nama jalan, nomor rumah, RT/RW, Kelurahan, Kecamatan, Kota/Kabupaten"
+                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. PENGIRIMAN & PEMBAYARAN -->
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-7 shadow-2xs">
+            <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+              <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">4</span>
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-slate-900">Pengiriman &amp; Pembayaran</h3>
+                <p class="text-xs text-slate-500">Pilih metode pengambilan pesanan serta nominal DP</p>
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Metode Pengiriman <span class="text-red-500">*</span></label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label class="cursor-pointer block">
+                  <input type="radio" name="shippingMethod" value="Ambil Sendiri" checked class="peer sr-only" />
+                  <div class="h-full p-3.5 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
+                    <i data-lucide="store" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <p class="font-bold text-sm text-slate-900">Ambil Sendiri</p>
+                      <p class="text-xs text-slate-500 mt-0.5">Ambil langsung di workshop tanpa biaya ongkir</p>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="cursor-pointer block">
+                  <input type="radio" name="shippingMethod" value="Kirim Kurir/Ekspedisi" class="peer sr-only" />
+                  <div class="h-full p-3.5 rounded-2xl border border-slate-200 bg-[#F8FAFC] peer-checked:bg-brand-50 peer-checked:border-brand-600 transition flex items-start gap-3">
+                    <i data-lucide="truck" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <p class="font-bold text-sm text-slate-900">Kirim Kurir / Ekspedisi</p>
+                      <p class="text-xs text-slate-500 mt-0.5">Dikirim via JNE, J&amp;T, Cargo, atau kurir instan</p>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label for="paymentMethod" class="block text-sm font-semibold text-slate-700 mb-1.5">Metode Pembayaran</label>
+                <select id="paymentMethod" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:border-brand-600">
+                  <option value="Transfer Bank">Transfer Bank</option>
+                  <option value="QRIS / E-Wallet">QRIS / E-Wallet</option>
+                  <option value="Tunai">Tunai</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="dpAmount" class="block text-sm font-semibold text-slate-700 mb-1.5">Nominal DP</label>
+                <input type="text" id="dpAmount" inputmode="numeric" placeholder="Rp 0"
+                  class="currency-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:border-brand-600" />
+              </div>
+
+              <div>
+                <label for="remainingAmount" class="block text-sm font-semibold text-slate-700 mb-1.5">Sisa Pembayaran</label>
+                <input type="text" id="remainingAmount" inputmode="numeric" placeholder="Rp 0"
+                  class="currency-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:border-brand-600" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. KETENTUAN ORDER & SUBMIT -->
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-7 shadow-2xs">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-slate-100">
+              <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">5</span>
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-slate-900">Ketentuan Order Sablon DTF</h3>
+                <p class="text-xs text-slate-500">Harap baca sebelum mengirimkan pesanan</p>
+              </div>
+            </div>
+
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-600 bg-[#F8FAFC] p-4 rounded-xl border border-slate-200 mb-5">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                <span><strong>Kesesuaian Desain &amp; Ukuran:</strong> Pastikan simulasi posisi sablon DTF, warna kaos, dan jumlah ukuran (S–XXL) sudah tepat.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                <span><strong>Kualitas File Cetak DTF:</strong> File PNG transparan resolusi tinggi (300 DPI) menghasilkan potongan tinta DTF paling tajam.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                <span><strong>Konfirmasi WhatsApp:</strong> Admin akan mengonfirmasi rincian harga final dan kesiapan file cetak sebelum naik produksi.</span>
+              </li>
+            </ul>
+
+            <label class="flex items-start gap-3 cursor-pointer select-none mb-5">
+              <input type="checkbox" id="termsCheckbox" class="mt-0.5 w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500 shrink-0" />
+              <span class="text-xs sm:text-sm font-medium text-slate-800 leading-relaxed">
+                Saya telah memeriksa simulasi desain kaos serta rincian pesanan dan menyetujui ketentuan di atas. <span class="text-red-500">*</span>
+              </span>
             </label>
-          </div>
-        </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-          <div>
-            <label for="paymentMethod" class="block text-sm font-semibold text-slate-700 mb-1.5">Metode Pembayaran</label>
-            <select id="paymentMethod" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600">
-              <option value="Transfer Bank">Transfer Bank</option>
-              <option value="QRIS / E-Wallet">QRIS / E-Wallet</option>
-              <option value="Tunai">Tunai</option>
-            </select>
-          </div>
+            <div id="formErrorBox" class="hidden mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-medium flex items-center gap-2.5">
+              <i data-lucide="alert-circle" class="w-5 h-5 shrink-0"></i>
+              <span id="formErrorText">Mohon lengkapi data yang wajib diisi.</span>
+            </div>
 
-          <div>
-            <label for="dpAmount" class="block text-sm font-semibold text-slate-700 mb-1.5">Nominal DP</label>
-            <input type="text" id="dpAmount" inputmode="numeric" placeholder="Rp 0"
-              class="currency-input w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600" />
+            <button type="submit" id="submitOrderBtn" disabled
+              class="w-full py-4 px-5 rounded-2xl font-extrabold text-sm sm:text-base text-white bg-brand-600 hover:bg-brand-700 active:scale-[0.99] disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed shadow-lg shadow-brand-600/20 disabled:shadow-none transition-all flex items-center justify-center gap-2.5 text-center leading-snug">
+              <i data-lucide="send" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
+              <span>Order Sekarang &amp; Lanjut WhatsApp</span>
+            </button>
           </div>
-
-          <div>
-            <label for="remainingAmount" class="block text-sm font-semibold text-slate-700 mb-1.5">Sisa Pembayaran</label>
-            <input type="text" id="remainingAmount" inputmode="numeric" placeholder="Rp 0"
-              class="currency-input w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600" />
-          </div>
-        </div>
+        </form>
       </div>
-
-      <!-- 5. KETENTUAN ORDER & TOMBOL UTAMA -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-8 shadow-sm">
-        <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 font-extrabold text-sm flex items-center justify-center border border-brand-200 shrink-0">5</span>
-          <div>
-            <h3 class="font-bold text-base sm:text-lg text-slate-900">Ketentuan Order</h3>
-            <p class="text-xs text-slate-500">Harap baca poin berikut sebelum mengirimkan pesanan</p>
-          </div>
-        </div>
-
-        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 bg-[#F8FAFC] p-4 sm:p-5 rounded-xl border border-slate-200 mb-5">
-          <li class="flex items-start gap-2.5">
-            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-            <span><strong>Kesesuaian Ukuran &amp; Warna:</strong> Pastikan pilihan warna kaos, jenis lengan, dan rincian ukuran (S–XXL) sudah tepat karena pesanan custom diproduksi khusus sesuai data order.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-            <span><strong>Kualitas File Desain:</strong> Disarankan mengunggah file resolusi tinggi (PNG transparan min. 300 DPI atau PDF vektor) agar hasil cetak tajam dan tidak pecah.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-            <span><strong>Konfirmasi Mockup Sebelum Diproses:</strong> Admin akan mengirimkan digital mockup &amp; rincian tagihan final via WhatsApp untuk persetujuan (ACC) sebelum naik produksi.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <i data-lucide="check" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
-            <span><strong>Estimasi Pengerjaan:</strong> Waktu produksi standar adalah 3–7 hari kerja (menyesuaikan jumlah pcs &amp; antrean) terhitung setelah DP terkonfirmasi.</span>
-          </li>
-        </ul>
-
-        <label class="flex items-start gap-3 cursor-pointer select-none mb-6">
-          <input type="checkbox" id="termsCheckbox" class="mt-0.5 w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500 shrink-0" />
-          <span class="text-xs sm:text-sm font-medium text-slate-800 leading-relaxed">
-            Saya telah memeriksa seluruh rincian pesanan dan menyetujui ketentuan order di atas. <span class="text-red-500">*</span>
-          </span>
-        </label>
-
-        <div id="formErrorBox" class="hidden mb-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-medium flex items-center gap-2.5">
-          <i data-lucide="alert-circle" class="w-5 h-5 shrink-0"></i>
-          <span id="formErrorText">Mohon lengkapi data yang wajib diisi.</span>
-        </div>
-
-        <button type="submit" id="submitOrderBtn" disabled
-          class="w-full py-3.5 sm:py-4 px-5 rounded-2xl font-extrabold text-sm sm:text-base text-white bg-brand-600 hover:bg-brand-700 active:scale-[0.99] disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed shadow-lg shadow-brand-600/20 disabled:shadow-none transition-all flex items-center justify-center gap-2.5 text-center leading-snug">
-          <i data-lucide="send" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
-          <span>Order Sekarang &amp; Lanjut WhatsApp</span>
-        </button>
-      </div>
-    </form>
+    </div>
 
     <!-- HALAMAN BUKTI ORDER BERHASIL -->
-    <div id="orderSuccessView" class="hidden bg-white border border-brand-200 rounded-3xl p-6 sm:p-10 shadow-md text-center space-y-6">
+    <div id="orderSuccessView" class="hidden max-w-2xl mx-auto bg-white border border-brand-200 rounded-3xl p-6 sm:p-10 shadow-md text-center space-y-6">
       <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto">
         <i data-lucide="check-circle-2" class="w-9 h-9"></i>
       </div>
 
       <div>
         <span class="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200 text-xs font-bold uppercase tracking-wider">
-          Pesanan Tercatat di Sistem
+          Pesanan DTF Tercatat di Sistem
         </span>
         <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Bukti Order Berhasil Dibuat!</h3>
         <p class="text-xs sm:text-base text-slate-600 mt-1.5 max-w-xl mx-auto">
-          Data pesanan Anda telah tersimpan otomatis. Jika aplikasi WhatsApp belum terbuka otomatis, gunakan tombol di bawah ini untuk mengirim rincian ke Admin.
+          Data pesanan dan desain Anda telah tersimpan otomatis. Gunakan tombol di bawah ini jika WhatsApp belum terbuka otomatis.
         </p>
       </div>
 
@@ -885,7 +989,7 @@
           <span id="successTotalPcs" class="font-bold text-brand-700 text-right">-</span>
         </div>
         <div class="flex justify-between items-center gap-3">
-          <span class="text-slate-500 shrink-0">File Desain</span>
+          <span class="text-slate-500 shrink-0">File Desain / Mockup</span>
           <span id="successFileLink" class="font-semibold text-slate-800 truncate text-right">-</span>
         </div>
       </div>
@@ -906,7 +1010,7 @@
 
       <div class="pt-2 flex flex-wrap items-center justify-center gap-5">
         <button type="button" onclick="resetOrderPage()" class="text-xs font-bold text-brand-600 hover:text-brand-700 underline whitespace-nowrap">
-          + Buat Pesanan Baru
+          + Buat Desain &amp; Pesanan Baru
         </button>
         <button type="button" onclick="openStorefrontPage()" class="text-xs font-semibold text-slate-500 hover:text-slate-800 underline whitespace-nowrap">
           Kembali ke Beranda
@@ -916,84 +1020,78 @@
   </section>
 
   <!-- =========================================================
-       FOOTER RITEL LENGKAP (ALA CITITEX)
+       CLEAN RETAIL FOOTER
   ========================================================== -->
-  <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-xs sm:text-sm">
-        <div class="space-y-3">
-          <div class="flex items-center gap-2.5 text-white font-extrabold text-base">
+        <div class="space-y-2.5">
+          <div class="flex items-center gap-2 text-slate-900 font-extrabold text-base">
             <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center">
               <i data-lucide="shirt" class="w-4 h-4"></i>
             </div>
             <span>KaosCraft Studio</span>
           </div>
-          <p class="text-xs leading-relaxed text-slate-400">
-            Supplier kaos polos dan jasa sablon custom satuan maupun partai besar dengan kualitas jahitan distro dan cetak presisi.
+          <p class="text-xs leading-relaxed text-slate-500">
+            Spesialis kaos polos Cotton Combed dan sablon DTF High-Res satuan maupun partai besar dengan studio desain interaktif online.
           </p>
         </div>
 
-        <div class="space-y-2.5">
-          <h4 class="text-white font-bold text-xs uppercase tracking-wider">Kategori Produk</h4>
-          <ul class="space-y-2 text-xs">
-            <li><button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-white transition">Cotton Combed 24s &amp; 30s</button></li>
-            <li><button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-white transition">Kaos Lengan Panjang</button></li>
-            <li><button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-white transition">Heavyweight Streetwear</button></li>
-            <li><button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-white transition">Seragam Komunitas &amp; Event</button></li>
+        <div class="space-y-2">
+          <h4 class="text-slate-900 font-bold text-xs uppercase tracking-wider">Produk Sablon DTF</h4>
+          <ul class="space-y-1.5 text-xs text-slate-600">
+            <li><button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition">Cotton Combed 30s + DTF</button></li>
+            <li><button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition">Cotton Combed 24s + DTF</button></li>
+            <li><button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition">Kaos Lengan Panjang + DTF</button></li>
+            <li><button type="button" onclick="openStorefrontPage('katalog')" class="hover:text-brand-600 transition">Heavyweight Combed 20s + DTF</button></li>
+          </ul>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-slate-900 font-bold text-xs uppercase tracking-wider">Layanan &amp; Bantuan</h4>
+          <ul class="space-y-1.5 text-xs text-slate-600">
+            <li><button type="button" onclick="openOrderPage()" class="hover:text-brand-600 transition">Studio Desain Kaos Online</button></li>
+            <li><button type="button" onclick="openTutorialModal()" class="hover:text-brand-600 transition">Panduan Cara Desain &amp; Order</button></li>
+            <li><button type="button" onclick="openStorefrontPage('keunggulan-dtf')" class="hover:text-brand-600 transition">Spesifikasi Cetak DTF</button></li>
           </ul>
         </div>
 
         <div class="space-y-2.5">
-          <h4 class="text-white font-bold text-xs uppercase tracking-wider">Layanan &amp; Bantuan</h4>
-          <ul class="space-y-2 text-xs">
-            <li><button type="button" onclick="openOrderPage()" class="hover:text-white transition">Formulir Order Online</button></li>
-            <li><button type="button" onclick="openTutorialModal()" class="hover:text-white transition">Panduan Cara Pemesanan</button></li>
-            <li><button type="button" onclick="openStorefrontPage('jenis-sablon')" class="hover:text-white transition">Perbandingan Jenis Sablon</button></li>
-          </ul>
-        </div>
-
-        <div class="space-y-3">
-          <h4 class="text-white font-bold text-xs uppercase tracking-wider">Jam Operasional Workshop</h4>
-          <div class="flex items-start gap-2 text-xs">
-            <i data-lucide="clock" class="w-4 h-4 text-brand-500 shrink-0 mt-0.5"></i>
-            <div>
-              <p class="text-white font-semibold">Senin – Sabtu: 08.00 – 17.00 WIB</p>
-              <p class="text-slate-400 mt-0.5">Order online via formulir web buka 24 jam.</p>
-            </div>
-          </div>
+          <h4 class="text-slate-900 font-bold text-xs uppercase tracking-wider">Workshop &amp; Order</h4>
+          <p class="text-xs text-slate-600">Senin – Sabtu: 08.00 – 17.00 WIB<br/>Studio Desain Online aktif 24 jam.</p>
           <button type="button" onclick="openOrderPage()"
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold transition">
-            <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-            <span>Order Sekarang</span>
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">
+            <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
+            <span>Mulai Desain Sekarang</span>
           </button>
         </div>
       </div>
 
-      <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-        <p>&copy; 2026 KaosCraft Studio. All rights reserved.</p>
-        <p>Custom Kaos Satuan • Komunitas • Merchandise • Event</p>
+      <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <p>&copy; 2026 KaosCraft Studio. Spesialis Kaos &amp; Sablon DTF.</p>
+        <p>Satuan • Komunitas • Merchandise • Event</p>
       </div>
     </div>
   </footer>
 
   <!-- =========================================================
-       MODAL 1: PANDUAN UKURAN (MUNCUL SAAT KLIK ICON PANDUAN DI ORDER)
+       MODAL 1: PANDUAN UKURAN (DIBUKA DARI TOMBOL PANDUAN UKURAN)
   ========================================================== -->
   <div id="sizeChartModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target === this) closeSizeChartModal()">
     <div class="bg-white rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-slate-200 animate-modal-pop">
-      <div class="px-5 sm:px-6 py-4 bg-slate-900 text-white flex items-center justify-between gap-3">
+      <div class="px-5 sm:px-6 py-4 bg-brand-700 text-white flex items-center justify-between gap-3">
         <div class="flex items-center gap-2.5 min-w-0">
-          <div class="w-8 h-8 rounded-xl bg-brand-600 flex items-center justify-center shrink-0">
+          <div class="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
             <i data-lucide="ruler" class="w-4 h-4 text-white"></i>
           </div>
           <div class="min-w-0">
             <h3 class="font-extrabold text-sm sm:text-base truncate">Panduan Ukuran Kaos (Size Chart)</h3>
-            <p class="text-[11px] text-slate-300 truncate">Regular Fit Asian Size • Satuan Centimeter (cm)</p>
+            <p class="text-[11px] text-brand-100 truncate">Regular Fit Asian Size • Satuan Centimeter (cm)</p>
           </div>
         </div>
 
         <button type="button" onclick="closeSizeChartModal()" aria-label="Tutup Panduan Ukuran"
-          class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition shrink-0">
+          class="w-8 h-8 rounded-xl bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition shrink-0">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
@@ -1066,7 +1164,7 @@
   </div>
 
   <!-- =========================================================
-       MODAL 2: BANTUAN / TUTORIAL ORDER (DIBUKA DARI TOMBOL ?)
+       MODAL 2: BANTUAN / TUTORIAL (DIBUKA DARI TOMBOL ?)
   ========================================================== -->
   <div id="tutorialModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target === this) closeTutorialModal()">
     <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-200 animate-modal-pop">
@@ -1077,7 +1175,7 @@
           </span>
           <div class="min-w-0">
             <p class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-brand-100">Pusat Bantuan</p>
-            <h3 class="font-extrabold text-sm sm:text-base leading-tight truncate">Panduan Cara Memesan</h3>
+            <h3 class="font-extrabold text-sm sm:text-base leading-tight truncate">Cara Desain &amp; Order Kaos DTF</h3>
           </div>
         </div>
 
@@ -1127,13 +1225,13 @@
   <div id="loadingOverlay" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl space-y-4">
       <div class="w-12 h-12 border-4 border-brand-200 border-t-brand-600 rounded-full animate-spin mx-auto"></div>
-      <h4 class="font-extrabold text-lg text-slate-900">Menyimpan pesanan &amp; mengunggah desain...</h4>
+      <h4 class="font-extrabold text-lg text-slate-900">Menyimpan pesanan &amp; desain...</h4>
       <p class="text-xs text-slate-500 leading-relaxed">Mohon tunggu sebentar, jangan tutup halaman ini hingga diarahkan ke WhatsApp Admin.</p>
     </div>
   </div>
 
   <!-- =========================================================
-       APPLICATION LOGIC (VANILLA JS)
+       APPLICATION LOGIC (VANILLA JS + HTML5 CANVAS DESIGN STUDIO)
   ========================================================== -->
   <script>
     // =========================================================
@@ -1143,148 +1241,121 @@
     const ADMIN_WHATSAPP = "628XXXXXXXXXX"; // Format awalan 62 tanpa tanda +
 
     // =========================================================
-    // 2. DATA HERO CAMPAIGN SLIDER (GAYA CITITEX STOREFRONT)
-    // =========================================================
-    const HERO_SLIDES = [
-      {
-        badge: "PUSAT KAOS POLOS & SABLON CUSTOM",
-        title: "Cetak Kaos Custom <span class='text-brand-400'>Satuan &amp; Partai</span> Kualitas Standar Distro.",
-        desc: "Bahan 100% Cotton Combed 24s &amp; 30s asli yang adem menyerap keringat, dipadukan sablon DTF High-Res &amp; Plastisol tajam dan anti retak.",
-        primaryText: "Mulai Order Sekarang",
-        secondaryText: "Lihat Katalog Paket",
-        secondaryTarget: "katalog",
-        tagTitle: "Best Seller Combed 24s + DTF",
-        tagPrice: "Mulai Rp 65.000 / pcs",
-        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=80"
-      },
-      {
-        badge: "PAKET KOMUNITAS, EVENT & PERUSAHAAN",
-        title: "Produksi Seragam Kaos <span class='text-brand-400'>Cepat &amp; Presisi</span> Harga Bersahabat.",
-        desc: "Mendukung variasi ukuran lengkap S hingga XXL, pilihan lengan pendek maupun lengan panjang, serta gratis simulasi mockup sebelum naik produksi.",
-        primaryText: "Pesan Paket Komunitas",
-        secondaryText: "Cek Jenis Sablon",
-        secondaryTarget: "jenis-sablon",
-        tagTitle: "Paket Gathering & Panitia",
-        tagPrice: "Harga Spesial Partai",
-        image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80"
-      },
-      {
-        badge: "ORDER ONLINE PRAKTIS 24 JAM",
-        title: "Upload Desain Anda, <span class='text-brand-400'>Langsung Terhubung</span> ke WhatsApp Admin.",
-        desc: "Cukup pilih warna kaos, isi rincian ukuran, unggah file desain PNG/JPG/PDF, dan rincian order otomatis terkirim untuk diproses tim desain kami.",
-        primaryText: "Upload Desain Sekarang",
-        secondaryText: "Cara Pemesanan",
-        secondaryTarget: "cara-pesan",
-        tagTitle: "Free Digital Mockup Preview",
-        tagPrice: "Tanpa Minimum Order",
-        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1000&q=80"
-      }
-    ];
-
-    // =========================================================
-    // 3. DATA PANDUAN TUTORIAL (DIBUKA DARI TOMBOL BANTUAN ?)
+    // 2. DATA PANDUAN TUTORIAL (DIBUKA DARI TOMBOL BANTUAN ?)
     // =========================================================
     const TUTORIAL_STEPS = [
       {
-        icon: "layout-grid",
-        badge: "Langkah 1 • Pilih Paket / Mulai Order",
-        title: "Pilih Model di Katalog atau Klik Order",
-        desc: "Pilih paket bahan &amp; sablon pada katalog depan lalu klik <strong>\"Order Model Ini\"</strong>, atau klik tombol hijau <strong>\"Order Sekarang\"</strong> di pojok kanan atas."
-      },
-      {
         icon: "shirt",
-        badge: "Langkah 2 • Isi Data, Warna & Ukuran",
-        title: "Tentukan Warna & Jumlah Per Ukuran",
-        desc: "Pada halaman pemesanan, isi Nama &amp; No. WhatsApp Anda, pilih warna kaos, klik <strong>\"Panduan Ukuran\"</strong> untuk melihat tabel cm, lalu atur jumlah <strong>S–XXL</strong>."
+        badge: "Langkah 1 • Pilih Kaos & Warna",
+        title: "Pilih Model Kaos & Warna Favorit",
+        desc: "Buka halaman <strong>Desain &amp; Order</strong>, pilih tampilan <strong>Lengan Pendek</strong> atau <strong>Lengan Panjang</strong>, lalu klik pilihan warna kaos. Warna kaos di kanvas otomatis berubah."
       },
       {
-        icon: "upload-cloud",
-        badge: "Langkah 3 • Sablon & Upload Desain",
-        title: "Atur Sisi Cetak & Unggah File Desain",
-        desc: "Pilih sisi sablon (Depan, Belakang, atau Keduanya), unggah file desain Anda (PNG/JPG/PDF maks. 8 MB), lalu tentukan metode pengambilan/pengiriman serta nominal DP."
+        icon: "wand-2",
+        badge: "Langkah 2 • Desain Sendiri di Kanvas",
+        title: "Upload Gambar atau Tambah Teks",
+        desc: "Klik <strong>\"Upload Desain\"</strong> atau <strong>\"Tambah / Edit Teks\"</strong> pada Tampak Depan maupun Tampak Belakang. Anda bisa menggeser desain langsung di atas kaos dan mengatur besar-kecilnya."
+      },
+      {
+        icon: "ruler",
+        badge: "Langkah 3 • Isi Ukuran S–XXL",
+        title: "Tentukan Jumlah Per Ukuran",
+        desc: "Klik tombol <strong>\"Panduan Ukuran\"</strong> bila perlu mengecek tabel cm, lalu masukkan jumlah pesanan pada ukuran <strong>S, M, L, XL, atau XXL</strong>."
       },
       {
         icon: "message-circle",
         badge: "Langkah 4 • Kirim ke WhatsApp Admin",
         title: "Otomatis Tersimpan & Terhubung ke WA",
-        desc: "Centang persetujuan ketentuan order dan klik <strong>\"Order Sekarang\"</strong>. Rincian pesanan + link file desain otomatis tersimpan dan langsung membuka chat WhatsApp Admin!"
+        desc: "Isi data pengiriman, centang persetujuan ketentuan DTF, dan klik <strong>\"Order Sekarang\"</strong>. Rincian pesanan + desain otomatis tersimpan dan membuka chat WhatsApp Admin!"
       }
     ];
 
     // =========================================================
-    // 4. DATA KATALOG PRODUK & WARNA KAOS
+    // 3. DATA KATALOG PRODUK (100% KHUSUS SABLON DTF)
     // =========================================================
     const CATALOG_PRODUCTS = [
       {
-        id: "paket-dtf-24s",
-        category: "komunitas",
-        title: "Paket Komunitas Combed 24s",
-        badge: "Combed 24s + DTF",
-        price: "Mulai Rp 65.000",
-        description: "Bahan tebal sedang yang adem untuk acara komunitas, panitia event, dan merchandise.",
-        defaultColor: "Hitam Jet Black",
-        defaultPrintSide: "Depan & Belakang",
-        specNote: "Paket Katalog: Combed 24s + Sablon DTF (Estimasi mulai Rp 65.000/pcs)",
-        image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: "paket-minimalis-30s",
+        id: "dtf-daily-30s",
         category: "satuan",
-        title: "Daily Tee Logo Dada",
-        badge: "Combed 30s + DTF",
+        sleeve: "short",
+        title: "Combed 30s + Sablon DTF Logo",
+        badge: "Combed 30s • DTF",
         price: "Mulai Rp 58.000",
-        description: "Potongan ringan & sejuk untuk pemakaian harian, seragam cafe, maupun brand clothing minimalis.",
+        description: "Kaos katun ringan dan sejuk untuk pemakaian harian, seragam cafe, maupun order satuan.",
         defaultColor: "Putih Solid",
+        defaultColorHex: "#FFFFFF",
         defaultPrintSide: "Depan Saja",
-        specNote: "Paket Katalog: Combed 30s + Sablon DTF Logo Dada (Estimasi mulai Rp 58.000/pcs)",
+        specNote: "Paket Katalog: Cotton Combed 30s + Sablon DTF Logo (Estimasi mulai Rp 58.000/pcs)",
         image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
       },
       {
-        id: "paket-longsleeve-plastisol",
-        category: "longsleeve",
-        title: "Long Sleeve Plastisol Ink",
-        badge: "Lengan Panjang + Plastisol",
-        price: "Mulai Rp 82.000",
-        description: "Kaos lengan panjang rib karet dengan tinta plastisol standar distro yang pekat dan tahan lama.",
-        defaultColor: "Navy Dongker",
+        id: "dtf-komunitas-24s",
+        category: "komunitas",
+        sleeve: "short",
+        title: "Combed 24s + Sablon DTF A4/A3",
+        badge: "Combed 24s • DTF",
+        price: "Mulai Rp 65.000",
+        description: "Ketebalan pas dan adem, paling favorit untuk acara komunitas, panitia event, dan merchandise.",
+        defaultColor: "Hitam Jet Black",
+        defaultColorHex: "#111827",
         defaultPrintSide: "Depan & Belakang",
-        specNote: "Paket Katalog: Lengan Panjang Combed 24s + Sablon Plastisol (Estimasi mulai Rp 82.000/pcs)",
+        specNote: "Paket Katalog: Cotton Combed 24s + Sablon DTF Depan & Belakang (Estimasi mulai Rp 65.000/pcs)",
+        image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "dtf-longsleeve-24s",
+        category: "longsleeve",
+        sleeve: "long",
+        title: "Lengan Panjang + Sablon DTF",
+        badge: "Long Sleeve • DTF",
+        price: "Mulai Rp 78.000",
+        description: "Kaos lengan panjang Combed 24s dengan rib ujung lengan elastis dan cetak DTF full-color.",
+        defaultColor: "Navy Dongker",
+        defaultColorHex: "#1E293B",
+        defaultPrintSide: "Depan & Belakang",
+        specNote: "Paket Katalog: Lengan Panjang Combed 24s + Sablon DTF (Estimasi mulai Rp 78.000/pcs)",
         image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80"
       },
       {
-        id: "paket-heavyweight-20s",
+        id: "dtf-heavyweight-20s",
         category: "satuan",
-        title: "Heavyweight Streetwear 20s",
-        badge: "Combed 20s + DTF A3",
-        price: "Mulai Rp 88.000",
-        description: "Gramasi tebal kokoh bergaya streetwear modern dengan hasil sablon full punggung presisi.",
+        sleeve: "short",
+        title: "Heavyweight 20s + DTF Full A3",
+        badge: "Combed 20s • DTF A3",
+        price: "Mulai Rp 85.000",
+        description: "Gramasi tebal kokoh bergaya streetwear modern dengan hasil sablon DTF besar di dada atau punggung.",
         defaultColor: "Cream / Sand",
+        defaultColorHex: "#E7DFD5",
         defaultPrintSide: "Depan & Belakang",
-        specNote: "Paket Katalog: Heavyweight Combed 20s + Sablon DTF A3 (Estimasi mulai Rp 88.000/pcs)",
+        specNote: "Paket Katalog: Heavyweight Combed 20s + Sablon DTF Full A3 (Estimasi mulai Rp 85.000/pcs)",
         image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80"
       },
       {
-        id: "paket-gathering-maroon",
+        id: "dtf-gathering-maroon",
         category: "komunitas",
-        title: "Seragam Gathering & Outing",
-        badge: "Combed 24s + Plastisol",
+        sleeve: "short",
+        title: "Seragam Gathering + Sablon DTF",
+        badge: "Combed 24s • DTF",
         price: "Mulai Rp 68.000",
-        description: "Pilihan favorit perusahaan dan kampus untuk kegiatan outing, gathering, dan bakti sosial.",
+        description: "Pilihan tepat untuk seragam outing kantor, kampus, dan organisasi dengan detail logo tajam.",
         defaultColor: "Maroon",
+        defaultColorHex: "#7F1D1D",
         defaultPrintSide: "Depan & Belakang",
-        specNote: "Paket Katalog: Seragam Gathering Combed 24s + Plastisol (Estimasi mulai Rp 68.000/pcs)",
+        specNote: "Paket Katalog: Seragam Gathering Combed 24s + Sablon DTF (Estimasi mulai Rp 68.000/pcs)",
         image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=80"
       },
       {
-        id: "paket-jersey-polyflex",
+        id: "dtf-longsleeve-custom",
         category: "longsleeve",
-        title: "Long Sleeve Custom Nama",
-        badge: "Lengan Panjang + Polyflex",
-        price: "Mulai Rp 85.000",
-        description: "Cocok untuk tim lapangan atau panitia dengan nama punggung/nomor berbeda tiap kaos.",
+        sleeve: "long",
+        title: "Lengan Panjang + DTF Nama/Tim",
+        badge: "Long Sleeve • DTF",
+        price: "Mulai Rp 80.000",
+        description: "Cocok untuk tim lapangan atau panitia yang membutuhkan cetak nama & desain full-color.",
         defaultColor: "Hijau Botol",
-        defaultPrintSide: "Belakang Saja",
-        specNote: "Paket Katalog: Lengan Panjang Combed 24s + Sablon Polyflex Nama/Nomor (Estimasi mulai Rp 85.000/pcs)",
+        defaultColorHex: "#064E3B",
+        defaultPrintSide: "Depan & Belakang",
+        specNote: "Paket Katalog: Lengan Panjang Combed 24s + Sablon DTF Tim/Nama (Estimasi mulai Rp 80.000/pcs)",
         image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&w=800&q=80"
       }
     ];
@@ -1304,38 +1375,74 @@
     const SIZES = ["S", "M", "L", "XL", "XXL"];
 
     // =========================================================
-    // 5. STATE APLIKASI
+    // 4. STATE APLIKASI & STUDIO DESAIN KANVAS
     // =========================================================
     const state = {
       currentView: "storefront",
-      heroSlideIndex: 0,
-      heroTimer: null,
       activeCatalogFilter: "all",
       tutorialStep: 0,
       selectedColor: "Hitam Jet Black",
+      selectedColorHex: "#111827",
       quantities: {
         short: { S: 0, M: 0, L: 0, XL: 0, XXL: 0 },
         long: { S: 0, M: 0, L: 0, XL: 0, XXL: 0 }
+      },
+      studio: {
+        sleeve: "short", // "short" | "long"
+        activeSide: "front", // "front" | "back"
+        front: {
+          img: null,
+          imgDataUrl: null,
+          imgName: "",
+          text: "",
+          textColor: "#FFFFFF",
+          textFont: "'Plus Jakarta Sans', sans-serif",
+          x: 400, // center X in 800x920 canvas
+          y: 375, // center Y
+          scale: 42 // % of printable zone width
+        },
+        back: {
+          img: null,
+          imgDataUrl: null,
+          imgName: "",
+          text: "",
+          textColor: "#FFFFFF",
+          textFont: "'Plus Jakarta Sans', sans-serif",
+          x: 400,
+          y: 390,
+          scale: 65
+        },
+        isDragging: false,
+        dragOffsetX: 0,
+        dragOffsetY: 0
       },
       uploadedFile: null,
       lastWhatsAppText: "",
       lastWhatsAppUrl: ""
     };
 
+    // Offscreen canvas for 3-layer realistic shirt clipping
+    const bufferCanvas = document.createElement("canvas");
+    bufferCanvas.width = 800;
+    bufferCanvas.height = 920;
+    const bufferCtx = bufferCanvas.getContext("2d");
+
     // =========================================================
-    // 6. INISIALISASI SAAT DOM READY
+    // 5. INISIALISASI SAAT DOM READY
     // =========================================================
     document.addEventListener("DOMContentLoaded", () => {
-      initHeroSlider();
       renderCatalogGrid("all");
       renderOrderColorSwatches();
       renderSizeMatrices();
       setupPrintSideListeners();
+      setupStudioCanvasEvents();
       setupDropzone();
       setupCurrencyFormatters();
       setupValidationAndSubmit();
       setupMobileMenu();
       setupRouting();
+      updateStudioControlsUI();
+      renderTshirtCanvas(true);
       lucide.createIcons();
     });
 
@@ -1350,94 +1457,7 @@
     }
 
     // =========================================================
-    // 7. HERO BANNER SLIDER (CITITEX CAMPAIGN BANNER)
-    // =========================================================
-    function initHeroSlider() {
-      renderHeroSlide();
-      startHeroAutoSlide();
-    }
-
-    function startHeroAutoSlide() {
-      if (state.heroTimer) clearInterval(state.heroTimer);
-      state.heroTimer = setInterval(() => {
-        state.heroSlideIndex = (state.heroSlideIndex + 1) % HERO_SLIDES.length;
-        renderHeroSlide();
-      }, 6500);
-    }
-
-    function changeHeroSlide(delta) {
-      state.heroSlideIndex = (state.heroSlideIndex + delta + HERO_SLIDES.length) % HERO_SLIDES.length;
-      renderHeroSlide();
-      startHeroAutoSlide();
-    }
-
-    function goToHeroSlide(index) {
-      state.heroSlideIndex = index;
-      renderHeroSlide();
-      startHeroAutoSlide();
-    }
-
-    function renderHeroSlide() {
-      const slide = HERO_SLIDES[state.heroSlideIndex];
-      const container = document.getElementById("heroSlideContent");
-      const dots = document.getElementById("heroDots");
-
-      container.innerHTML = `
-        <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 space-y-5">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-[11px] sm:text-xs font-extrabold tracking-wider uppercase">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 shrink-0"></i>
-            <span>${slide.badge}</span>
-          </div>
-
-          <h1 class="text-2xl sm:text-4xl lg:text-[2.75rem] font-extrabold leading-[1.18] tracking-tight text-white">
-            ${slide.title}
-          </h1>
-
-          <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
-            ${slide.desc}
-          </p>
-
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
-            <button type="button" onclick="openOrderPage()"
-              class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-brand-600/25 transition whitespace-nowrap">
-              <i data-lucide="pen-tool" class="w-4 h-4 shrink-0"></i>
-              <span>${slide.primaryText}</span>
-            </button>
-            <a href="#${slide.secondaryTarget}"
-              class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl border border-white/15 transition whitespace-nowrap">
-              <span>${slide.secondaryText}</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 shrink-0"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5 p-5 sm:p-8 lg:pr-10">
-          <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-800 border border-white/10 shadow-2xl">
-            <img src="${slide.image}" alt="${slide.tagTitle}" class="w-full h-full object-cover" />
-            <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg flex items-center justify-between gap-3">
-              <div class="min-w-0">
-                <p class="text-[10px] font-extrabold uppercase tracking-wider text-brand-600 truncate">Rekomendasi Workshop</p>
-                <p class="text-xs sm:text-sm font-extrabold text-slate-900 truncate">${slide.tagTitle}</p>
-              </div>
-              <span class="px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 border border-brand-200 text-[11px] font-extrabold shrink-0">
-                ${slide.tagPrice}
-              </span>
-            </div>
-          </div>
-        </div>
-      `;
-
-      dots.innerHTML = HERO_SLIDES.map((_, idx) => `
-        <button type="button" onclick="goToHeroSlide(${idx})" aria-label="Banner ${idx + 1}"
-          class="h-2 rounded-full transition-all duration-300 ${idx === state.heroSlideIndex ? "w-7 bg-brand-500" : "w-2 bg-white/30 hover:bg-white/50"}">
-        </button>
-      `).join("");
-
-      lucide.createIcons();
-    }
-
-    // =========================================================
-    // 8. KATALOG PRODUK DENGAN FILTER KATEGORI
+    // 6. KATALOG PRODUK DENGAN FILTER KATEGORI
     // =========================================================
     function filterCatalog(category) {
       state.activeCatalogFilter = category;
@@ -1445,9 +1465,9 @@
       document.querySelectorAll(".catalog-filter-btn").forEach(btn => {
         const isActive = btn.getAttribute("data-filter") === category;
         if (isActive) {
-          btn.className = "catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-white whitespace-nowrap transition";
+          btn.className = "catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 text-white whitespace-nowrap transition";
         } else {
-          btn.className = "catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:border-slate-400 whitespace-nowrap transition";
+          btn.className = "catalog-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:border-brand-500 whitespace-nowrap transition";
         }
       });
 
@@ -1467,10 +1487,10 @@
               src="${item.image}"
               alt="${item.title}"
               loading="lazy"
-              onerror="this.src='https://placehold.co/800x1000/e2e8f0/475569?text=Foto+Produk+Kaos'"
+              onerror="this.src='https://placehold.co/800x1000/e2e8f0/475569?text=Kaos+Sablon+DTF'"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <span class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-slate-900/85 backdrop-blur-md text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full max-w-[calc(100%-1.25rem)] truncate">
+            <span class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-white/95 backdrop-blur-md text-slate-900 border border-slate-200/80 text-[10px] sm:text-xs font-extrabold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full max-w-[calc(100%-1.25rem)] truncate shadow-2xs">
               ${item.badge}
             </span>
           </div>
@@ -1489,9 +1509,9 @@
               <button
                 type="button"
                 onclick="selectCatalogModel('${item.id}')"
-                class="w-full xl:w-auto inline-flex items-center justify-center gap-1.5 bg-brand-50 hover:bg-brand-600 active:scale-[0.99] text-brand-700 hover:text-white border border-brand-200 hover:border-brand-600 font-bold text-[11px] sm:text-xs px-3 py-2.5 sm:px-4 rounded-xl transition-all whitespace-nowrap shrink-0">
-                <span>Order Model Ini</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5 shrink-0"></i>
+                class="w-full xl:w-auto inline-flex items-center justify-center gap-1.5 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white font-bold text-[11px] sm:text-xs px-3.5 py-2.5 rounded-xl transition-all whitespace-nowrap shrink-0">
+                <i data-lucide="pen-tool" class="w-3.5 h-3.5 shrink-0"></i>
+                <span>Desain Model Ini</span>
               </button>
             </div>
           </div>
@@ -1507,21 +1527,12 @@
       openOrderPage({ product });
     }
 
-    function openOrderWithPrintNote(noteText) {
-      openOrderPage();
-      const notesEl = document.getElementById("designNotes");
-      const current = notesEl.value.trim();
-      if (!current.includes(noteText)) {
-        notesEl.value = current ? `${noteText}\n${current}` : noteText;
-      }
-    }
-
     function clearSelectedModel() {
       document.getElementById("selectedModelBanner").classList.add("hidden");
     }
 
     // =========================================================
-    // 9. NAVIGASI HALAMAN (STOREFRONT VS HALAMAN FORM ORDER)
+    // 7. NAVIGASI HALAMAN (STOREFRONT VS STUDIO DESAIN & ORDER)
     // =========================================================
     function setupRouting() {
       if (window.location.hash === "#order") {
@@ -1560,7 +1571,8 @@
 
       if (options && options.product) {
         const product = options.product;
-        selectColor(product.defaultColor);
+        selectColor(product.defaultColor, product.defaultColorHex);
+        setStudioSleeve(product.sleeve || "short");
 
         const radio = document.querySelector(`input[name="printSide"][value="${product.defaultPrintSide}"]`);
         if (radio) {
@@ -1582,6 +1594,7 @@
         history.pushState(null, "", "#order");
       }
 
+      renderTshirtCanvas(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
       lucide.createIcons();
     }
@@ -1612,7 +1625,7 @@
     }
 
     // =========================================================
-    // 10. MODAL PANDUAN UKURAN & MODAL BANTUAN
+    // 8. MODAL PANDUAN UKURAN & MODAL BANTUAN
     // =========================================================
     function openSizeChartModal() {
       document.getElementById("sizeChartModal").classList.remove("hidden");
@@ -1681,13 +1694,578 @@
     }
 
     // =========================================================
-    // 11. RENDER COLOR SWATCHES & MATRIKS UKURAN
+    // 9. STUDIO DESAIN KAOS INTERAKTIF (HTML5 CANVAS 3-LAPIS)
+    // =========================================================
+    function setStudioSleeve(sleeveType) {
+      state.studio.sleeve = sleeveType;
+      const shortBtn = document.getElementById("studioSleeveShortBtn");
+      const longBtn = document.getElementById("studioSleeveLongBtn");
+
+      if (sleeveType === "short") {
+        shortBtn.className = "px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-white text-slate-900 shadow-2xs transition whitespace-nowrap";
+        longBtn.className = "px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-slate-600 hover:text-slate-900 transition whitespace-nowrap";
+      } else {
+        longBtn.className = "px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-white text-slate-900 shadow-2xs transition whitespace-nowrap";
+        shortBtn.className = "px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-slate-600 hover:text-slate-900 transition whitespace-nowrap";
+      }
+
+      updateCanvasInfoTags();
+      renderTshirtCanvas(true);
+    }
+
+    function setStudioSide(side) {
+      state.studio.activeSide = side;
+      const frontBtn = document.getElementById("viewFrontBtn");
+      const backBtn = document.getElementById("viewBackBtn");
+
+      if (side === "front") {
+        frontBtn.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-extrabold bg-brand-600 text-white shadow-xs transition";
+        backBtn.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200/70 transition";
+        document.getElementById("uploadSideBtnText").textContent = "Upload Desain Depan";
+        document.getElementById("textEditorSideLabel").textContent = "Depan";
+      } else {
+        backBtn.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-extrabold bg-brand-600 text-white shadow-xs transition";
+        frontBtn.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200/70 transition";
+        document.getElementById("uploadSideBtnText").textContent = "Upload Desain Belakang";
+        document.getElementById("textEditorSideLabel").textContent = "Belakang";
+      }
+
+      // Sync text editor values for active side
+      const sideObj = state.studio[side];
+      document.getElementById("studioTextInput").value = sideObj.text || "";
+      document.getElementById("studioTextFont").value = sideObj.textFont;
+      document.getElementById("studioTextColor").value = sideObj.textColor;
+
+      updateStudioControlsUI();
+      renderTshirtCanvas(true);
+    }
+
+    function triggerStudioImageUpload() {
+      document.getElementById("studioImageInput").click();
+    }
+
+    function toggleTextEditorBox() {
+      const box = document.getElementById("studioTextEditor");
+      box.classList.toggle("hidden");
+      if (!box.classList.contains("hidden")) {
+        document.getElementById("studioTextInput").focus();
+      }
+    }
+
+    function setQuickTextColor(hex) {
+      document.getElementById("studioTextColor").value = hex;
+      const sideObj = state.studio[state.studio.activeSide];
+      sideObj.textColor = hex;
+      renderTshirtCanvas(true);
+    }
+
+    function clearSideText() {
+      const sideObj = state.studio[state.studio.activeSide];
+      sideObj.text = "";
+      document.getElementById("studioTextInput").value = "";
+      syncPrintSideFromStudio();
+      updateStudioControlsUI();
+      renderTshirtCanvas(true);
+    }
+
+    function removeActiveSideDesign() {
+      const side = state.studio.activeSide;
+      const sideObj = state.studio[side];
+      sideObj.img = null;
+      sideObj.imgDataUrl = null;
+      sideObj.imgName = "";
+      sideObj.text = "";
+      document.getElementById("studioTextInput").value = "";
+      syncPrintSideFromStudio();
+      updateStudioControlsUI();
+      renderTshirtCanvas(true);
+    }
+
+    function applyPositionPreset(presetKey) {
+      const side = state.studio.activeSide;
+      const sideObj = state.studio[side];
+
+      if (side === "front") {
+        if (presetKey === "dada-kiri") {
+          sideObj.x = 468;
+          sideObj.y = 335;
+          sideObj.scale = 26;
+          document.getElementById("frontPrintPosition").value = "Dada Kiri";
+          document.getElementById("frontPrintSize").value = "Logo Dada 10x10 cm";
+        } else if (presetKey === "tengah-dada") {
+          sideObj.x = 400;
+          sideObj.y = 370;
+          sideObj.scale = 55;
+          document.getElementById("frontPrintPosition").value = "Tengah Dada";
+          document.getElementById("frontPrintSize").value = "A4 (21x29 cm)";
+        } else if (presetKey === "full-a3") {
+          sideObj.x = 400;
+          sideObj.y = 430;
+          sideObj.scale = 82;
+          document.getElementById("frontPrintPosition").value = "Full Depan (A3)";
+          document.getElementById("frontPrintSize").value = "Full A3 (29x42 cm)";
+        }
+      } else {
+        if (presetKey === "tengkuk") {
+          sideObj.x = 400;
+          sideObj.y = 245;
+          sideObj.scale = 26;
+          document.getElementById("backPrintPosition").value = "Tengkuk / Leher Atas";
+          document.getElementById("backPrintSize").value = "Logo Tengkuk 8x8 cm";
+        } else if (presetKey === "tengah-punggung") {
+          sideObj.x = 400;
+          sideObj.y = 370;
+          sideObj.scale = 62;
+          document.getElementById("backPrintPosition").value = "Tengah Punggung";
+          document.getElementById("backPrintSize").value = "A4 / Sedang (24x30 cm)";
+        } else if (presetKey === "full-punggung") {
+          sideObj.x = 400;
+          sideObj.y = 430;
+          sideObj.scale = 85;
+          document.getElementById("backPrintPosition").value = "Full Punggung (A3)";
+          document.getElementById("backPrintSize").value = "Full Punggung A3 (29x42 cm)";
+        }
+      }
+
+      document.getElementById("designScaleSlider").value = sideObj.scale;
+      document.getElementById("scalePercentLabel").textContent = `${sideObj.scale}%`;
+      updateCanvasInfoTags();
+      renderTshirtCanvas(true);
+    }
+
+    function updateStudioControlsUI() {
+      const side = state.studio.activeSide;
+      const sideObj = state.studio[side];
+      const hasContent = Boolean(sideObj.img || (sideObj.text && sideObj.text.trim().length > 0));
+
+      const controlsBox = document.getElementById("activeLayerControls");
+      const presetContainer = document.getElementById("presetButtonsContainer");
+
+      if (hasContent) {
+        controlsBox.classList.remove("hidden");
+        document.getElementById("designScaleSlider").value = sideObj.scale;
+        document.getElementById("scalePercentLabel").textContent = `${sideObj.scale}%`;
+
+        if (side === "front") {
+          presetContainer.innerHTML = `
+            <button type="button" onclick="applyPositionPreset('dada-kiri')" class="py-1.5 px-2 rounded-lg bg-white border border-slate-200 hover:border-brand-600 text-[11px] font-bold text-slate-700 transition">Dada Kiri</button>
+            <button type="button" onclick="applyPositionPreset('tengah-dada')" class="py-1.5 px-2 rounded-lg bg-white border border-slate-200 hover:border-brand-600 text-[11px] font-bold text-slate-700 transition">Tengah Dada</button>
+            <button type="button" onclick="applyPositionPreset('full-a3')" class="py-1.5 px-2 rounded-lg bg-white border border-slate-200 hover:border-brand-600 text-[11px] font-bold text-slate-700 transition">Full A3</button>
+          `;
+        } else {
+          presetContainer.innerHTML = `
+            <button type="button" onclick="applyPositionPreset('tengkuk')" class="py-1.5 px-2 rounded-lg bg-white border border-slate-200 hover:border-brand-600 text-[11px] font-bold text-slate-700 transition">Tengkuk Atas</button>
+            <button type="button" onclick="applyPositionPreset('tengah-punggung')" class="py-1.5 px-2 rounded-lg bg-white border border-slate-200 hover:border-brand-600 text-[11px] font-bold text-slate-700 transition">Tengah</button>
+            <button type="button" onclick="applyPositionPreset('full-punggung')" class="py-1.5 px-2 rounded-lg bg-white border border-slate-200 hover:border-brand-600 text-[11px] font-bold text-slate-700 transition">Full A3</button>
+          `;
+        }
+      } else {
+        controlsBox.classList.add("hidden");
+      }
+
+      // Update indicator dots on Front/Back buttons
+      const frontHas = Boolean(state.studio.front.img || state.studio.front.text.trim());
+      const backHas = Boolean(state.studio.back.img || state.studio.back.text.trim());
+      document.getElementById("frontDesignDot").classList.toggle("hidden", !frontHas);
+      document.getElementById("backDesignDot").classList.toggle("hidden", !backHas);
+
+      updateCanvasInfoTags();
+    }
+
+    function syncPrintSideFromStudio() {
+      const frontHas = Boolean(state.studio.front.img || state.studio.front.text.trim());
+      const backHas = Boolean(state.studio.back.img || state.studio.back.text.trim());
+
+      let targetRadioValue = null;
+      if (frontHas && backHas) targetRadioValue = "Depan & Belakang";
+      else if (frontHas) targetRadioValue = "Depan Saja";
+      else if (backHas) targetRadioValue = "Belakang Saja";
+
+      if (targetRadioValue) {
+        const radio = document.querySelector(`input[name="printSide"][value="${targetRadioValue}"]`);
+        if (radio && !radio.checked) {
+          radio.checked = true;
+          updatePrintSideVisibility();
+        }
+      }
+    }
+
+    function updateCanvasInfoTags() {
+      const sleeveLabel = state.studio.sleeve === "short" ? "Pendek" : "Panjang";
+      document.getElementById("canvasColorTag").textContent = `${state.selectedColor} • ${sleeveLabel}`;
+
+      const sideObj = state.studio[state.studio.activeSide];
+      const hasContent = Boolean(sideObj.img || (sideObj.text && sideObj.text.trim()));
+      const dimTag = document.getElementById("canvasPrintDimTag");
+
+      if (!hasContent) {
+        dimTag.textContent = "Area Cetak: Kosong";
+      } else {
+        const estWidthCm = Math.round((sideObj.scale / 100) * 32);
+        const estHeightCm = Math.round(estWidthCm * 1.25);
+        dimTag.textContent = `Est. DTF: ~${estWidthCm}x${estHeightCm} cm`;
+
+        if (state.studio.activeSide === "front") {
+          document.getElementById("frontPrintSize").value = `DTF ~${estWidthCm}x${estHeightCm} cm`;
+        } else {
+          document.getElementById("backPrintSize").value = `DTF ~${estWidthCm}x${estHeightCm} cm`;
+        }
+      }
+    }
+
+    function setupStudioCanvasEvents() {
+      const canvas = document.getElementById("tshirtDesignCanvas");
+      const studioImgInput = document.getElementById("studioImageInput");
+      const textInput = document.getElementById("studioTextInput");
+      const textFont = document.getElementById("studioTextFont");
+      const textColor = document.getElementById("studioTextColor");
+      const scaleSlider = document.getElementById("designScaleSlider");
+
+      // Upload image directly onto active T-shirt side
+      studioImgInput.addEventListener("change", (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          const img = new Image();
+          img.onload = () => {
+            const side = state.studio.activeSide;
+            const sideObj = state.studio[side];
+            sideObj.img = img;
+            sideObj.imgDataUrl = evt.target.result;
+            sideObj.imgName = file.name;
+            if (side === "front") {
+              sideObj.x = 400;
+              sideObj.y = 375;
+              sideObj.scale = 50;
+            } else {
+              sideObj.x = 400;
+              sideObj.y = 390;
+              sideObj.scale = 68;
+            }
+            syncPrintSideFromStudio();
+            updateStudioControlsUI();
+            renderTshirtCanvas(true);
+          };
+          img.src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+        studioImgInput.value = "";
+      });
+
+      // Text input live update
+      textInput.addEventListener("input", (e) => {
+        const sideObj = state.studio[state.studio.activeSide];
+        sideObj.text = e.target.value;
+        syncPrintSideFromStudio();
+        updateStudioControlsUI();
+        renderTshirtCanvas(true);
+      });
+
+      textFont.addEventListener("change", (e) => {
+        state.studio[state.studio.activeSide].textFont = e.target.value;
+        renderTshirtCanvas(true);
+      });
+
+      textColor.addEventListener("input", (e) => {
+        state.studio[state.studio.activeSide].textColor = e.target.value;
+        renderTshirtCanvas(true);
+      });
+
+      // Scale slider
+      scaleSlider.addEventListener("input", (e) => {
+        const val = parseInt(e.target.value, 10);
+        state.studio[state.studio.activeSide].scale = val;
+        document.getElementById("scalePercentLabel").textContent = `${val}%`;
+        updateCanvasInfoTags();
+        renderTshirtCanvas(true);
+      });
+
+      // Pointer drag (Mouse + Touch)
+      function getCanvasPoint(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+          x: (clientX - rect.left) * (canvas.width / rect.width),
+          y: (clientY - rect.top) * (canvas.height / rect.height)
+        };
+      }
+
+      function hitTestActiveDesign(pt) {
+        const sideObj = state.studio[state.studio.activeSide];
+        if (!sideObj.img && !sideObj.text.trim()) return false;
+        const boxW = (sideObj.scale / 100) * 310;
+        const boxH = boxW * 1.25;
+        return (
+          pt.x >= sideObj.x - boxW / 2 - 25 &&
+          pt.x <= sideObj.x + boxW / 2 + 25 &&
+          pt.y >= sideObj.y - boxH / 2 - 25 &&
+          pt.y <= sideObj.y + boxH / 2 + 25
+        );
+      }
+
+      function startDrag(clientX, clientY) {
+        const pt = getCanvasPoint(clientX, clientY);
+        if (hitTestActiveDesign(pt)) {
+          const sideObj = state.studio[state.studio.activeSide];
+          state.studio.isDragging = true;
+          state.studio.dragOffsetX = pt.x - sideObj.x;
+          state.studio.dragOffsetY = pt.y - sideObj.y;
+          return true;
+        }
+        return false;
+      }
+
+      function moveDrag(clientX, clientY) {
+        if (!state.studio.isDragging) return;
+        const pt = getCanvasPoint(clientX, clientY);
+        const sideObj = state.studio[state.studio.activeSide];
+        // Constrain inside printable torso boundaries
+        sideObj.x = Math.min(545, Math.max(255, pt.x - state.studio.dragOffsetX));
+        sideObj.y = Math.min(695, Math.max(225, pt.y - state.studio.dragOffsetY));
+        renderTshirtCanvas(true);
+      }
+
+      function endDrag() {
+        state.studio.isDragging = false;
+      }
+
+      canvas.addEventListener("mousedown", (e) => startDrag(e.clientX, e.clientY));
+      window.addEventListener("mousemove", (e) => moveDrag(e.clientX, e.clientY));
+      window.addEventListener("mouseup", endDrag);
+
+      canvas.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 1) {
+          const hit = startDrag(e.touches[0].clientX, e.touches[0].clientY);
+          if (hit) e.preventDefault();
+        }
+      }, { passive: false });
+
+      canvas.addEventListener("touchmove", (e) => {
+        if (state.studio.isDragging && e.touches.length === 1) {
+          e.preventDefault();
+          moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: false });
+
+      canvas.addEventListener("touchend", endDrag);
+    }
+
+    function isColorDark(hex) {
+      const clean = hex.replace("#", "");
+      if (clean.length !== 6) return false;
+      const r = parseInt(clean.substring(0, 2), 16);
+      const g = parseInt(clean.substring(2, 4), 16);
+      const b = parseInt(clean.substring(4, 6), 16);
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      return luminance < 0.42;
+    }
+
+    function buildTshirtPath(ctx, sleeveType) {
+      ctx.beginPath();
+      // Left collar to shoulder
+      ctx.moveTo(325, 115);
+      ctx.lineTo(220, 148);
+
+      if (sleeveType === "short") {
+        // Short sleeve left
+        ctx.lineTo(95, 295);
+        ctx.lineTo(182, 365);
+        ctx.lineTo(238, 295);
+      } else {
+        // Long sleeve left
+        ctx.lineTo(65, 595);
+        ctx.lineTo(132, 612);
+        ctx.lineTo(238, 305);
+      }
+
+      // Torso left side & hem
+      ctx.lineTo(232, 815);
+      ctx.quadraticCurveTo(400, 832, 568, 815);
+      ctx.lineTo(562, 295);
+
+      if (sleeveType === "short") {
+        // Short sleeve right
+        ctx.lineTo(618, 365);
+        ctx.lineTo(705, 295);
+        ctx.lineTo(580, 148);
+      } else {
+        // Long sleeve right
+        ctx.lineTo(668, 612);
+        ctx.lineTo(735, 595);
+        ctx.lineTo(580, 148);
+      }
+
+      // Right shoulder to collar
+      ctx.lineTo(475, 115);
+      ctx.quadraticCurveTo(400, 145, 325, 115);
+      ctx.closePath();
+    }
+
+    function renderTshirtCanvas(showGuides = true) {
+      const canvas = document.getElementById("tshirtDesignCanvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      const W = canvas.width;
+      const H = canvas.height;
+      const shirtHex = state.selectedColorHex || "#111827";
+      const darkShirt = isColorDark(shirtHex);
+      const sleeveType = state.studio.sleeve;
+      const side = state.studio.activeSide;
+      const sideObj = state.studio[side];
+
+      // 1. Clear offscreen buffer & draw base shirt silhouette
+      bufferCtx.clearRect(0, 0, W, H);
+      bufferCtx.save();
+      buildTshirtPath(bufferCtx, sleeveType);
+      bufferCtx.fillStyle = shirtHex;
+      bufferCtx.fill();
+
+      // Clip all subsequent fabric layers & artwork strictly inside shirt
+      bufferCtx.globalCompositeOperation = "source-atop";
+
+      // 2. Collar & Neckline Details (Front deep scoop vs Back high crew)
+      bufferCtx.beginPath();
+      if (side === "front") {
+        bufferCtx.moveTo(322, 112);
+        bufferCtx.quadraticCurveTo(400, 212, 478, 112);
+        bufferCtx.quadraticCurveTo(400, 136, 322, 112);
+      } else {
+        bufferCtx.moveTo(322, 112);
+        bufferCtx.quadraticCurveTo(400, 152, 478, 112);
+        bufferCtx.quadraticCurveTo(400, 128, 322, 112);
+      }
+      bufferCtx.fillStyle = darkShirt ? "rgba(0,0,0,0.45)" : "rgba(15,23,42,0.14)";
+      bufferCtx.fill();
+
+      // Ribbed collar band
+      bufferCtx.beginPath();
+      if (side === "front") {
+        bufferCtx.moveTo(316, 116);
+        bufferCtx.quadraticCurveTo(400, 224, 484, 116);
+      } else {
+        bufferCtx.moveTo(316, 116);
+        bufferCtx.quadraticCurveTo(400, 160, 484, 116);
+      }
+      bufferCtx.lineWidth = 14;
+      bufferCtx.strokeStyle = darkShirt ? "rgba(255,255,255,0.12)" : "rgba(15,23,42,0.10)";
+      bufferCtx.stroke();
+
+      // 3. Draw User Uploaded Image on Active Side
+      const printableMaxW = 310;
+      const targetW = (sideObj.scale / 100) * printableMaxW;
+
+      if (sideObj.img) {
+        const aspect = sideObj.img.naturalHeight / (sideObj.img.naturalWidth || 1);
+        const drawW = targetW;
+        const drawH = drawW * aspect;
+        bufferCtx.drawImage(
+          sideObj.img,
+          sideObj.x - drawW / 2,
+          sideObj.y - drawH / 2,
+          drawW,
+          drawH
+        );
+      }
+
+      // 4. Draw User Custom Text on Active Side
+      if (sideObj.text && sideObj.text.trim()) {
+        const fontSize = Math.max(18, Math.round(targetW * 0.24));
+        bufferCtx.font = `800 ${fontSize}px ${sideObj.textFont}`;
+        bufferCtx.fillStyle = sideObj.textColor;
+        bufferCtx.textAlign = "center";
+        bufferCtx.textBaseline = "middle";
+        const textOffsetY = sideObj.img ? ((sideObj.scale / 100) * printableMaxW * 0.65) : 0;
+        bufferCtx.fillText(sideObj.text.trim(), sideObj.x, sideObj.y + textOffsetY, 310);
+      }
+
+      // 5. Realistic Fabric Shading & Seam Highlights ON TOP of Artwork
+      const bodyGrad = bufferCtx.createLinearGradient(220, 0, 580, 0);
+      if (darkShirt) {
+        bodyGrad.addColorStop(0, "rgba(0,0,0,0.28)");
+        bodyGrad.addColorStop(0.22, "rgba(255,255,255,0.06)");
+        bodyGrad.addColorStop(0.5, "rgba(255,255,255,0.09)");
+        bodyGrad.addColorStop(0.78, "rgba(255,255,255,0.05)");
+        bodyGrad.addColorStop(1, "rgba(0,0,0,0.30)");
+      } else {
+        bodyGrad.addColorStop(0, "rgba(15,23,42,0.12)");
+        bodyGrad.addColorStop(0.25, "rgba(255,255,255,0.22)");
+        bodyGrad.addColorStop(0.5, "rgba(255,255,255,0.30)");
+        bodyGrad.addColorStop(0.75, "rgba(255,255,255,0.18)");
+        bodyGrad.addColorStop(1, "rgba(15,23,42,0.13)");
+      }
+      bufferCtx.fillStyle = bodyGrad;
+      bufferCtx.fillRect(0, 0, W, H);
+
+      // Armhole & hem stitching lines
+      bufferCtx.setLineDash([5, 4]);
+      bufferCtx.lineWidth = 1.6;
+      bufferCtx.strokeStyle = darkShirt ? "rgba(255,255,255,0.16)" : "rgba(15,23,42,0.14)";
+      bufferCtx.beginPath();
+      bufferCtx.moveTo(220, 148);
+      bufferCtx.quadraticCurveTo(248, 225, 238, 295);
+      bufferCtx.moveTo(580, 148);
+      bufferCtx.quadraticCurveTo(552, 225, 562, 295);
+      bufferCtx.moveTo(234, 802);
+      bufferCtx.quadraticCurveTo(400, 818, 566, 802);
+      bufferCtx.stroke();
+      bufferCtx.setLineDash([]);
+      bufferCtx.restore();
+
+      // 6. Paint to Main Visible Canvas with Drop Shadow
+      ctx.clearRect(0, 0, W, H);
+      ctx.save();
+      ctx.shadowColor = "rgba(15, 23, 42, 0.16)";
+      ctx.shadowBlur = 24;
+      ctx.shadowOffsetY = 10;
+      ctx.drawImage(bufferCanvas, 0, 0);
+      ctx.restore();
+
+      // Subtle outer silhouette stroke so white shirt stands out cleanly
+      ctx.save();
+      buildTshirtPath(ctx, sleeveType);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = darkShirt ? "rgba(15,23,42,0.35)" : "rgba(148,163,184,0.55)";
+      ctx.stroke();
+      ctx.restore();
+
+      // 7. Interactive Print Area Guide Box (Hidden during final PNG export)
+      if (showGuides) {
+        ctx.save();
+        ctx.setLineDash([8, 6]);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = darkShirt ? "rgba(52, 211, 153, 0.7)" : "rgba(5, 150, 105, 0.65)";
+        ctx.strokeRect(250, 220, 300, 480);
+
+        ctx.setLineDash([]);
+        ctx.fillStyle = darkShirt ? "rgba(52, 211, 153, 0.85)" : "rgba(5, 150, 105, 0.85)";
+        ctx.font = "700 16px 'Plus Jakarta Sans', sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(
+          side === "front" ? "AREA CETAK DTF DEPAN" : "AREA CETAK DTF BELAKANG",
+          400,
+          208
+        );
+        ctx.restore();
+      }
+    }
+
+    function exportMockupAsBase64() {
+      renderTshirtCanvas(false);
+      const canvas = document.getElementById("tshirtDesignCanvas");
+      const dataUrl = canvas.toDataURL("image/png");
+      renderTshirtCanvas(true);
+      return dataUrl.split(",")[1];
+    }
+
+    // =========================================================
+    // 10. RENDER COLOR SWATCHES & MATRIKS UKURAN
     // =========================================================
     function renderOrderColorSwatches() {
       const formContainer = document.getElementById("formColorSwatches");
 
       formContainer.innerHTML = TSHIRT_COLORS.map(c => `
-        <button type="button" data-color="${c.name}" onclick="selectColor('${c.name}')"
+        <button type="button" data-color="${c.name}" onclick="selectColor('${c.name}', '${c.hex}')"
           class="color-swatch-btn w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-xs font-semibold text-slate-700 text-left transition">
           <span class="w-4 h-4 rounded-full shrink-0" style="background-color:${c.hex}; border: 1.5px solid ${c.border};"></span>
           <span class="truncate">${c.name}</span>
@@ -1695,25 +2273,46 @@
       `).join("");
 
       const customInput = document.getElementById("customColorInput");
+      const customPicker = document.getElementById("customColorPicker");
+
       customInput.addEventListener("input", (e) => {
         const val = e.target.value.trim();
         if (val) {
           state.selectedColor = val;
+          state.selectedColorHex = customPicker.value;
           document.getElementById("activeColorLabel").textContent = val;
           document.querySelectorAll(".color-swatch-btn").forEach(btn => {
             btn.classList.remove("border-brand-600", "bg-brand-50", "text-brand-800", "ring-2", "ring-brand-500/20");
           });
+          updateCanvasInfoTags();
+          renderTshirtCanvas(true);
         } else {
-          selectColor(TSHIRT_COLORS[0].name);
+          selectColor(TSHIRT_COLORS[0].name, TSHIRT_COLORS[0].hex);
         }
       });
 
-      selectColor(state.selectedColor);
+      customPicker.addEventListener("input", (e) => {
+        state.selectedColorHex = e.target.value;
+        if (!customInput.value.trim()) {
+          state.selectedColor = `Custom (${e.target.value.toUpperCase()})`;
+          document.getElementById("activeColorLabel").textContent = state.selectedColor;
+        }
+        updateCanvasInfoTags();
+        renderTshirtCanvas(true);
+      });
+
+      selectColor(state.selectedColor, state.selectedColorHex);
     }
 
-    function selectColor(colorName) {
+    function selectColor(colorName, hexCode = null) {
+      const found = TSHIRT_COLORS.find(c => c.name === colorName);
+      const resolvedHex = hexCode || (found ? found.hex : "#111827");
+
       state.selectedColor = colorName;
+      state.selectedColorHex = resolvedHex;
+
       document.getElementById("customColorInput").value = "";
+      document.getElementById("customColorPicker").value = resolvedHex;
       document.getElementById("activeColorLabel").textContent = colorName;
 
       document.querySelectorAll(".color-swatch-btn").forEach(btn => {
@@ -1724,6 +2323,9 @@
           btn.classList.remove("border-brand-600", "bg-brand-50", "text-brand-800", "ring-2", "ring-brand-500/20");
         }
       });
+
+      updateCanvasInfoTags();
+      renderTshirtCanvas(true);
     }
 
     function renderSizeMatrices() {
@@ -1736,21 +2338,21 @@
       const container = document.getElementById(containerId);
       container.innerHTML = SIZES.map(size => `
         <div class="flex items-center justify-between gap-2 bg-white px-3 py-2 rounded-xl border border-slate-200">
-          <div class="flex items-center gap-2.5 min-w-0">
-            <span class="w-8 h-8 rounded-lg bg-slate-100 text-slate-900 font-extrabold text-xs flex items-center justify-center shrink-0">${size}</span>
-            <span class="hidden min-[360px]:inline text-xs font-semibold text-slate-600 truncate">Ukuran ${size}</span>
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="w-7 h-7 rounded-lg bg-slate-100 text-slate-900 font-extrabold text-xs flex items-center justify-center shrink-0">${size}</span>
+            <span class="text-xs font-semibold text-slate-600 truncate">Size ${size}</span>
           </div>
 
           <div class="inline-flex items-center gap-1 bg-slate-50 p-1 rounded-xl border border-slate-200 shrink-0">
             <button type="button" onclick="adjustQty('${type}', '${size}', -1)" aria-label="Kurangi ${size}"
-              class="w-8 h-8 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 active:scale-95 text-slate-700 font-extrabold text-sm flex items-center justify-center transition">
+              class="w-7 h-7 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 active:scale-95 text-slate-700 font-extrabold text-sm flex items-center justify-center transition">
               −
             </button>
             <input type="number" min="0" value="0" id="qty_${type}_${size}"
               onchange="setQtyDirect('${type}', '${size}', this.value)"
-              class="w-11 text-center font-bold text-sm text-slate-900 bg-transparent focus:outline-none" />
+              class="w-10 text-center font-bold text-xs sm:text-sm text-slate-900 bg-transparent focus:outline-none" />
             <button type="button" onclick="adjustQty('${type}', '${size}', 1)" aria-label="Tambah ${size}"
-              class="w-8 h-8 rounded-lg bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-extrabold text-sm flex items-center justify-center transition">
+              class="w-7 h-7 rounded-lg bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-extrabold text-sm flex items-center justify-center transition">
               +
             </button>
           </div>
@@ -1763,6 +2365,9 @@
       const next = Math.max(0, current + delta);
       state.quantities[type][size] = next;
       document.getElementById(`qty_${type}_${size}`).value = next;
+      if (next > 0 && state.studio.sleeve !== type) {
+        setStudioSleeve(type);
+      }
       updateTotals();
     }
 
@@ -1770,6 +2375,9 @@
       const parsed = Math.max(0, parseInt(rawValue, 10) || 0);
       state.quantities[type][size] = parsed;
       document.getElementById(`qty_${type}_${size}`).value = parsed;
+      if (parsed > 0 && state.studio.sleeve !== type) {
+        setStudioSleeve(type);
+      }
       updateTotals();
     }
 
@@ -1784,7 +2392,7 @@
     }
 
     // =========================================================
-    // 12. CONDITIONAL FIELDS SISI SABLON & UPLOAD DESAIN
+    // 11. CONDITIONAL FIELDS SISI SABLON & DROPZONE FILE MASTER
     // =========================================================
     function setupPrintSideListeners() {
       document.querySelectorAll('input[name="printSide"]').forEach(radio => {
@@ -1899,7 +2507,7 @@
     }
 
     // =========================================================
-    // 13. FORMATTER RUPIAH & SUBMIT KE GOOGLE APPS SCRIPT + WA
+    // 12. FORMATTER RUPIAH & SUBMIT KE GOOGLE APPS SCRIPT + WA
     // =========================================================
     function formatRupiah(valueStr) {
       const digits = valueStr.replace(/\D/g, "");
@@ -1970,13 +2578,13 @@
       const longTotal = SIZES.reduce((sum, s) => sum + state.quantities.long[s], 0);
       const totalPcs = shortTotal + longTotal;
 
+      if (!tshirtColor) return showFormError("Silakan pilih atau ketik warna kaos terlebih dahulu.");
+      if (totalPcs <= 0) return showFormError("Jumlah pesanan minimal 1 pcs pada Lengan Pendek atau Lengan Panjang.");
       if (!customerName) return showFormError("Nama Pemesan / Instansi wajib diisi.");
       if (!/^[0-9]{9,15}$/.test(customerWhatsapp)) {
         return showFormError("No. WhatsApp wajib diisi dengan angka yang valid (9–15 digit).");
       }
       if (!customerAddress) return showFormError("Alamat lengkap wajib diisi.");
-      if (!tshirtColor) return showFormError("Silakan pilih atau ketik warna kaos terlebih dahulu.");
-      if (totalPcs <= 0) return showFormError("Jumlah pesanan minimal 1 pcs pada Lengan Pendek atau Lengan Panjang.");
       if (!document.getElementById("termsCheckbox").checked) {
         return showFormError("Anda wajib mencentang persetujuan Ketentuan Order.");
       }
@@ -1997,10 +2605,29 @@
       const paymentMethod = document.getElementById("paymentMethod").value;
       const dpAmount = document.getElementById("dpAmount").value.trim() || "Rp 0";
       const remainingAmount = document.getElementById("remainingAmount").value.trim() || "Rp 0";
-      const designNotes = document.getElementById("designNotes").value.trim() || "-";
+
+      // Gabungkan catatan user + info teks custom dari Studio Desain jika ada
+      const studioTexts = [];
+      if (state.studio.front.text.trim()) studioTexts.push(`Teks Depan: "${state.studio.front.text.trim()}"`);
+      if (state.studio.back.text.trim()) studioTexts.push(`Teks Belakang: "${state.studio.back.text.trim()}"`);
+      const rawNotes = document.getElementById("designNotes").value.trim();
+      const combinedNotes = [rawNotes, ...studioTexts].filter(Boolean).join(" | ") || "-";
 
       const shortBreakdown = formatSizeBreakdown(state.quantities.short);
       const longBreakdown = formatSizeBreakdown(state.quantities.long);
+
+      // Siapkan file utama untuk Google Drive:
+      // Gunakan file master terunggah jika ada; jika tidak ada, gunakan render mockup PNG dari Studio Desain!
+      let finalFilePayload = state.uploadedFile;
+      if (!finalFilePayload) {
+        const mockupBase64 = exportMockupAsBase64();
+        finalFilePayload = {
+          name: `Mockup-DTF-${customerName.replace(/\s+/g, "_")}.png`,
+          mimeType: "image/png",
+          size: Math.round((mockupBase64.length * 3) / 4),
+          base64: mockupBase64
+        };
+      }
 
       const payload = {
         customerName,
@@ -2013,12 +2640,12 @@
         printSide,
         frontPrintDetail: frontDetail,
         backPrintDetail: backDetail,
-        designNotes,
+        designNotes: combinedNotes,
         shippingMethod,
         paymentMethod,
         dpAmount,
         remainingAmount,
-        designFile: state.uploadedFile
+        designFile: finalFilePayload
       };
 
       document.getElementById("loadingOverlay").classList.remove("hidden");
@@ -2037,7 +2664,7 @@
         }
 
         const orderId = result.orderId;
-        const fileUrl = result.fileUrl || "Belum upload desain";
+        const fileUrl = result.fileUrl || "Mockup tersimpan";
 
         const pesanWhatsApp = buildWhatsAppMessage({
           orderId,
@@ -2052,7 +2679,7 @@
           frontDetail,
           backDetail,
           fileUrl,
-          designNotes,
+          designNotes: combinedNotes,
           shippingMethod,
           paymentMethod,
           dpAmount,
@@ -2082,7 +2709,7 @@
 
     function buildWhatsAppMessage(d) {
       const lines = [
-        `*HALO ADMIN, SAYA INGIN KONFIRMASI ORDER KAOS CUSTOM*`,
+        `*HALO ADMIN, SAYA INGIN ORDER KAOS SABLON DTF*`,
         `━━━━━━━━━━━━━━━━━━━━━━`,
         `*ID Order:* ${d.orderId}`,
         ``,
@@ -2105,17 +2732,18 @@
 
       lines.push(
         ``,
-        `*3. DETAIL SABLON & DESAIN*`,
+        `*3. DETAIL SABLON DTF & DESAIN*`,
+        `• Metode Cetak: Sablon DTF High-Res`,
         `• Sisi Sablon: ${d.printSide}`
       );
       if (d.frontDetail !== "-") {
-        lines.push(`• Sablon Depan: ${d.frontDetail}`);
+        lines.push(`• Sablon DTF Depan: ${d.frontDetail}`);
       }
       if (d.backDetail !== "-") {
-        lines.push(`• Sablon Belakang: ${d.backDetail}`);
+        lines.push(`• Sablon DTF Belakang: ${d.backDetail}`);
       }
       lines.push(
-        `• Link File Desain: ${d.fileUrl}`,
+        `• Link Desain / Mockup: ${d.fileUrl}`,
         `• Catatan Desain: ${d.designNotes}`,
         ``,
         `*4. PENGIRIMAN & PEMBAYARAN*`,
@@ -2124,14 +2752,14 @@
         `• Nominal DP: ${d.dpAmount}`,
         `• Sisa Pembayaran: ${d.remainingAmount}`,
         `━━━━━━━━━━━━━━━━━━━━━━`,
-        `Mohon info mockup & total tagihan finalnya ya Admin. Terima kasih!`
+        `Mohon konfirmasi total tagihan finalnya ya Admin. Terima kasih!`
       );
 
       return lines.join("\n");
     }
 
     function renderSuccessScreen({ orderId, customerName, totalPcs, fileUrl, waUrl }) {
-      document.getElementById("orderForm").classList.add("hidden");
+      document.getElementById("studioWorkspaceGrid").classList.add("hidden");
       document.getElementById("selectedModelBanner").classList.add("hidden");
 
       const successView = document.getElementById("orderSuccessView");
@@ -2143,7 +2771,7 @@
 
       const fileLinkEl = document.getElementById("successFileLink");
       if (fileUrl.startsWith("http")) {
-        fileLinkEl.innerHTML = `<a href="${fileUrl}" target="_blank" rel="noopener" class="text-brand-600 underline hover:text-brand-700">Lihat Desain di Drive</a>`;
+        fileLinkEl.innerHTML = `<a href="${fileUrl}" target="_blank" rel="noopener" class="text-brand-600 underline hover:text-brand-700">Lihat Desain / Mockup di Drive</a>`;
       } else {
         fileLinkEl.textContent = fileUrl;
       }
@@ -2176,15 +2804,27 @@
         document.getElementById(`qty_long_${s}`).value = 0;
       });
       updateTotals();
+
+      // Reset Studio Canvas state
+      ["front", "back"].forEach(side => {
+        state.studio[side].img = null;
+        state.studio[side].imgDataUrl = null;
+        state.studio[side].imgName = "";
+        state.studio[side].text = "";
+      });
+      document.getElementById("studioTextInput").value = "";
+      setStudioSide("front");
+      setStudioSleeve("short");
+
       state.uploadedFile = null;
       document.getElementById("filePreviewBox").classList.add("hidden");
       document.getElementById("dropzoneArea").classList.remove("hidden");
       document.getElementById("submitOrderBtn").disabled = true;
-      selectColor(TSHIRT_COLORS[0].name);
+      selectColor(TSHIRT_COLORS[0].name, TSHIRT_COLORS[0].hex);
       updatePrintSideVisibility();
 
       document.getElementById("orderSuccessView").classList.add("hidden");
-      document.getElementById("orderForm").classList.remove("hidden");
+      document.getElementById("studioWorkspaceGrid").classList.remove("hidden");
 
       if (scrollTop) {
         window.scrollTo({ top: 0, behavior: "smooth" });

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>KaosCraft Studio — Desain Kaos Custom 4 Sisi & Sablon DTF</title>
-  <meta name="description" content="Desain kaos custom 4 sisi (Depan, Belakang, Kanan, Kiri) secara online di studio interaktif full layar dan cetak dengan Sablon DTF High-Res." />
+  <meta name="description" content="Desain kaos custom 4 sisi (Depan, Belakang, Kanan, Kiri) dengan mockup foto realistis dan cetak Sablon DTF High-Res." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -415,7 +415,7 @@
   </main>
 
   <!-- =========================================================
-       HALAMAN 2: STUDIO DESAIN FULL LAYAR (4 SISI: DEPAN, BELAKANG, KANAN, KIRI)
+       HALAMAN 2: STUDIO DESAIN FULL LAYAR (REAL PHOTO ENGINE + 4 SISI)
   ========================================================== -->
   <section id="designStudioView" class="hidden fixed inset-0 z-50 bg-white flex flex-col h-[100dvh] w-full overflow-hidden select-none">
 
@@ -525,7 +525,7 @@
           </button>
         </div>
 
-        <!-- TAB 1: PRODUK (WARNA KAOS, LENGAN, PRESET POSISI) -->
+        <!-- TAB 1: PRODUK (WARNA KAOS, LENGAN, FOTO KAOS REAL, PRESET POSISI) -->
         <div id="drawerTab_produk" class="studio-drawer-tab space-y-3.5">
           <div>
             <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Model Lengan Kaos</label>
@@ -552,6 +552,24 @@
           <div id="drawerPresetSection">
             <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Posisi Cepat Sablon DTF</label>
             <div id="drawerPresetButtons" class="grid grid-cols-3 gap-2"></div>
+          </div>
+
+          <!-- Upload / Ganti Foto Kaos Real (PNG Transparan) -->
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+            <div class="min-w-0">
+              <span class="text-[11px] font-bold text-slate-700 block truncate">Foto Mockup Kaos Real (<span id="realPhotoSideHint">Depan</span>)</span>
+              <span id="realPhotoStatusText" class="text-[10px] text-slate-500 block truncate">Otomatis muat kaos-depan.png jika ada</span>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button type="button" onclick="triggerRealMockupPhotoUpload()"
+                class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-bold transition whitespace-nowrap">
+                Pakai Foto PNG
+              </button>
+              <button type="button" id="clearRealPhotoBtn" onclick="clearRealMockupPhotoForActiveSide()"
+                class="hidden px-2.5 py-1.5 rounded-xl bg-red-50 text-red-600 text-[11px] font-bold hover:bg-red-100 transition">
+                Reset
+              </button>
+            </div>
           </div>
         </div>
 
@@ -608,8 +626,9 @@
       </div>
     </div>
 
-    <!-- HIDDEN FILE INPUT FOR STUDIO UPLOAD -->
+    <!-- HIDDEN FILE INPUTS FOR STUDIO -->
     <input type="file" id="studioImageInput" accept="image/png,image/jpeg,image/webp,image/svg+xml" class="hidden" />
+    <input type="file" id="realMockupPhotoInput" accept="image/png,image/webp" class="hidden" />
 
     <!-- BOTTOM TOOLBAR DOCK -->
     <div class="bg-white border-t border-slate-200 px-1 sm:px-4 py-1.5 sm:py-2 shrink-0 z-30">
@@ -1331,7 +1350,7 @@
   </div>
 
   <!-- =========================================================
-       APPLICATION LOGIC (4-SIDE PHOTOREALISTIC T-SHIRT STUDIO)
+       APPLICATION LOGIC (REAL PHOTO MULTIPLY BLEND ENGINE + 4 SISI)
   ========================================================== -->
   <script>
     // =========================================================
@@ -1339,6 +1358,14 @@
     // =========================================================
     const GAS_WEB_APP_URL = "URL_WEB_APP_GAS_ANDA";
     const ADMIN_WHATSAPP = "628XXXXXXXXXX"; // Format awalan 62 tanpa tanda +
+
+    // Path file foto kaos putih polos transparan (PNG) di folder repository Anda:
+    const REAL_MOCKUP_ASSET_PATHS = {
+      front: "./kaos-depan.png",
+      back: "./kaos-belakang.png",
+      right: "./kaos-kanan.png",
+      left: "./kaos-kiri.png"
+    };
 
     // =========================================================
     // 2. DATA PANDUAN TUTORIAL
@@ -1500,7 +1527,9 @@
         clipart: null,
         x: defaultX,
         y: defaultY,
-        scale: defaultScale
+        scale: defaultScale,
+        realPhotoImg: null,
+        realPhotoLabel: ""
       };
     }
 
@@ -1536,16 +1565,38 @@
       lastWhatsAppUrl: ""
     };
 
-    // Offscreen canvas (900x900) for proportional photorealistic shirt masking
+    // Offscreen canvas (900x900) for real-photo Multiply blending & masking
     const bufferCanvas = document.createElement("canvas");
     bufferCanvas.width = 900;
     bufferCanvas.height = 900;
     const bufferCtx = bufferCanvas.getContext("2d");
 
+    // Micro-cotton knit weave texture pattern (fallback when no PNG photo is loaded)
+    const cottonTexturePattern = (() => {
+      const tex = document.createElement("canvas");
+      tex.width = 24;
+      tex.height = 24;
+      const tctx = tex.getContext("2d");
+      tctx.fillStyle = "rgba(255,255,255,0.035)";
+      for (let y = 0; y < 24; y += 3) {
+        for (let x = 0; x < 24; x += 3) {
+          if ((x + y) % 6 === 0) tctx.fillRect(x, y, 1.5, 1.5);
+        }
+      }
+      tctx.fillStyle = "rgba(15,23,42,0.035)";
+      for (let y = 1; y < 24; y += 3) {
+        for (let x = 1; x < 24; x += 3) {
+          if ((x + y) % 6 === 2) tctx.fillRect(x, y, 1.5, 1.5);
+        }
+      }
+      return bufferCtx.createPattern(tex, "repeat");
+    })();
+
     // =========================================================
     // 5. INISIALISASI SAAT DOM READY
     // =========================================================
     document.addEventListener("DOMContentLoaded", () => {
+      preloadLocalRealMockupPhotos();
       renderCatalogGrid("all");
       renderStudioProductSelectors();
       renderClipartGrid();
@@ -1562,6 +1613,25 @@
       renderTshirtCanvas(true);
       lucide.createIcons();
     });
+
+    // Otomatis memuat kaos-depan.png, kaos-belakang.png, kaos-kanan.png, kaos-kiri.png jika tersedia di folder repo
+    function preloadLocalRealMockupPhotos() {
+      SIDE_ORDER.forEach(side => {
+        const assetUrl = REAL_MOCKUP_ASSET_PATHS[side];
+        if (!assetUrl) return;
+        const img = new Image();
+        img.onload = () => {
+          state.studio[side].realPhotoImg = img;
+          state.studio[side].realPhotoLabel = assetUrl.replace("./", "");
+          updateRealPhotoStatusUI();
+          renderTshirtCanvas(true);
+        };
+        img.onerror = () => {
+          // Graceful fallback ke renderer kain katun prosedural jika file PNG belum ditaruh di folder
+        };
+        img.src = assetUrl;
+      });
+    }
 
     function setupMobileMenu() {
       const btn = document.getElementById("mobileMenuBtn");
@@ -1781,7 +1851,7 @@
     }
 
     // =========================================================
-    // 8. KONTROL STUDIO DESAIN 4 SISI
+    // 8. KONTROL STUDIO DESAIN 4 SISI & FOTO KAOS REAL
     // =========================================================
     function hasSideArtwork(side) {
       const s = state.studio[side];
@@ -1852,6 +1922,7 @@
       document.getElementById("studioSideBadge").textContent = sideLabel;
       document.getElementById("drawerTextSideLabel").textContent = sideLabel;
       document.getElementById("drawerClipSideLabel").textContent = sideLabel;
+      document.getElementById("realPhotoSideHint").textContent = sideLabel;
 
       document.querySelectorAll(".side-pill-btn").forEach(btn => {
         const isMatch = btn.getAttribute("data-side-pill") === side;
@@ -1865,9 +1936,41 @@
       document.getElementById("studioTextFont").value = s.textFont;
       document.getElementById("studioTextColor").value = s.textColor;
 
+      updateRealPhotoStatusUI();
       renderStudioPresetButtons();
       if (state.studio.activeDrawer === "layer") refreshLayerDrawerList();
       updateStudioStatusUI();
+      renderTshirtCanvas(true);
+    }
+
+    function updateRealPhotoStatusUI() {
+      const side = state.studio.activeSide;
+      const sideObj = state.studio[side];
+      const statusEl = document.getElementById("realPhotoStatusText");
+      const clearBtn = document.getElementById("clearRealPhotoBtn");
+      if (!statusEl || !clearBtn) return;
+
+      if (sideObj.realPhotoImg) {
+        statusEl.textContent = `Aktif: ${sideObj.realPhotoLabel || "Foto PNG Real"}`;
+        statusEl.className = "text-[10px] text-brand-700 font-bold block truncate";
+        clearBtn.classList.remove("hidden");
+      } else {
+        const expectedFile = REAL_MOCKUP_ASSET_PATHS[side].replace("./", "");
+        statusEl.textContent = `Taruh ${expectedFile} di folder / unggah PNG`;
+        statusEl.className = "text-[10px] text-slate-500 block truncate";
+        clearBtn.classList.add("hidden");
+      }
+    }
+
+    function triggerRealMockupPhotoUpload() {
+      document.getElementById("realMockupPhotoInput").click();
+    }
+
+    function clearRealMockupPhotoForActiveSide() {
+      const side = state.studio.activeSide;
+      state.studio[side].realPhotoImg = null;
+      state.studio[side].realPhotoLabel = "";
+      updateRealPhotoStatusUI();
       renderTshirtCanvas(true);
     }
 
@@ -1900,7 +2003,7 @@
       container.classList.remove("hidden");
 
       const titles = {
-        produk: "Pilih Model Kaos & Warna",
+        produk: "Pilih Model Kaos, Warna & Foto Real",
         teks: "Tambahkan / Edit Teks Sablon",
         clipart: "Tambahkan Clip Art DTF",
         layer: "Kelola Layer & Ukuran Cetak"
@@ -1918,7 +2021,10 @@
       });
 
       if (tabName === "layer") refreshLayerDrawerList();
-      if (tabName === "produk") renderStudioPresetButtons();
+      if (tabName === "produk") {
+        renderStudioPresetButtons();
+        updateRealPhotoStatusUI();
+      }
       lucide.createIcons();
     }
 
@@ -2033,7 +2139,6 @@
           document.getElementById("backPrintPosition").value = "Full Punggung (A3)";
         }
       } else {
-        // Sisi Kanan / Sisi Kiri (Lengan)
         if (presetKey === "lengan-atas") {
           sideObj.x = 450;
           sideObj.y = 265;
@@ -2163,11 +2268,33 @@
     function setupStudioCanvasEvents() {
       const canvas = document.getElementById("tshirtDesignCanvas");
       const studioImgInput = document.getElementById("studioImageInput");
+      const realMockupInput = document.getElementById("realMockupPhotoInput");
       const textInput = document.getElementById("studioTextInput");
       const textFont = document.getElementById("studioTextFont");
       const textColor = document.getElementById("studioTextColor");
       const scaleSlider = document.getElementById("studioScaleSlider");
 
+      // Upload Foto Kaos Real (PNG Transparan) untuk Sisi Aktif
+      realMockupInput.addEventListener("change", (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          const img = new Image();
+          img.onload = () => {
+            const side = state.studio.activeSide;
+            state.studio[side].realPhotoImg = img;
+            state.studio[side].realPhotoLabel = file.name;
+            updateRealPhotoStatusUI();
+            renderTshirtCanvas(true);
+          };
+          img.src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+        realMockupInput.value = "";
+      });
+
+      // Upload Desain Sablon DTF Pelanggan
       studioImgInput.addEventListener("change", (e) => {
         const file = e.target.files && e.target.files[0];
         if (!file) return;
@@ -2311,7 +2438,7 @@
     }
 
     // =========================================================
-    // 9. PHOTOREALISTIC T-SHIRT RENDERER (PROPORSI REAL + 4 SISI)
+    // 9. REAL-PHOTO MULTIPLY BLEND ENGINE & PROPORTIONAL RENDERER
     // =========================================================
     function isColorDark(hex) {
       const clean = hex.replace("#", "");
@@ -2322,66 +2449,52 @@
       return (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.45;
     }
 
-    // Siluet proporsional Tampak Depan / Belakang (900 x 900)
     function buildFrontBackShirtPath(ctx, sleeveType) {
       ctx.beginPath();
-      // Left collar edge -> wide natural shoulder slope
       ctx.moveTo(350, 112);
       ctx.bezierCurveTo(295, 126, 220, 148, 168, 176);
 
       if (sleeveType === "short") {
-        // Left short sleeve
         ctx.bezierCurveTo(116, 232, 72, 315, 44, 396);
         ctx.quadraticCurveTo(112, 430, 188, 448);
         ctx.bezierCurveTo(204, 412, 216, 382, 226, 358);
       } else {
-        // Left long sleeve
         ctx.bezierCurveTo(106, 292, 62, 470, 32, 705);
         ctx.quadraticCurveTo(78, 724, 126, 722);
         ctx.bezierCurveTo(168, 550, 202, 422, 226, 358);
       }
 
-      // Proportional adult regular-fit torso (width ~448px, height ~675px -> ratio 1:1.50)
       ctx.bezierCurveTo(232, 505, 226, 650, 224, 782);
       ctx.quadraticCurveTo(450, 810, 676, 782);
       ctx.bezierCurveTo(674, 650, 668, 505, 674, 358);
 
       if (sleeveType === "short") {
-        // Right short sleeve
         ctx.bezierCurveTo(684, 382, 696, 412, 712, 448);
         ctx.quadraticCurveTo(788, 430, 856, 396);
         ctx.bezierCurveTo(828, 315, 784, 232, 732, 176);
       } else {
-        // Right long sleeve
         ctx.bezierCurveTo(698, 422, 732, 550, 774, 722);
         ctx.quadraticCurveTo(822, 724, 868, 705);
         ctx.bezierCurveTo(838, 470, 794, 292, 732, 176);
       }
 
-      // Right shoulder slope back to right collar edge
       ctx.bezierCurveTo(680, 148, 605, 126, 550, 112);
       ctx.quadraticCurveTo(450, 140, 350, 112);
       ctx.closePath();
     }
 
-    // Siluet Profil Samping (Sisi Kanan = chest menghadap kiri, punggung menghadap kanan)
     function buildSideProfileTorsoPath(ctx) {
       ctx.beginPath();
-      // Top collar & shoulder peak
       ctx.moveTo(355, 126);
       ctx.quadraticCurveTo(450, 108, 545, 134);
-      // Back shoulder blade contour down to bottom hem
       ctx.bezierCurveTo(598, 225, 616, 460, 602, 782);
-      // Bottom side hem
       ctx.quadraticCurveTo(450, 804, 298, 782);
-      // Front chest contour up to front collar dip
       ctx.bezierCurveTo(286, 465, 298, 245, 355, 126);
       ctx.closePath();
     }
 
     function buildSideProfileSleevePath(ctx, sleeveType) {
       ctx.beginPath();
-      // Rounded shoulder crown overlapping torso
       ctx.moveTo(352, 228);
       ctx.bezierCurveTo(372, 142, 528, 142, 548, 228);
       if (sleeveType === "short") {
@@ -2452,9 +2565,62 @@
       bufferCtx.clearRect(0, 0, W, H);
       let targetW = 140;
 
-      if (side === "front" || side === "back") {
+      // =====================================================
+      // MODE 1: FOTO KAOS REAL (PNG TRANSPARAN) + MULTIPLY BLEND
+      // =====================================================
+      if (sideObj.realPhotoImg) {
+        const photo = sideObj.realPhotoImg;
+        const pad = 45;
+        const maxBox = W - pad * 2;
+        const ratio = Math.min(maxBox / (photo.naturalWidth || 1), maxBox / (photo.naturalHeight || 1));
+        const drawW = photo.naturalWidth * ratio;
+        const drawH = photo.naturalHeight * ratio;
+        const drawX = (W - drawW) / 2;
+        const drawY = (H - drawH) / 2;
+
+        bufferCtx.save();
+        // 1. Gambar siluet foto kaos asli
+        bufferCtx.drawImage(photo, drawX, drawY, drawW, drawH);
+
+        // 2. Warnai area kaos sesuai warna pilihan
+        bufferCtx.globalCompositeOperation = "source-atop";
+        bufferCtx.fillStyle = shirtHex;
+        bufferCtx.fillRect(0, 0, W, H);
+
+        // 3. Tumpuk kembali foto kaos putih dengan mode MULTIPLY agar serat katun & lipatan asli muncul
+        bufferCtx.globalCompositeOperation = "multiply";
+        bufferCtx.globalAlpha = darkShirt ? 0.78 : 1.0;
+        bufferCtx.drawImage(photo, drawX, drawY, drawW, drawH);
+
+        // 4. Untuk warna sangat gelap (Hitam/Navy), tambahkan highlight lembut agar lipatan tetap tajam
+        if (darkShirt) {
+          bufferCtx.globalCompositeOperation = "screen";
+          bufferCtx.globalAlpha = 0.14;
+          bufferCtx.drawImage(photo, drawX, drawY, drawW, drawH);
+        }
+
+        // 5. Render desain sablon DTF pelanggan di dalam area kaos
+        bufferCtx.globalAlpha = 1.0;
+        bufferCtx.globalCompositeOperation = "source-atop";
+        targetW = drawUserArtworkOnSide(bufferCtx, side, sideObj);
+
+        // 6. Bayangan lipatan kain tipis di atas sablon agar menyatu dengan permukaan kain
+        bufferCtx.globalCompositeOperation = "multiply";
+        bufferCtx.globalAlpha = 0.20;
+        bufferCtx.drawImage(photo, drawX, drawY, drawW, drawH);
+        bufferCtx.restore();
+
+        ctx.clearRect(0, 0, W, H);
+        ctx.save();
+        ctx.shadowColor = "rgba(15, 23, 42, 0.15)";
+        ctx.shadowBlur = 24;
+        ctx.shadowOffsetY = 10;
+        ctx.drawImage(bufferCanvas, 0, 0);
+        ctx.restore();
+
+      } else if (side === "front" || side === "back") {
         // =====================================================
-        // MODE A: TAMPAK DEPAN & TAMPAK BELAKANG (PROPORSI REAL)
+        // MODE 2A: CADANGAN DEPAN & BELAKANG DENGAN SERAT KATUN
         // =====================================================
         bufferCtx.save();
         buildFrontBackShirtPath(bufferCtx, sleeveType);
@@ -2462,8 +2628,13 @@
         bufferCtx.fill();
         bufferCtx.globalCompositeOperation = "source-atop";
 
+        // Tekstur serat rajut katun (micro-knit weave)
+        if (cottonTexturePattern) {
+          bufferCtx.fillStyle = cottonTexturePattern;
+          bufferCtx.fillRect(0, 0, W, H);
+        }
+
         if (side === "front") {
-          // Inner back-neck crescent
           bufferCtx.beginPath();
           bufferCtx.moveTo(346, 110);
           bufferCtx.bezierCurveTo(372, 224, 528, 224, 554, 110);
@@ -2471,7 +2642,6 @@
           bufferCtx.fillStyle = darkShirt ? "rgba(0,0,0,0.40)" : "rgba(15,23,42,0.13)";
           bufferCtx.fill();
 
-          // Woven white neck label inside back collar
           bufferCtx.save();
           bufferCtx.fillStyle = "#F8FAFC";
           bufferCtx.shadowColor = "rgba(0,0,0,0.16)";
@@ -2485,7 +2655,6 @@
           bufferCtx.fillRect(437, 159, 26, 3);
           bufferCtx.restore();
 
-          // Thick Ribbed Crewneck Collar Band
           bufferCtx.beginPath();
           bufferCtx.moveTo(340, 112);
           bufferCtx.bezierCurveTo(364, 238, 536, 238, 560, 112);
@@ -2493,7 +2662,6 @@
           bufferCtx.strokeStyle = shirtHex;
           bufferCtx.stroke();
 
-          // Collar outer & inner seams
           bufferCtx.beginPath();
           bufferCtx.moveTo(331, 114);
           bufferCtx.bezierCurveTo(356, 250, 544, 250, 569, 114);
@@ -2508,7 +2676,6 @@
           bufferCtx.strokeStyle = darkShirt ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.45)";
           bufferCtx.stroke();
         } else {
-          // Back High Crewneck Ribbed Collar
           bufferCtx.beginPath();
           bufferCtx.moveTo(342, 112);
           bufferCtx.quadraticCurveTo(450, 160, 558, 112);
@@ -2524,10 +2691,8 @@
           bufferCtx.stroke();
         }
 
-        // Render Artwork
         targetW = drawUserArtworkOnSide(bufferCtx, side, sideObj);
 
-        // Studio Cylindrical Shading & Natural Cotton Drape Folds
         const bodyGrad = bufferCtx.createLinearGradient(210, 0, 690, 0);
         if (darkShirt) {
           bodyGrad.addColorStop(0, "rgba(0,0,0,0.34)");
@@ -2545,7 +2710,6 @@
         bufferCtx.fillStyle = bodyGrad;
         bufferCtx.fillRect(0, 0, W, H);
 
-        // Soft Cotton Creases
         const folds = [
           { x1: 230, y1: 350, cx: 305, cy: 480, x2: 272, y2: 660, w: 26 },
           { x1: 670, y1: 350, cx: 595, cy: 490, x2: 622, y2: 675, w: 26 },
@@ -2564,7 +2728,6 @@
         });
         bufferCtx.restore();
 
-        // Armhole & Twin-Needle Hem Seams
         bufferCtx.save();
         bufferCtx.strokeStyle = darkShirt ? "rgba(0,0,0,0.45)" : "rgba(15,23,42,0.18)";
         bufferCtx.lineWidth = 2;
@@ -2594,7 +2757,6 @@
         bufferCtx.restore();
         bufferCtx.restore();
 
-        // Draw to visible canvas
         ctx.clearRect(0, 0, W, H);
         ctx.save();
         ctx.shadowColor = "rgba(15, 23, 42, 0.14)";
@@ -2612,25 +2774,26 @@
 
       } else {
         // =====================================================
-        // MODE B: PROFIL SAMPING (SISI KANAN & SISI KIRI LENGAN)
+        // MODE 2B: CADANGAN PROFIL SAMPING (SISI KANAN & KIRI)
         // =====================================================
         const isLeftSide = side === "left";
 
-        // 1. Render Base Side-Profile Torso + Sleeve onto bufferCtx (mirrored if Left Side)
         bufferCtx.save();
         if (isLeftSide) {
           bufferCtx.translate(W, 0);
           bufferCtx.scale(-1, 1);
         }
 
-        // Torso Side Silhouette
         buildSideProfileTorsoPath(bufferCtx);
         bufferCtx.fillStyle = shirtHex;
         bufferCtx.fill();
 
-        // Torso side shading
         bufferCtx.save();
         bufferCtx.clip();
+        if (cottonTexturePattern) {
+          bufferCtx.fillStyle = cottonTexturePattern;
+          bufferCtx.fillRect(0, 0, W, H);
+        }
         const torsoSideGrad = bufferCtx.createLinearGradient(290, 0, 610, 0);
         torsoSideGrad.addColorStop(0, darkShirt ? "rgba(0,0,0,0.28)" : "rgba(15,23,42,0.12)");
         torsoSideGrad.addColorStop(0.5, darkShirt ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.15)");
@@ -2638,7 +2801,6 @@
         bufferCtx.fillStyle = torsoSideGrad;
         bufferCtx.fillRect(0, 0, W, H);
 
-        // Angled Side Crewneck Collar at top
         bufferCtx.beginPath();
         bufferCtx.moveTo(350, 128);
         bufferCtx.quadraticCurveTo(445, 152, 546, 134);
@@ -2649,7 +2811,6 @@
         bufferCtx.strokeStyle = darkShirt ? "rgba(0,0,0,0.55)" : "rgba(15,23,42,0.22)";
         bufferCtx.stroke();
 
-        // Vertical side-seam stitch on lower torso
         bufferCtx.setLineDash([4, 3]);
         bufferCtx.lineWidth = 1.5;
         bufferCtx.strokeStyle = darkShirt ? "rgba(255,255,255,0.15)" : "rgba(15,23,42,0.16)";
@@ -2660,13 +2821,11 @@
         bufferCtx.setLineDash([]);
         bufferCtx.restore();
 
-        // Torso subtle border
         buildSideProfileTorsoPath(bufferCtx);
         bufferCtx.lineWidth = 1.6;
         bufferCtx.strokeStyle = darkShirt ? "rgba(15,23,42,0.35)" : "rgba(148,163,184,0.45)";
         bufferCtx.stroke();
 
-        // Prominent Sleeve Layer Overlapping Upper Torso
         bufferCtx.save();
         bufferCtx.shadowColor = darkShirt ? "rgba(0,0,0,0.45)" : "rgba(15,23,42,0.18)";
         bufferCtx.shadowBlur = 16;
@@ -2676,12 +2835,10 @@
         bufferCtx.fill();
         bufferCtx.restore();
 
-        // Sleeve Shoulder Cap Seam & Twin-Needle Sleeve Cuff
         bufferCtx.save();
         buildSideProfileSleevePath(bufferCtx, sleeveType);
         bufferCtx.clip();
 
-        // Shoulder cap seam curve
         bufferCtx.beginPath();
         bufferCtx.moveTo(352, 228);
         bufferCtx.quadraticCurveTo(450, 248, 548, 228);
@@ -2689,7 +2846,6 @@
         bufferCtx.strokeStyle = darkShirt ? "rgba(0,0,0,0.45)" : "rgba(15,23,42,0.18)";
         bufferCtx.stroke();
 
-        // Twin-needle cuff stitch
         bufferCtx.setLineDash([4, 3]);
         bufferCtx.lineWidth = 1.4;
         bufferCtx.strokeStyle = darkShirt ? "rgba(255,255,255,0.18)" : "rgba(15,23,42,0.18)";
@@ -2702,10 +2858,8 @@
         bufferCtx.stroke();
         bufferCtx.setLineDash([]);
         bufferCtx.restore();
+        bufferCtx.restore();
 
-        bufferCtx.restore(); // End mirror transform
-
-        // Draw Shirt Base to Visible Canvas
         ctx.clearRect(0, 0, W, H);
         ctx.save();
         ctx.shadowColor = "rgba(15, 23, 42, 0.14)";
@@ -2714,13 +2868,11 @@
         ctx.drawImage(bufferCanvas, 0, 0);
         ctx.restore();
 
-        // 2. Render User Sleeve Artwork Un-Mirrored on Top of Sleeve
         ctx.save();
         buildSideProfileSleevePath(ctx, sleeveType);
         ctx.clip();
         targetW = drawUserArtworkOnSide(ctx, side, sideObj);
 
-        // Cylindrical Sleeve Shading over Artwork
         const sleeveGrad = ctx.createLinearGradient(335, 0, 565, 0);
         if (darkShirt) {
           sleeveGrad.addColorStop(0, "rgba(0,0,0,0.34)");
@@ -2735,7 +2887,6 @@
         ctx.fillRect(0, 0, W, H);
         ctx.restore();
 
-        // Crisp Sleeve Outline
         ctx.save();
         buildSideProfileSleevePath(ctx, sleeveType);
         ctx.lineWidth = 1.8;
